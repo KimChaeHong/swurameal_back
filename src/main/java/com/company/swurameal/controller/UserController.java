@@ -46,9 +46,9 @@ public class UserController {
 	@RequestMapping("find/pw")
 	public String findPw() {
 		log.info("비밀번호 찾기");
+		log.info("확인용");
 		return "user/findPassword";
 	}
-
 	
 
 }
