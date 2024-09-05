@@ -3,7 +3,7 @@ package com.company.swurameal.dto;
 import lombok.Data;
 
 @Data
-public class DeliverDto {
+public class DeliveryDto {
 	
 	private int deliveryId;
 	private String userId;
