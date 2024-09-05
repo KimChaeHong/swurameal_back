@@ -21,7 +21,7 @@
 		</div>
 		
 		<div class="card-body">
-			홈입니다.
+			홈입니다. 저는 길주입니다.
 		</div>
 	</div>
 
