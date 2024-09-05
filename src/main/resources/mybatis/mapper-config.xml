@@ -7,6 +7,31 @@
 	</settings>
 
 	<typeAliases>
-		
+		<typeAlias type="com.company.swurameal.dto.AnswerDto"
+				   alias="Answer"/>
+		<typeAlias type="com.company.swurameal.dto.CartDto"
+				   alias="Cart"/>
+		<typeAlias type="com.company.swurameal.dto.DeliveryDto"
+				   alias="Delivery"/>
+		<typeAlias type="com.company.swurameal.dto.FaqDto"
+				   alias="Faq"/>
+		<typeAlias type="com.company.swurameal.dto.GoodsDto"
+				   alias="Goods"/>
+		<typeAlias type="com.company.swurameal.dto.GoodsImgDto"
+				   alias="GoodsImg"/>
+		<typeAlias type="com.company.swurameal.dto.NoticeDto"
+				   alias="Notice"/>
+		<typeAlias type="com.company.swurameal.dto.OrderDto"
+				   alias="Order"/>
+		<typeAlias type="com.company.swurameal.dto.OrderItemDto"
+				   alias="OrderItem"/>
+		<typeAlias type="com.company.swurameal.dto.PickDto"
+				   alias="Pick"/>
+		<typeAlias type="com.company.swurameal.dto.QuestionDto"
+				   alias="Question"/>
+		<typeAlias type="com.company.swurameal.dto.ReviewDto"
+				   alias="Review"/>
+		<typeAlias type="com.company.swurameal.dto.UserDto"
+				   alias="User"/>
 	</typeAliases>
 </configuration>
