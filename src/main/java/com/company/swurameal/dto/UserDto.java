@@ -9,14 +9,17 @@ import lombok.Data;
 @Data
 public class UserDto {
 	
-	private String user_id;
-	private String user_name;
-	private String user_pw;
-	private String user_email;
-	private String user_phone;
-	private String user_address;
+	private String userId;
+	private String userName;
+	private String userPw;
+	private String userEmail;
+	private String userPhone;
+	private String userAddress;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate user_birth;
+	private LocalDate userBirth;
+	
+	private String userRole;
+	private int userEnable;
 	
 }
