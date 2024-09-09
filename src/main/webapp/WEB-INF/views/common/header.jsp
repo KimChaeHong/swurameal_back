@@ -42,9 +42,9 @@
 <div id="header-container" class="navbar">
 		<div class="container justify-content-center">
             <!-- 로고 -->
-            <div id="logo" class="navbar-brand mx-auto" onclick="location.href='/index.html'">
+            <div id="logo" class="navbar-brand mx-auto" onclick="location.href='${pageContext.request.contextPath}'">
                 swuraMeal
-            </div>
+            </div> 
 
             <!-- 로그인 정보 -->
             <div class="row align-items-start">

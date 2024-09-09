@@ -11,11 +11,13 @@
                     <span id="category">카테고리</span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownToggleButton">
-                    <li class="dropdown-item" onclick="loadAllGoods()">전체보기</li>
-                    <li class="dropdown-item" onclick="loadGoodsByCategory('분식')">분식</li>
-                    <li class="dropdown-item" onclick="loadGoodsByCategory('한식')">한식</li>
-                    <li class="dropdown-item" onclick="loadGoodsByCategory('양식')">양식</li>
-                    <li class="dropdown-item" onclick="loadGoodsByCategory('전통주')">전통주</li>
+                    <li class="dropdown-item" onclick="location.href='${pageContext.request.contextPath}/category/all'">
+                    	전체보기
+                    </li>
+                    <li class="dropdown-item" onclick="location.href='${pageContext.request.contextPath}/category/snacks'">분식</li>
+                    <li class="dropdown-item" onclick="location.href='${pageContext.request.contextPath}/category/korean'">한식</li>
+                    <li class="dropdown-item" onclick="location.href='${pageContext.request.contextPath}/category/western'">양식</li>
+                    <li class="dropdown-item" onclick="location.href='${pageContext.request.contextPath}/category/tradDrink'">전통주</li>
                 </ul>
             </div>
         </div>
