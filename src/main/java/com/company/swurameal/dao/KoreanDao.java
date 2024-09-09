@@ -8,4 +8,5 @@ import com.company.swurameal.dto.GoodsDto;
 public class KoreanDao {
 	public int insert(GoodsDto goods);
 	public GoodsDto selectByMid(String goodsName);
+	
 }
