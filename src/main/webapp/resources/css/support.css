@@ -1,0 +1,175 @@
+.support-container {
+    width: 1040px;
+    margin: 0px auto;
+    padding: 0px;
+}
+
+#leftSide{
+    width: 340px;
+}
+
+#side-category {
+    width: 250px;
+    height: 300px;
+    background-color: var(--lightgray);
+    margin-top: 110px;
+    margin-right: 40px;
+    border-radius: 15px;
+    padding-left: 30px;
+    padding-top: 30px;
+}
+
+.h5 {
+    margin-top: 40px;
+}
+
+.h5:hover {
+    cursor: pointer;
+}
+
+
+#mainContent {
+width: 700px;
+padding: 0px;
+}
+
+#title {
+margin-top: 110px;
+margin-bottom: 15px;
+}
+
+#boardContainer {
+width: 700px;
+}
+
+h5.active {
+    color: var(--theme);
+    font-weight: bold;
+}
+
+#board-container {
+    width: 700px;
+    border-top: 2px solid;
+}
+
+.board-top {
+    width: 700px;
+    height: 60px;
+    border-bottom: 1px solid;
+    text-align: center;
+}
+
+.board-top > p, .board > p {
+    margin-bottom: 0px;
+}
+
+.post-num {
+    width: 100px;
+}
+
+#just-title {
+    width: 460px;
+}
+
+.board {
+    width: 700px;
+    height: 50px;
+    border-bottom: 1px solid;
+    border-color: var(--mediumgray);
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 10px;
+}
+
+.post-title {
+    width: 450px;
+
+}
+
+.pagination{
+    margin-top: 20px;
+}
+
+.inquiry-button {
+    width: 120px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme);
+    color: white;
+}
+
+.inquiry-button:hover {
+    border: 1px solid;
+    border-color: black;
+    background-color: var(--theme);
+    color: white;
+}
+
+.cmp-button {
+    width: 120px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme);
+    color: white;
+}
+
+.cmp-button:hover {
+    border: 1px solid;
+    border-color: black;
+    background-color: var(--theme);
+    color: white;
+}
+
+.board-list {
+    border-radius: 0px;
+}
+
+.accordion-item {
+    border: none;
+    border-radius: 0px;
+}
+
+.accordion-body {
+    border: 1px solid var(--mediumgray);
+    word-break: break-all;
+    background-color: var(--lightgray);
+    padding: 10px;
+}
+.accordion-button::after {
+    display: none;
+}
+
+.accordion-button {
+    border-radius: 0px;
+}
+
+.qna-text {
+    width: 500px;
+}
+
+.btn-sm {
+    width: 50px;
+    height: 25px;
+}
+
+.btn-sm:hover {
+    border: none;
+    font-weight: bold;
+}
+
+.form-button-container {
+    text-align: right;
+}
+
+.text-form {
+    width: 600px;
+    height: 300px;
+}
+
+.page-upload {
+    margin-bottom: 50px;
+}
