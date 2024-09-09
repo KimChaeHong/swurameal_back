@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.pay h2 {
+  text-align: center;
+  height: 150px;
+  line-height: 150px;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.pay .title {
+  font-size: 24px;
+  font-weight: 500;
+  padding-bottom: 15px;
+  border-bottom: 1.8px solid black;
+}
+
+/* 결제 상품 */
+#pay-items,
+#user-info,
+#pay-agree {
+  margin-bottom: 150px;
+  width: 620px;
+}
+
+.item {
+  width: 100%;
+  border-bottom: 1px solid var(--mediumgray);
+  padding: 25px 0;
+  padding-left: 0;
+}
+
+.item img {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+#item-detail p {
+  font-size: 17px;
+  width: 280px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+#item-detail p:nth-child(2) {
+  color: var(--darkgray);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.item-cnt,
+.item-price {
+  width: 100px;
+  text-align: right;
+  padding-right: 20px;
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.item-cnt {
+  font-weight: 400;
+  margin-right: 10px;
+}
+
+/* 주문자 정보 */
+#user-info .label {
+  display: inline-block;
+  width: 140px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 15px;
+}
+#user-info input {
+  border: none;
+  width: 360px;
+}
+
+#user-info button {
+  height: 28px;
+  border: 0.8px solid var(--darkgray);
+  color: var(--darkgray);
+  background-color: white;
+  border-radius: 3px;
+  margin-left: 10px;
+}
+
+/* 개인정보 및 결제 동의 */
+#pay-agree .d-flex:not(.title) {
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+#pay-agree i {
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+#pay-agree i.bi-check-square-fill {
+  color: var(--theme);
+}
+
+#pay-agree .agree {
+  padding-top: 10px;
+}
+
+#pay-agree .agree p {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* 주문내역서 */
+#pay-pay {
+  width: 340px;
+  min-width: 240px;
+  margin-top: 39px;
+}
+
+#pay-pay #how-much {
+  background-color: var(--lightgray);
+  padding: 25px;
+}
+
+#how-much p {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 35px;
+}
+
+#how-much span {
+  padding-bottom: 10px;
+}
+
+#how-much .total {
+  font-weight: 700;
+  margin-top: 25px;
+  font-size: 16px;
+}
+
+#pay-pay button {
+  background-color: var(--theme);
+  color: white;
+  height: 40px;
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  margin-top: 18px;
+  letter-spacing: 2px;
+}
