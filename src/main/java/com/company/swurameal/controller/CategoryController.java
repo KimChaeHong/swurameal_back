@@ -1,6 +1,7 @@
 package com.company.swurameal.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
@@ -81,25 +82,25 @@ public class CategoryController {
 		return "category/roast";
 	}	
 	
-	@RequestMapping("/trad-drink")
+	@GetMapping("/tradDrink")
 	public String tradDrink() {
 		log.info("전통주");
 		return "category/tradDrink";
 	}
 	
-	@RequestMapping("/trad-drink/takju")
+	@RequestMapping("/tradDrink/takju")
 	public String tradTakju() {
 		log.info("탁주");
 		return "category/takju";
 	}
 	
-	@RequestMapping("/trad-drink/distilled")
+	@RequestMapping("/tradDrink/distilled")
 	public String tradDistilled() {
 		log.info("증류주");
 		return "category/distilled";
 	}
 	
-	@RequestMapping("/trad-drink/fruit")
+	@RequestMapping("/tradDrink/fruit")
 	public String tradFruit() {
 		log.info("과실주");
 		return "category/fruit";
