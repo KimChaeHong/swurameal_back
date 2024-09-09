@@ -23,12 +23,11 @@ public class CategoryController {
 	
 	//카테고리목록 나열
 	@GetMapping("/catogiryList")
-	public String categoryList(Model model) {
+	public String categoryList(int goodsId) {
 		
-		List<GoodsDto> categoryList = new ArrayList<>();
-		model.addAttribute("categoryList",categoryList);
+		GoodsDto category = categoryService.selectCategory(goodsId);
 		
-		return "redirect:/";
+		return category;
 	}
 	
 	@GetMapping("/all")
