@@ -22,13 +22,13 @@ public class CategoryController {
 	private CategoryService categoryService;
 	
 	//카테고리목록 나열
-	@GetMapping("/catogiryList")
+/*	@GetMapping("/catogiryList")
 	public String categoryList(int goodsId) {
 		
-		GoodsDto category = categoryService.selectCategory(goodsId);
+		GoodsDto category = categoryService.getCategoryList(goodsId);
 		
-		return category;
-	}
+		return catogiryList;
+	}*/
 	
 	@GetMapping("/all")
 	public String allGoods() {
