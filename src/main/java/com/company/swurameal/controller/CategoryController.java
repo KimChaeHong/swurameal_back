@@ -23,12 +23,13 @@ public class CategoryController {
 	
 	//카테고리목록 나열
 	@GetMapping("/catogiryList")
-	public String categoryList(int goodsId) {
+	public GoodsDto categoryList(int goodsId) {
 		
-		GoodsDto category = categoryService.selectCategory(goodsId);
+		GoodsDto category = categoryService.getCategoryList(goodsId);
 		
 		return category;
 	}
+	
 	
 	@GetMapping("/all")
 	public String allGoods() {
