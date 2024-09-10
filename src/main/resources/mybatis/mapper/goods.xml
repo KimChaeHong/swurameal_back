@@ -3,9 +3,10 @@
 <mapper
 	namespace="com.company.swurameal.dao.mybatis.GoodsDao">
 	
-	<select id="selectByGoodsId" parameterType="int" resultType="">
-		select 
-	
+	<select id="selectByGoodsId" parameterType="int" resultType="Goods">
+		select goodsId, goodsName, category, subcategory, price
+		from goods
+		where goodsId = #{goodsId}
 	</select>
 
 

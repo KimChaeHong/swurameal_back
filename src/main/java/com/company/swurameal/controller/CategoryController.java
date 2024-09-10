@@ -19,22 +19,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CategoryController {
 	@Autowired
-	private CategoryService categoryService;
-	
-	//카테고리목록 나열
-<<<<<<< HEAD
-	@GetMapping("/catogiryList")
-	public GoodsDto categoryList(int goodsId) {
-=======
-/*	@GetMapping("/catogiryList")
-	public String categoryList(int goodsId) {
->>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
-		
-		GoodsDto category = categoryService.getCategoryList(goodsId);
-		
-		return catogiryList;
-	}*/
-	
+	   private CategoryService categoryService;
+	   
+	   //카테고리목록 나열
+/*	   @GetMapping("/catogiryList")
+	   public GoodsDto categoryList(int goodsId) {
+	      
+	      GoodsDto category = categoryService.getCategoryList(goodsId);
+	      
+	      return category;
+	  }
+	*/
 	
 	@GetMapping("/all")
 	public String allGoods() {
