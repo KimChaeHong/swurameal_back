@@ -2,8 +2,12 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp" %>
 <%@ include file="/WEB-INF/views/common/carousel.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<div class="goods-container">
+<c:forEach var="goods" items="${list}">
  <div class="goods">
-    <img id="goods-img" src="${goods.mainImg}" class="goods-img" alt="${goods.goodsName}">
+    <%-- <img id="goods-img" src="${goods.mainImg}" class="goods-img" alt="${goods.goodsName}"> --%>
     <div class="button-wrapper">
         <button class="to-cart"><i class="bi bi-cart icon-margin"></i>담기</button>
     </div>
@@ -16,5 +20,7 @@
             <span class="won">원</span>
         </span>
     </div>
+</div>
+</c:forEach>
 </div>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

@@ -10,7 +10,7 @@ import lombok.Data;
 public class FaqDto {
 	
 	private int faqId;
-	private String adminId;
+	private String userId;
 	private String faqTitle;
 	private String faqContent;
 	
