@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<c:forEach var="goods" items="${category}">
+
 	<main class="goods-list">
 		<div class="category-branding">
 			<span class="category-comment">🍜 학교 앞에서 먹던 추억의 분식</span>
@@ -29,4 +29,3 @@
 		    </div>
 	    </div>
 	</main>
-</c:forEach>

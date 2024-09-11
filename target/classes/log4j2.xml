@@ -9,6 +9,12 @@
     <Root level="info">
       <AppenderRef ref="Console"/>
     </Root>
+    <Logger name = "com.company.swurameal" level="debug" additivity = "false">
+   	 	<AppenderRef ref="Console"/><!-- 출력하고 싶은 레벨 설정  -->
+    </Logger>
 
+    <Logger name = "jdbc.sqltiming" level="info" additivity = "false">
+   	 	<AppenderRef ref="Console"/>
+    </Logger>
   </Loggers>
 </Configuration>

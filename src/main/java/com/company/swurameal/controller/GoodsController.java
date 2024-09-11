@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 @RequestMapping("/goods")
-public class GoodsCotroller {
+public class GoodsController {
 	@Autowired
 	private GoodsService goodsService;
 	
