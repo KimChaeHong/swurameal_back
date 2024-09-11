@@ -7,9 +7,14 @@ import org.apache.ibatis.annotations.Mapper;
 import com.company.swurameal.dto.GoodsDto;
 
 @Mapper
-public interface KoreanDao {
-	public GoodsDto selectCtegory(int goodsId);
+public class KoreanDao {
+
+	public List<GoodsDto> getGoods(String korean) {
+		
+		return null;
+	}
+/*	public int insert(GoodsDto goods);
+	public GoodsDto selectByMid(String goodsName);*/
 	
-	public List<GoodsDto> getGoods(String korean);
 
 }
