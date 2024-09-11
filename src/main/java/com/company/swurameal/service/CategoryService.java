@@ -19,4 +19,13 @@ public class CategoryService {
 		GoodsDto categoryList = cateDao.selectCategory(goodsId);
 		return categoryList;
 	}
+
+	public GoodsDto selectCategory(int goodsId) {
+		return null;
+	}
+
+	/*public List<GoodsDto> getGoods(String korean) {
+		List<GoodsDto> list = cateDao.getGoods(korean);
+		return list;
+	}*/
 }

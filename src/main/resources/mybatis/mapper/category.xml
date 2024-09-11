@@ -7,5 +7,11 @@
 			from goods
 			
 	</select>
+	
+	<select id="getGoods" parameterType="String" resultType="Goods">
+		select category, goodsName, goodsComment, price
+		from goods
+		where category = #{category}
+	</select>
 
 </mapper>

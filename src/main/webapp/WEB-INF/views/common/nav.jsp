@@ -15,7 +15,7 @@
                     	전체보기
                     </li>
                     <li class="dropdown-item" onclick="location.href='${pageContext.request.contextPath}/category/snacks'">분식</li>
-                    <li class="dropdown-item" onclick="location.href='${pageContext.request.contextPath}/category/korean'">한식</li>
+                    <%-- <li class="dropdown-item" onclick="location.href='${pageContext.request.contextPath}/category/korean?category=korean'">한식</li> --%>
                     <li class="dropdown-item" onclick="location.href='${pageContext.request.contextPath}/category/western'">양식</li>
                     <li class="dropdown-item" onclick="location.href='${pageContext.request.contextPath}/category/tradDrink'">전통주</li>
                 </ul>

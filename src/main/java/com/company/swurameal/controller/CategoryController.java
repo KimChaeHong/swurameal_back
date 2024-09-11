@@ -22,13 +22,13 @@ public class CategoryController {
 	private CategoryService categoryService;
 	
 	//카테고리목록 나열
-	@GetMapping("/catogiryList")
+	/*@GetMapping("/catogiryList")
 	public String categoryList(int goodsId) {
 		
 		GoodsDto category = categoryService.selectCategory(goodsId);
 		
 		return category;
-	}
+	}*/
 	
 	@GetMapping("/all")
 	public String allGoods() {
@@ -78,11 +78,13 @@ public class CategoryController {
 		return "category/steak";
 	}
 	
-	@GetMapping("/korean")
-	public String korean() {
+	/*@GetMapping("/korean")
+	public String korean(String korean, Model model) {
+		List<GoodsDto> list = categoryService.getGoods(korean);
+		model.addAttribute("list", list);
 		log.info("한식");
 		return "category/korean";
-	}
+	}*/
 	
 	@GetMapping("/korean/stew")
 	public String koreanStew() {
