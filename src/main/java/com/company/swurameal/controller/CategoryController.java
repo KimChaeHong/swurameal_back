@@ -1,32 +1,39 @@
 package com.company.swurameal.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.company.swurameal.dto.GoodsDto;
+import com.company.swurameal.service.GoodsService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Controller
+@Controller 
 @RequestMapping("/category")
 @Slf4j
 public class CategoryController {
-	   
-	//카테고리목록 나열
-	/*@GetMapping("/catogiryList")
-	   public GoodsDto categoryList(int goodsId) {
-	      
-	      GoodsDto category = categoryService.getCategoryList(goodsId);
-	      
-	      return category;
-	  }*/
 	
+	@Autowired
+	private GoodsService goodsService; // GoodsService를 사용하여 상품 목록을 가져옴
+	
+
+	
+	//모든 상품 가져오기
 	@GetMapping("/all")
-	public String allGoods() {
-		log.info("전체상품");
-		return "category/all";
+	public String getAllGoods(Model model) {
+		// GoodsService를 통해 전체 상품 목록 가져오기
+        List<GoodsDto> goodsList = goodsService.getAllGoods();
+        
+        model.addAttribute("goodsList", goodsList);
+
+        return "category/all";  // category/all.jsp로 이동
 	}
-	
+
 	@GetMapping("/snacks")
 	public String snacks() {
 		log.info("분식");
