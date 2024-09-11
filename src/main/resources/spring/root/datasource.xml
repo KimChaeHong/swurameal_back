@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- DataSource(Connection Pool) 설정 -->
+	<bean id="dataSource"
+			class = "org.apache.commons.dbcp2.BasicDataSource"
+			destroy-method="close">
+			
+			<!-- <property name="driverClassName" value = "oracle.jdbc.oracleDriver"></property>
+			<property name="url" value="jdbc:oracle:thin:@kosa160.iptime.org:1521:orcl"></property> -->
+			
+			<!-- 로그를 찍기위해 로거 설정 -->
+			<property name="driverClassName" value = "net.sf.log4jdbc.DriverSpy"></property>
+			<property name="url" value="jdbc:log4jdbc:oracle:thin:@kosa160.iptime.org:1521:orcl"></property>
+			<property name="username" value="user_spring"></property>
+			<property name="password" value="oracle"></property>
+
+			<property name="initialSize" value="2"></property>	
+			<property name="maxTotal" value="4"></property>	
+			<property name="maxIdle" value="2"></property>	
+	</bean>
+
+</beans>
