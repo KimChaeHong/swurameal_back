@@ -1,7 +1,5 @@
 package com.company.swurameal.dto;
 
-import java.util.List;
-
 import lombok.Data;
 
 @Data
@@ -20,7 +18,5 @@ public class GoodsDto {
 	private String weight;
 	private int stockStatus;
 	private int status;
-	
-	private List<GoodsImgDto> goodsImages;
 
 }

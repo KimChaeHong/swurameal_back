@@ -6,9 +6,10 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp" %>
 <%@ include file="/WEB-INF/views/common/carousel.jsp" %>
 <main class="goods-list">
-    <c:forEach var="goods" items="${goodsList}">
+    <c:forEach var="goods" items="${goodsList}" varStatus="status">
+    
     <div class="goods">
-        <img id="goods-img" src="${goods.goodsImages}" class="goods-img" alt="${goods.goodsName}">
+   	 <img id="goods-img" src="attachShow?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">
         <div class="button-wrapper">
             <button class="to-cart">
                 <i class="bi bi-cart icon-margin"></i>담기
@@ -25,6 +26,7 @@
             </span>
         </div>
     </div>
+   
     </c:forEach>
 </main>
 
