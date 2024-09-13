@@ -2,8 +2,8 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/signup.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/signup.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
 
 <main class="container signup">
 	<h2>회원가입</h2>
