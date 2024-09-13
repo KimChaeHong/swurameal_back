@@ -1,27 +1,38 @@
 package com.company.swurameal.controller;
 
+<<<<<<< HEAD
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //github.com/KimChaeHong/swurameal_back.git
+=======
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.company.swurameal.dto.GoodsDto;
+<<<<<<< HEAD
 import com.company.swurameal.service.CategoryService;
 import com.company.swurameal.service.GoodsService;
 
 //github.com/KimChaeHong/swurameal_back.git
+=======
+import com.company.swurameal.service.GoodsService;
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
 
 import lombok.extern.slf4j.Slf4j;
 
-@Controller
+@Controller 
 @RequestMapping("/category")
 @Slf4j
 public class CategoryController {
+<<<<<<< HEAD
 
 	@Autowired
 	private GoodsService goodsService;
@@ -36,16 +47,27 @@ public class CategoryController {
 	      return category;
 	  }*/
 
+=======
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
 	
+	@Autowired
+	private GoodsService goodsService; // GoodsService를 사용하여 상품 목록을 가져옴
+
+	//모든 상품 가져오기
 	@GetMapping("/all")
-	public String allGoods() {
-		log.info("전체상품");
-		return "category/all";
+	public String allGoods(Model model) {
+		// GoodsService를 통해 전체 상품 목록 가져오기
+        List<GoodsDto> goodsList = goodsService.getAllGoods();
+        model.addAttribute("goodsList", goodsList);
+        
+        return "category/all";  // category/all.jsp로 이동
 	}
 	
 	@GetMapping("/snacks")
-	public String snacks() {
+	public String snacks(Model model) {
 		log.info("분식");
+		List<GoodsDto> goodsList = goodsService.getGoodsCategory("분식");
+		model.addAttribute("goodsList", goodsList);
 		return "category/snacks";
 	}
 	
@@ -68,8 +90,10 @@ public class CategoryController {
 	}
 	
 	@GetMapping("/western")
-	public String western() {
+	public String western(Model model) {
 		log.info("양식");
+		List<GoodsDto> goodList = goodsService.getGoodsCategory("양식");
+		model.addAttribute("goodsList", goodList);
 		return "category/western";
 	}
 	
@@ -86,9 +110,14 @@ public class CategoryController {
 	}
 	@GetMapping("/korean")
 	public String korean(Model model) {
+<<<<<<< HEAD
 		List<GoodsDto> goods = goodsService.selectKoreanGoods();
 		model.addAttribute("goodsList", goods);
+=======
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
 		log.info("한식");
+		List<GoodsDto> goodsList = goodsService.getGoodsCategory("한식");
+		model.addAttribute("goodsList", goodsList);
 		return "category/korean";
 	}
 	
@@ -111,9 +140,12 @@ public class CategoryController {
 		return "category/roast";
 	}	
 	
+	//전통주 가져오기
 	@GetMapping("/tradDrink")
-	public String tradDrink() {
+	public String tradDrink(Model model) {
 		log.info("전통주");
+		List<GoodsDto> goodsList = goodsService.getGoodsCategory("전통주");
+        model.addAttribute("goodsList", goodsList);
 		return "category/tradDrink";
 	}
 	
