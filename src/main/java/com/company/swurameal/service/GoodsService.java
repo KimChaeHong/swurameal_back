@@ -9,7 +9,6 @@ import com.company.swurameal.dao.mybatis.GoodsDao;
 import com.company.swurameal.dto.GoodsDto;
 import com.company.swurameal.dto.GoodsImgDto;
 
-
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -40,7 +39,4 @@ public class GoodsService{
 	public List<GoodsDto> getGoodsCategory(String category){
 		return goodsDao.selectGoodsByCategory(category);
 	}
-	
-	
-
 }

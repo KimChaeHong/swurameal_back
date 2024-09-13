@@ -2,6 +2,7 @@ package com.company.swurameal.dao.mybatis;
 
 import java.util.List;
 
+
 import org.apache.ibatis.annotations.Mapper;
 import com.company.swurameal.dto.GoodsDto;
 import com.company.swurameal.dto.GoodsImgDto;
@@ -9,6 +10,7 @@ import com.company.swurameal.dto.GoodsImgDto;
 
 @Mapper
 public interface GoodsDao {
+
 	
 	//상품 하나 가져오기
 	/*public GoodsDto selectByGoodsID(int goodsId);*/

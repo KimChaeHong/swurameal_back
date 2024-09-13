@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper 
+	namespace="com.company.swurameal.dao.mybatis.GoodsDao">
+	
+	<select id="selectKoreanGoods" resultType="Goods">
+        SELECT GOODS_ID,
+               GOODS_NAME,
+               CATEGORY,
+               SUBCATEGORY,
+               PRICE,
+               GOODS_COMMENT,
+               GOODS_ORIGIN,
+               DELIVERY_INFO,
+               SELLER,
+               SALE_UNIT,
+               WEIGHT,
+               STOCK,
+               STATUS
+        FROM GOODS
+        WHERE CATEGORY = '한식'
+    </select>
+
+       <select id="selectAttachByGoodsId" resultType="GoodsImg" parameterType="int">
+     	SELECT GOODS_IMG_ID,
+               GOODS_ID,
+               GOODS_NAME,
+               G_ATTACH_ONAME,
+               G_ATTACH_TYPE,
+               G_ATTACH_DATA
+               
+        FROM GOODS_IMG
+        	WHERE GOODS_ID = #{goodsId}
+     </select>   
+
+</mapper>

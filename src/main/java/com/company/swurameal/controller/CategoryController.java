@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.company.swurameal.dto.GoodsDto;
 import com.company.swurameal.service.GoodsService;
 
+
 import lombok.extern.slf4j.Slf4j;
 
 @Controller 
 @RequestMapping("/category")
 @Slf4j
 public class CategoryController {
-	
+
 	@Autowired
 	private GoodsService goodsService; // GoodsService를 사용하여 상품 목록을 가져옴
 
@@ -77,7 +78,6 @@ public class CategoryController {
 		log.info("스테이크");
 		return "category/steak";
 	}
-	
 	@GetMapping("/korean")
 	public String korean(Model model) {
 		log.info("한식");
@@ -85,6 +85,7 @@ public class CategoryController {
 		model.addAttribute("goodsList", goodsList);
 		return "category/korean";
 	}
+	
 	
 	@GetMapping("/korean/stew")
 	public String koreanStew() {

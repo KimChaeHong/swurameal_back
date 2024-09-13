@@ -1,6 +1,5 @@
 package com.company.swurameal.controller;
 
-
 import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public class GoodsController {
 	@Autowired
 	private GoodsService goodsService; // GoodsService를 사용하여 상품 목록을 가져옴
+	
 	
 	@RequestMapping("/detail")
 	public String detail() {
