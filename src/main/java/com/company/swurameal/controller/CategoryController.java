@@ -1,21 +1,15 @@
 package com.company.swurameal.controller;
 
-import java.io.OutputStream;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.company.swurameal.dto.GoodsDto;
-import com.company.swurameal.dto.GoodsImgDto;
 import com.company.swurameal.service.GoodsService;
-
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,38 +20,22 @@ public class CategoryController {
 	
 	@Autowired
 	private GoodsService goodsService; // GoodsService를 사용하여 상품 목록을 가져옴
-	
-
-	@GetMapping("/attachShow")
-	public void attachDownload(int goodsId, HttpServletResponse response) throws Exception {
-		GoodsImgDto goods = goodsService.getGoodsAttach(goodsId);
-
-		//응답 본문에 파일 데이터를 출력(그냥 보기만 할 뿐.)
-		OutputStream out = response.getOutputStream();
-		out.write(goods.getGAttachData());
-		out.flush();
-		out.close();
-	}
 
 	//모든 상품 가져오기
 	@GetMapping("/all")
-	public String allGoods(@RequestParam(value = "goodsId", required = false) Integer goodsId, Model model) {
+	public String allGoods(Model model) {
 		// GoodsService를 통해 전체 상품 목록 가져오기
         List<GoodsDto> goodsList = goodsService.getAllGoods();
         model.addAttribute("goodsList", goodsList);
-        
-        //GoodsService를 통해 상품 이미지 가져오기
-        if (goodsId != null) {
-            GoodsImgDto goodsImg = goodsService.getGoodsAttach(goodsId);
-            model.addAttribute("goodsImg", goodsImg);
-        }
         
         return "category/all";  // category/all.jsp로 이동
 	}
 	
 	@GetMapping("/snacks")
-	public String snacks() {
+	public String snacks(Model model) {
 		log.info("분식");
+		List<GoodsDto> goodsList = goodsService.getGoodsCategory("분식");
+		model.addAttribute("goodsList", goodsList);
 		return "category/snacks";
 	}
 	
@@ -80,8 +58,10 @@ public class CategoryController {
 	}
 	
 	@GetMapping("/western")
-	public String western() {
+	public String western(Model model) {
 		log.info("양식");
+		List<GoodsDto> goodList = goodsService.getGoodsCategory("양식");
+		model.addAttribute("goodsList", goodList);
 		return "category/western";
 	}
 	
@@ -98,8 +78,10 @@ public class CategoryController {
 	}
 	
 	@GetMapping("/korean")
-	public String korean() {
+	public String korean(Model model) {
 		log.info("한식");
+		List<GoodsDto> goodsList = goodsService.getGoodsCategory("한식");
+		model.addAttribute("goodsList", goodsList);
 		return "category/korean";
 	}
 	
@@ -121,9 +103,12 @@ public class CategoryController {
 		return "category/roast";
 	}	
 	
+	//전통주 가져오기
 	@GetMapping("/tradDrink")
-	public String tradDrink() {
+	public String tradDrink(Model model) {
 		log.info("전통주");
+		List<GoodsDto> goodsList = goodsService.getGoodsCategory("전통주");
+        model.addAttribute("goodsList", goodsList);
 		return "category/tradDrink";
 	}
 	
