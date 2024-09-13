@@ -55,6 +55,7 @@
 
 						</div>
 					</div>
+				</div>
 			</c:forEach>
 		</div>
 		<!-- <div class="d-flex justify-content-center">
