@@ -11,7 +11,6 @@ import com.company.swurameal.dto.GoodsImgDto;
 @Mapper
 public interface GoodsDao {
 
-	
 	//상품 하나 가져오기
 	/*public GoodsDto selectByGoodsID(int goodsId);*/
 
