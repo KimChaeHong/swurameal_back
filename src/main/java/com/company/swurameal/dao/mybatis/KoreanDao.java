@@ -5,16 +5,13 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.company.swurameal.dto.GoodsDto;
+import com.company.swurameal.dto.GoodsImgDto;
 
 @Mapper
-public class KoreanDao {
+public interface KoreanDao {
 
-	public List<GoodsDto> getGoods(String korean) {
-		
-		return null;
-	}
-/*	public int insert(GoodsDto goods);
-	public GoodsDto selectByMid(String goodsName);*/
+	public List<GoodsDto> selectKoreanGoods();
+
+	public GoodsImgDto selectKoreanGoodsImagesById(int goodsId);
 	
-
-}
+	}

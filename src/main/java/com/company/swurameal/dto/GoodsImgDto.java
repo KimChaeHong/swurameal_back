@@ -10,6 +10,6 @@ public class GoodsImgDto {
 	private String goodsName;
 	private String gAttachOname;
 	private String gAttachType;
-	private String gAttachData;
+	private byte[] gAttachData;
 	
 }

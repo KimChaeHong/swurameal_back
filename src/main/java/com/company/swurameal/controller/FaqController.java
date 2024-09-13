@@ -22,8 +22,8 @@ public class FaqController {
 	
 	
 	@GetMapping("/faq")
-	public String supportFaq(int faqId, Model model) {
-		List<FaqDto> list = faqService.getFaq(faqId);
+	public String supportFaq(String faq, Model model) {
+		List<FaqDto> list = faqService.getFaq(faq);
 		model.addAttribute("list", list);
 		log.info("자주하는 질문");
 		

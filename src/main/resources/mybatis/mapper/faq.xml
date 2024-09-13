@@ -3,9 +3,13 @@
 <mapper 
 	namespace="com.company.swurameal.dao.mybatis.FaqDao">
 	
-	<select id="getFaq" parameterType="int" resultType="Faq">
-		select faqId, faqTitle, faqContent,userId
-		from faq
+	<select id="getFaq" resultType="Faq">
+		SELECT FAQ_ID,
+               USER_ID,
+               FAQ_TITLE,
+               FAQ_CONTENT,
+               FAQ_REGISTER_DATE
+        FROM faq	
 	</select>
 	
 </mapper>	

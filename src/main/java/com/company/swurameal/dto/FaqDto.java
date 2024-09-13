@@ -1,6 +1,6 @@
 package com.company.swurameal.dto;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,5 +15,5 @@ public class FaqDto {
 	private String faqContent;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate faqRegisterDate;
+	private Date faqRegisterDate;
 }

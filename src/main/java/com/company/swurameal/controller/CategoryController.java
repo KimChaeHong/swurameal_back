@@ -1,11 +1,20 @@
 package com.company.swurameal.controller;
 
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+//github.com/KimChaeHong/swurameal_back.git
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.company.swurameal.dto.GoodsDto;
 import com.company.swurameal.service.CategoryService;
+import com.company.swurameal.service.GoodsService;
+
+//github.com/KimChaeHong/swurameal_back.git
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,17 +22,19 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/category")
 @Slf4j
 public class CategoryController {
+
 	@Autowired
-	private CategoryService categoryService;
+	private GoodsService goodsService;
 	
+	   
 	//카테고리목록 나열
 	/*@GetMapping("/catogiryList")
-	public String categoryList(int goodsId) {
-		
-		GoodsDto category = categoryService.selectCategory(goodsId);
-		
-		return category;
-	}*/
+	   public GoodsDto categoryList(int goodsId) {
+	      
+	      GoodsDto category = categoryService.getCategoryList(goodsId);
+	      
+	      return category;
+	  }*/
 
 	
 	@GetMapping("/all")
@@ -73,14 +84,14 @@ public class CategoryController {
 		log.info("스테이크");
 		return "category/steak";
 	}
-	
-	/*@GetMapping("/korean")
-	public String korean(String korean, Model model) {
-		List<GoodsDto> list = categoryService.getGoods(korean);
-		model.addAttribute("list", list);
+	@GetMapping("/korean")
+	public String korean(Model model) {
+		List<GoodsDto> goods = goodsService.selectKoreanGoods();
+		model.addAttribute("goodsList", goods);
 		log.info("한식");
 		return "category/korean";
-	}*/
+	}
+	
 	
 	@GetMapping("/korean/stew")
 	public String koreanStew() {

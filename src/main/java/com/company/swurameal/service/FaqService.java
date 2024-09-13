@@ -16,7 +16,7 @@ public class FaqService {
 	@Autowired
 	private FaqDao faqDao;
 	
-	public List<FaqDto> getFaq(int faq) {
+	public List<FaqDto> getFaq(String faq) {
 		List<FaqDto> list = faqDao.getFaq(faq);
 		return list;
 	}

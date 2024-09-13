@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.company.swurameal.dto.FaqDto;
+import com.company.swurameal.dto.CartDto;
 
 @Mapper
-public interface FaqDao {
-	public List<FaqDto> getFaq(String faq);
-
+public interface CartDao {
+		
+	public List<CartDto> selectByGoodsId(int goodsId);
 }
+
