@@ -1,30 +1,17 @@
 package com.company.swurameal.controller;
 
-<<<<<<< HEAD
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//github.com/KimChaeHong/swurameal_back.git
-=======
-import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.company.swurameal.dto.GoodsDto;
-<<<<<<< HEAD
-import com.company.swurameal.service.CategoryService;
 import com.company.swurameal.service.GoodsService;
 
-//github.com/KimChaeHong/swurameal_back.git
-=======
-import com.company.swurameal.service.GoodsService;
->>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,24 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/category")
 @Slf4j
 public class CategoryController {
-<<<<<<< HEAD
 
-	@Autowired
-	private GoodsService goodsService;
-	
-	   
-	//카테고리목록 나열
-	/*@GetMapping("/catogiryList")
-	   public GoodsDto categoryList(int goodsId) {
-	      
-	      GoodsDto category = categoryService.getCategoryList(goodsId);
-	      
-	      return category;
-	  }*/
-
-=======
->>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
-	
 	@Autowired
 	private GoodsService goodsService; // GoodsService를 사용하여 상품 목록을 가져옴
 
@@ -110,11 +80,6 @@ public class CategoryController {
 	}
 	@GetMapping("/korean")
 	public String korean(Model model) {
-<<<<<<< HEAD
-		List<GoodsDto> goods = goodsService.selectKoreanGoods();
-		model.addAttribute("goodsList", goods);
-=======
->>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
 		log.info("한식");
 		List<GoodsDto> goodsList = goodsService.getGoodsCategory("한식");
 		model.addAttribute("goodsList", goodsList);
