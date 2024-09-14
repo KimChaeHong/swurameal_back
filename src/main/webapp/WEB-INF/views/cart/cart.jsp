@@ -1,25 +1,70 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
+<%@ include file="/WEB-INF/views/common/nav.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<link href="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.min.css" rel="stylesheet">
-<script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/cart.css">
 
+<main class="container cart">
+<h2>장바구니</h2>
+<div id="select-btns">
+	<i class="bi bi-check-circle hover" id="allBtn"></i> 
+	<span class="hover" id="allBtnTxt">전체선택</span> 
+		<span> | </span> 
+		<span class="hover">전체삭제</span>
+</div>
 
+<div class="d-flex justify-content-between">
+	<div id="cart-items">
+		<div class="item d-flex justify-content-between">
+			<%-- <c:forEach var="goods" items="${goodsList}"> --%>
+				<i class="bi bi-check-circle hover"></i>
+				<img id="goods-img" src="attachShow?goodsId=${goods.goodsId}"
+					class="goods-img" alt="${goods.goodsName}">
 
+				<div id="item-detail">
+					<p>${goods.category}</p>
+					<p>${goods.goodsName}</p>
+					<p>${goods.goodsComment}</p>
+					<div class="cnt-btn">
+						<button class="updown-btn">-</button>
+						<span class="item-cnt">1</span>
+						<button class="updown-btn">+</button>
+					</div>
+				</div>
 
-</head>
-<body>
-	<div class="card">
-		<div class="card-header">장바구니</div>
-		<div class="card-body">
-			장바구니목록
+				<div id="item-price">
+					<span class="price-number"><fmt:formatNumber
+							value="${goods.price}" pattern="#,###" /></span> <span class="won">원</span>
+				</div>
+				<i class="bi bi-x-lg hover" id="xBtn"></i>
+			<%-- </c:forEach> --%>
 		</div>
 	</div>
 
-</body>
-</html>
+	<div id="cart-pay">
+		<div id="how-much">
+			<p>주문내역</p>
+			<div class="d-flex justify-content-between">
+				<span>상품금액</span> <span> <span id="total-price">0</span> 원
+				</span>
+			</div>
+			<div class="d-flex justify-content-between">
+				<span>배송비</span> <span>3,000원</span>
+			</div>
+			<div class="d-flex justify-content-between total">
+				<span>결제예정금액</span>
+				<span>
+				<span id="pay-price">0</span>
+				원
+				</span>
+			</div>
+		</div>
+		<button onclick="topay()">주문하기</button>
+	</div>
+</div>
+</main>
+
+<%@ include file="/WEB-INF/views/common/footer.jsp"%>

@@ -5,13 +5,13 @@ import lombok.Data;
 @Data
 public class GoodsDto {
 	
-	private int goodId;
+	private int goodsId;
 	private String goodsName;
 	private String category;
 	private String subcategory;
 	private int price;
-	private String goodsComent;
-	private String goddsOrigin;
+	private String goodsComment;
+	private String goodsOrigin;
 	private String deliveryInfo;
 	private String seller;
 	private String saleUnit;

@@ -33,7 +33,7 @@
         <!-- 오른쪽 아이콘들 -->
         <div id="icon" class="col-auto d-flex justify-content-end">
             <a class="nav-link" href="/html/myPage.html"><i class="bi bi-heart"></i></a>
-            <a class="nav-link" href="/html/cart.html"><i class="bi bi-cart"></i></a>
+            <a class="nav-link" onclick="location.href='${pageContext.request.contextPath}/cart'"><i class="bi bi-cart"></i></a>
         </div>
     </div>
 </div>
