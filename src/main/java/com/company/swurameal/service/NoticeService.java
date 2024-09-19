@@ -16,4 +16,8 @@ public class NoticeService {
 	public List<NoticeDto> getNotice() {
 		return noticeDao.selectAll();
 	}
+	
+	public void insertNotice(NoticeDto noticeDto) {
+		noticeDao.insert(noticeDto);
+	}
 }

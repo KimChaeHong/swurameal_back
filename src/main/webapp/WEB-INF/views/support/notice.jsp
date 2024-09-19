@@ -13,9 +13,9 @@
        <section id="leftSide">
            <div id="side-category">
                <h3 class="h3">고객센터</h3>
-               <h5 class="active h5" data-js="../js/notice.js">공지사항</h5>
-               <h5 class="h5" data-js="../js/faq.js">자주묻는질문</h5>
-               <h5 class="h5" data-js="../js/myqna.js">문의</h5>
+               <h5 class="active h5" onclick="location.href='${pageContext.request.contextPath}/support/notice'">공지사항</h5>
+               <h5 class="h5" onclick="location.href='${pageContext.request.contextPath}/support/faq'">자주묻는질문</h5>
+               <h5 class="h5" onclick="location.href='${pageContext.request.contextPath}/support/qna'">문의</h5>
            </div>
        </section>
 

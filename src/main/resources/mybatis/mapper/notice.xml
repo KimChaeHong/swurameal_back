@@ -13,6 +13,9 @@
 	</select>
 	
 	<insert id="insert" parameterType="Notice">
+		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE">
+			select seq_noticeId.nextval from dual
+		</selectKey>
 		INSERT INTO notice (
 			NOTICE_ID, 
 			USER_ID, 
