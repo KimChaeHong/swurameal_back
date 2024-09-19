@@ -60,7 +60,30 @@
 	        STOCK, 
 	        STATUS
 		FROM goods
-		WHERE CATEGORY = #{category}
+		WHERE CATEGORY = #{Category}
+		
+	</select>
+	
+	<!-- 상품 서브 카테고리 가져오기 -->
+	<select id ="selectGoodsBySubCategory" resultType="Goods" 
+		parameterType="String">
+		SELECT
+			GOODS_ID,
+			GOODS_NAME,
+			CATEGORY,
+			SUBCATEGORY,
+			PRICE,
+			GOODS_COMMENT, 
+	        GOODS_ORIGIN, 
+	        DELIVERY_INFO, 
+	        SELLER, 
+	        SALE_UNIT, 
+	        WEIGHT, 
+	        STOCK, 
+	        STATUS
+		FROM goods
+		WHERE SUBCATEGORY = #{subcategory}
+		
 	</select>
 	
 	<!-- 상품 이미지 가져오기 -->

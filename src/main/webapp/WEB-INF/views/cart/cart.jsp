@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+	
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/cart.css">
 
@@ -18,15 +20,15 @@
 
 <div class="d-flex justify-content-between">
 	<div id="cart-items">
-		<div class="item d-flex justify-content-between">
-			<%-- <c:forEach var="goods" items="${goodsList}"> --%>
+		<c:forEach var="goods" items="${goodsList}">
+			<div class="item d-flex justify-content-between">
 				<i class="bi bi-check-circle hover"></i>
-				<img id="goods-img" src="attachShow?goodsId=${goods.goodsId}"
+				<img src="${pageContext.request.contextPath}/cart/downloadImage?goodsId=${goods.goodsId}"
 					class="goods-img" alt="${goods.goodsName}">
 
 				<div id="item-detail">
-					<p>${goods.category}</p>
-					<p>${goods.goodsName}</p>
+					<p>${goods.category} ${goods.goodsName}</p>
+					<%-- <p>${goods.goodsName}</p> --%>
 					<p>${goods.goodsComment}</p>
 					<div class="cnt-btn">
 						<button class="updown-btn">-</button>
@@ -40,29 +42,31 @@
 							value="${goods.price}" pattern="#,###" /></span> <span class="won">원</span>
 				</div>
 				<i class="bi bi-x-lg hover" id="xBtn"></i>
-			<%-- </c:forEach> --%>
-		</div>
+			</div>
+		</c:forEach>
 	</div>
 
 	<div id="cart-pay">
 		<div id="how-much">
 			<p>주문내역</p>
 			<div class="d-flex justify-content-between">
-				<span>상품금액</span> <span> <span id="total-price">0</span> 원
+				<span>상품금액</span> <span> <span id="total-price">0</span> 
+				원
 				</span>
 			</div>
 			<div class="d-flex justify-content-between">
-				<span>배송비</span> <span>3,000원</span>
+				<span>배송비</span> 
+				<span>3,000원</span>
 			</div>
 			<div class="d-flex justify-content-between total">
 				<span>결제예정금액</span>
 				<span>
-				<span id="pay-price">0</span>
-				원
+					<span id="pay-price">0</span>
+					원
 				</span>
 			</div>
 		</div>
-		<button onclick="topay()">주문하기</button>
+		<button onclick="location.href='${pageContext.request.contextPath}/order'">주문하기</button>
 	</div>
 </div>
 </main>

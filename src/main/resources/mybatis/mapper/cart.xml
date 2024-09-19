@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper 
+	namespace="com.company.swurameal.dao.mybatis.CartDao">
+
+	<select id ="selectByGoodsId" resultType="Cart" parameterType="String">
+			SELECT
+				USER_ID,
+				GOODS_ID,
+				QUANTITY	
+			FROM cart
+			WHERE USER_ID = #{userId}
+	</select>
+</mapper>		

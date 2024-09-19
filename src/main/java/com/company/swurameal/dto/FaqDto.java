@@ -16,4 +16,8 @@ public class FaqDto {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date faqRegisterDate;
+
+	
 }
+
+

@@ -3,9 +3,21 @@ package com.company.swurameal.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.company.swurameal.dao.mybatis.UserDao;
+import com.company.swurameal.dto.UserDto;
+import com.company.swurameal.service.UserService;
+import com.company.swurameal.service.UserService.JoinResult;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,6 +25,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/user")
 @Slf4j
 public class UserController {
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping("/signup")
 	public String signup() {
@@ -26,7 +40,7 @@ public class UserController {
 		return "user/login";
 	}
 	
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request) {
 	    HttpSession session = request.getSession(false);
 	    if (session != null) {
@@ -35,7 +49,7 @@ public class UserController {
 	    log.info("로그아웃");
 	    return "redirect:/"; // 로그아웃 후 홈 페이지로 리다이렉트
 	}
-
+*/
 	
 	@RequestMapping("/find/id")
 	public String findId() {
@@ -49,6 +63,27 @@ public class UserController {
 		log.info("확인용");
 		return "user/findPassword";
 	}
-	
+
+	@PostMapping("/join")
+	public String join(UserDto user, Model model) { 
+		//계정 활성화
+		user.setUserEnable(true);
+		//비밀번호 암호화 - 스프링 시큐리티 의존 설정이 되어야 쓸 수 있다.
+		PasswordEncoder passwordEncoder = 
+				PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		user.setUserPw(passwordEncoder.encode(user.getUserPw()));
+		
+		log.info(user.toString());
+		
+		log.info(user.toString());
+		JoinResult joinResult = userService.join(user);
+		if (joinResult == JoinResult.FAIL_DUPLICATED_USERID) {
+			String errorMessage = "아이디가 존재합니다.";
+			model.addAttribute("errorMessage",errorMessage);
+			return "user/signup"; 
+		}else {
+			return "redirect:/user/login";			
+		}
+	}
 
 }

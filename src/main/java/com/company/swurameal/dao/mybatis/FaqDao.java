@@ -10,4 +10,8 @@ import com.company.swurameal.dto.FaqDto;
 public interface FaqDao {
 	public List<FaqDto> getFaq(String faq);
 
+	/*public List<FaqDto> selectList(FaqPager pager);
+
+	public int countRows();*/
+
 }

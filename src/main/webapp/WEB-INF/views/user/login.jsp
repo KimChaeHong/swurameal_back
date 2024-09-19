@@ -7,38 +7,15 @@
 <body>
 	<main class="container login">
 		<h2>로그인</h2>
-		<form action="#">
-			<input id="id" type="text" placeholder="아이디를 입력해 주세요.">
+		<form method="post" action="${pageContext.request.contextPath}/login">
+			<input id="id" name="user_id" type="text" placeholder="아이디를 입력해 주세요." >
 			<br>
-			<input id="pw" type="password" placeholder="비밀번호를 입력해 주세요.">
+			<input id="pw" name="user_pw" type="password" placeholder="비밀번호를 입력해 주세요.">
 			<br>
-			
-			<div id="id-pw">
-				<a href="" onclick="findIdPw('id'); return false;">아이디 찾기</a>
-				<span> | </span>
-				<a href="" onclick="findIdPw('pw'); return false;">비밀번호 찾기</a>
-			</div>
-			
-			<ul class="">
-		        <a href="#">
-			          <li id="kakao">
-			            <i class="bi bi-chat-fill"></i>
-			            <span>카카오계정으로 로그인</span>
-			          </li>
-		        </a>
-		        <a href="#">
-			          <li id="naver">
-			            <i>N</i>
-			            <span>네이버계정으로 로그인</span>
-			          </li>
-		        </a>
-	      	</ul>
-			
-			<button class="login-btn" onclick="loginCheck(); return false;">로그인
-			</button>
-			<br>
-			<button class="signup-btn" onclick="toSignup(); return false;">회원가입
-			</button>
+			<button type="submit" class="login-btn">로그인</button>
+		</form>
+		<form action="${pageContext.request.contextPath}/user/signup" method="GET">
+    		<button class="signup-btn" type="submit">회원가입</button>
 		</form>
 	</main>
 </body>
