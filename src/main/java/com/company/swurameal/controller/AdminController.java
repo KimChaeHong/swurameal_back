@@ -1,7 +1,19 @@
 package com.company.swurameal.controller;
 
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.company.swurameal.dto.NoticeDto;
+import com.company.swurameal.dto.NoticeWriteDto;
+import com.company.swurameal.service.NoticeService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,6 +21,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/admin")
 @Slf4j
 public class AdminController {
+	
+	@Autowired
+	private NoticeService noticeService;
 	
 	@RequestMapping("/goodsManagement")
 	public String adminGm() {
@@ -23,9 +38,29 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/notice")
-	public String adimNotice() {
+	public String adminNotice(Model model) {
 		log.info("관리자 공지사항");
+		List<NoticeDto> list = noticeService.getNotice();
+		model.addAttribute("list", list);
 		return "admin/notice";
+	}
+	
+	@RequestMapping("/noticeWrite")
+	public String adminNoticeWrite(Model model) {
+		log.info("관리자 공지사항");
+		return "admin/noticeWrite";
+	}
+	
+	@PostMapping("/noticeInsert")
+	public String adminNoticeInsert(@ModelAttribute NoticeWriteDto noticeWriteDto) {
+		NoticeDto noticeDto = new NoticeDto();
+		Date date = new Date();
+		noticeDto.setUserId("swura4789");
+		noticeDto.setNoticeTitle(noticeWriteDto.getNoticeTitle());
+		noticeDto.setNoticeContent(noticeWriteDto.getNoticeContent());
+		noticeDto.setNoticeRegisterDate(date);
+		noticeService.insertNotice(noticeDto);
+		return "redirect:/admin/notice";
 	}
 	
 	@RequestMapping("/answer")
