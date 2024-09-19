@@ -37,8 +37,7 @@
 						<p>
 							제목<span>*</span>
 						</p>
-						<input type="text" name="noticeTitle" class="notice-form-title"
-							placeholder="제목을 입력해주세요.">
+						<input type="text" name="noticeTitle" class="notice-form-title" placeholder="제목을 입력해주세요.">
 					</div>
 					<div class="notice-content-box">
 						<p>

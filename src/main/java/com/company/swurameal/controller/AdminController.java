@@ -1,5 +1,6 @@
 package com.company.swurameal.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,8 +54,11 @@ public class AdminController {
 	@PostMapping("/noticeInsert")
 	public String adminNoticeInsert(@ModelAttribute NoticeWriteDto noticeWriteDto) {
 		NoticeDto noticeDto = new NoticeDto();
+		Date date = new Date();
+		noticeDto.setUserId("swura4789");
 		noticeDto.setNoticeTitle(noticeWriteDto.getNoticeTitle());
 		noticeDto.setNoticeContent(noticeWriteDto.getNoticeContent());
+		noticeDto.setNoticeRegisterDate(date);
 		noticeService.insertNotice(noticeDto);
 		return "redirect:/admin/notice";
 	}
