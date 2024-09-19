@@ -29,5 +29,19 @@ public class FaqController {
 		
 		return "support/faq";
 	}
+	
+	/*@GetMapping("/faqList")
+	public String faq(Model model,
+			@RequestParam(defaultValue="1") int pageNo,
+			HttpSession session) {
+		
+		int totalRows = faqService.getTotalRows();
+		FaqPager pager = new FaqPager(10, 5, totalRows, pageNo);
+		session.setAttribute("pager", pager);
+		
+		List<FaqDto> list = faqService.getFaqList(pager);
+		model.addAttribute("list", list);
+		return "support/faqList";
+	}*/
 
 }

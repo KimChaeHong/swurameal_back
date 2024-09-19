@@ -58,12 +58,12 @@
 				</div>
 			</c:forEach>
 		</div>
-		<!-- <div class="d-flex justify-content-center">
+		<div class="d-flex justify-content-center">
 			</div>
 				<div class="pagination"></div>
 			</div>
-		</div> -->
-	</div>
+	
+	
 </section>
 </main>
 

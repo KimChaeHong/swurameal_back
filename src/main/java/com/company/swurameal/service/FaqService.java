@@ -21,4 +21,15 @@ public class FaqService {
 		return list;
 	}
 
+	/*public List<FaqDto> getFaqList(FaqPager pager) {
+		List<FaqDto> list = faqDao.selectList(pager);
+		return list;
+	}
+
+	public int getTotalRows() {
+		int totalRows = faqDao.countRows();
+		return totalRows;
+	}*/
+
+
 }
