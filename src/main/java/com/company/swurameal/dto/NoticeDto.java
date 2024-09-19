@@ -8,12 +8,10 @@ import lombok.Data;
 
 @Data
 public class NoticeDto {
-
 	private int noticeId;
 	private String userId;
 	private String noticeTitle;
 	private String noticeContent;
-	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date noticeRegisterDate;
 }

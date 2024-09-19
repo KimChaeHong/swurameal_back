@@ -1,7 +1,14 @@
 package com.company.swurameal.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.company.swurameal.dto.NoticeDto;
+import com.company.swurameal.service.NoticeService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,9 +16,14 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/support")
 @Slf4j
 public class SupportController {
+	@Autowired
+	private NoticeService noticeService;
+	
 	@RequestMapping("/notice")
-	public String supportNotice() {
+	public String supportNotice(Model model) {
 		log.info("공지사항");
+		List<NoticeDto> list = noticeService.getNotice();
+		model.addAttribute("list", list);
 		return "support/notice";
 	}
 	
