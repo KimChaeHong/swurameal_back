@@ -23,12 +23,12 @@
 				logout-url="/logout"
 				success-handler-ref ="logoutSuccessHandler"/>
 	
-		
 		<security:csrf disabled="true"/>
 
 	</security:http>
 	
 	<security:global-method-security secured-annotations="enabled"/>
+	
 	<bean id="authenticationSuccessHandler"
 		class="com.company.swurameal.sercurity.AuthenticationSuccessHandler"/>
 
