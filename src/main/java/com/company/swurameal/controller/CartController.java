@@ -1,22 +1,22 @@
 package com.company.swurameal.controller;
 
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.company.swurameal.dto.CartItem;
 import com.company.swurameal.dto.CartDto;
-import com.company.swurameal.dto.GoodsImgDto;
+import com.company.swurameal.dto.CartItem;
+import com.company.swurameal.dto.GoodsDto;
 import com.company.swurameal.service.CartService;
 import com.company.swurameal.service.GoodsService;
 
@@ -34,12 +34,25 @@ public class CartController {
 	private CartService cartService;
 
 	
+	@GetMapping("/authorityCheck")
+	public String authorityCheck(HttpSession session, Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication !=null && authentication.isAuthenticated()) {
+			model.addAttribute("message", "로그인이 확인되었습니다.");
+			return "redirect:/cart";
+		} else {
+			model.addAttribute("message", "로그인이 필요합니다.");
+			return "user/login";
+		}
+	}
+	
 	@GetMapping
-	public String cart(HttpSession session) {
+	public String cart(HttpSession session, Model model) {
 		log.info("장바구니");
 		String userId = (String) session.getAttribute("userId");
 		List<CartDto> goodsList = cartService.selectGoods(userId);
 		session.setAttribute("goodsList", goodsList);
+		model.addAttribute("goodsList", goodsList);
 		return "cart/cart";
 	}
 	
@@ -57,13 +70,16 @@ public class CartController {
 	
 	
 	@GetMapping("/cartAdd")
-	public String cartAdd(CartDto item, HttpSession session) {
+	public String cartAdd(int goodsId, HttpSession session) {
 		CartItem cart = (CartItem) session.getAttribute("cart");
 		if(cart == null) {
 			cart = new CartItem();
 			session.setAttribute("cart", cart);
 		}
-		cart.addItem(item);
+		GoodsDto item = goodsService.getGoods(goodsId);
+		CartDto cartItem = new CartDto();
+		cart.addItem(cartItem);
+		session.setAttribute("message", "장바구니에 담았습니다.");
 		return "redirect:/cart";
 	}
 	
@@ -78,27 +94,5 @@ public class CartController {
 			}
 		}
 		return "redirect:/cart";
-	}
-	
-	
-	@GetMapping("/downloadImage")
-	public void downloadImage(int goodsId, HttpServletResponse response) throws Exception {
-		GoodsImgDto goods = goodsService.getGoodsAttach(goodsId);
-		
-		//응답 헤더에 들어가는 Content-Type 파일 확장명을 보고 저장을 자동으로 해주기
-		String contentType = goods.getGAttachType();
-		response.setContentType(contentType);
-		
-		//파일로 저장하기 위한 설정				
-		String fileName = goods.getGAttachOname();
-		String encodingfileName = new String(fileName.getBytes("UTF-8"),"ISO-8859-1");
-		response.setHeader("Content-Disposition", "attachment; filename=\""+encodingfileName+"\"");
-		
-		
-		//응답 본문에 파일 데이터를 출력
-		OutputStream out = response.getOutputStream();
-		out.write(goods.getGAttachData());
-		out.flush();
-		out.close();
 	}
 }

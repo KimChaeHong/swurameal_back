@@ -3,8 +3,7 @@
 <mapper namespace="com.company.swurameal.dao.mybatis.GoodsDao">
 
 	<!-- 특정 상품 가져오기 -->
-	<!--<select id="selectByGoodsID" resultType="Goods"
-		parameterType="int">
+	<select id="selectByGoodsID" resultType="Goods">
 		SELECT
 			GOODS_ID,
 			GOODS_NAME,
@@ -21,7 +20,7 @@
 	        STATUS
 		FROM goods
 		WHERE GOODS_ID = #{goodsId}
-	</select> -->
+	</select>
 
 	<!-- 상품 전체 가져오기 -->
 	<select id="selectAllGoods" resultType="Goods">
