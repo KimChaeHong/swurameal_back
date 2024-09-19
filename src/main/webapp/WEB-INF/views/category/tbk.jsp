@@ -1,25 +1,49 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<link href="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.min.css" rel="stylesheet">
-<script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/nav.jsp" %>
+<%@ include file="/WEB-INF/views/common/carousel.jsp" %>
+<%@ include file="/WEB-INF/views/category/category.jsp" %>
+
+<ul class="category-container">
+		<li class="category-item">
+			<a class="item-title" onclick="location.href='${pageContext.request.contextPath}/category/snacks'">전체보기</a>
+		</li>
+		<li class="category-item">
+			<a class="item-title active" onclick="location.href='${pageContext.request.contextPath}/category/snacks/tbk'">떡볶이</a>
+		</li>
+		<li class="category-item">
+			<a class="item-title" onclick="location.href='${pageContext.request.contextPath}/category/snacks/fry'">튀김</a>
+		</li>
+		<li class="category-item">
+			<a class="item-title" onclick="location.href='${pageContext.request.contextPath}/category/snacks/frozen'">냉동</a>
+		</li>
+	</ul>
 
 
 
-
-</head>
-<body>
-	<div class="card">
-		<div class="card-header">카테고리</div>
-		<div class="card-body">
-			분식-떡볶이
+<div class="goods-list">
+    <c:forEach var="goods" items="${goodsList}" varStatus="status">
+		<div class="goods">
+		 <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">
+		   <div class="button-wrapper">
+		       <button class="to-cart">
+		           <i class="bi bi-cart icon-margin"></i>담기
+		       </button>
+		   </div>
+		   <div class="goods-info">
+		       <span class="goods-category">[${goods.subcategory}]</span>
+		       <span class="goods-name">${goods.goodsName}</span>
+		       <p class="goods-comment">${goods.goodsComment}</p>
+		       <span class="dimmed-price">
+		           <span class="price-number">
+		               <fmt:formatNumber value="${goods.price}" type="number" groupingUsed="true"/>
+		            </span> 원
+		        </span>
+		   </div>
 		</div>
-	</div>
-
-</body>
-</html>
+    </c:forEach>
+</div>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
