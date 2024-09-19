@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.company.swurameal.dto.NoticeDto;
+import com.company.swurameal.dto.NoticeWriteDto;
 import com.company.swurameal.service.NoticeService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -47,13 +50,13 @@ public class AdminController {
 		return "admin/noticeWrite";
 	}
 	
-	@RequestMapping("/noticeEdit")
-	public void adminNoticeAdd(
-			@RequestParam String action,
-			@RequestParam String title,
-			@RequestParam String content
-			) {
-		
+	@PostMapping("/noticeInsert")
+	public String adminNoticeInsert(@ModelAttribute NoticeWriteDto noticeWriteDto) {
+		NoticeDto noticeDto = new NoticeDto();
+		noticeDto.setNoticeTitle(noticeWriteDto.getNoticeTitle());
+		noticeDto.setNoticeContent(noticeWriteDto.getNoticeContent());
+		noticeService.insertNotice(noticeDto);
+		return "redirect:/admin/notice";
 	}
 	
 	@RequestMapping("/answer")
