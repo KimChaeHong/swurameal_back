@@ -50,9 +50,9 @@
             <div class="row align-items-start">
                 <!-- 로그인 전 -->
                 <div id="logged-out-links" class="col">
-                    <a class="nav-link" href="/html/signup.html" id="signup-link">회원가입</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/user/signup" id="signup-link">회원가입</a>
                     &nbsp;|&nbsp;
-                    <a class="nav-link" href="/html/login.html" id="login-link">로그인</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/user/login" id="login-link">로그인</a>
                 </div>
 
                 <!-- 로그인 후 -->
