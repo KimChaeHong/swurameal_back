@@ -33,6 +33,16 @@ public class CategoryController {
         return "category/all";  // category/all.jsp로 이동
 	}
 	
+	@GetMapping("/category")
+	public String category(Model model) {
+		log.info("카테고리");
+		List<GoodsDto> goodsList = goodsService.getGoodsCategory("카테고리");
+		model.addAttribute("goodsList", goodsList);
+		return "category";
+	}
+	
+	
+	
 	@GetMapping("/snacks")
 	public String snacks(Model model) {
 		log.info("분식");
@@ -42,40 +52,50 @@ public class CategoryController {
 	}
 	
 	@GetMapping("/snacks/tbk")
-	public String snacksTbk() {
+	public String snacksTbk(Model model) {
 		log.info("떡볶이");
+		List<GoodsDto> goodsList = goodsService.getGoodsSubCategory("떡볶이");
+		model.addAttribute("goodsList", goodsList);
 		return "category/tbk";
 	}
 	
 	@GetMapping("/snacks/fry")
-	public String snacksFry() {
+	public String snacksFry(Model model) {
 		log.info("튀김");
+		List<GoodsDto> goodsList = goodsService.getGoodsSubCategory("튀김");
+		model.addAttribute("goodsList", goodsList);
 		return "category/fry";
 	}
 	
 	@GetMapping("/snacks/frozen")
-	public String snacksFrozen() {
+	public String snacksFrozen(Model model) {
 		log.info("냉동");
+		List<GoodsDto> goodsList = goodsService.getGoodsSubCategory("냉동");
+		model.addAttribute("goodsList", goodsList);
 		return "category/frozen";
 	}
 	
 	@GetMapping("/western")
 	public String western(Model model) {
 		log.info("양식");
-		List<GoodsDto> goodList = goodsService.getGoodsCategory("양식");
-		model.addAttribute("goodsList", goodList);
+		List<GoodsDto> goodsList = goodsService.getGoodsCategory("양식");
+		model.addAttribute("goodsList", goodsList);
 		return "category/western";
 	}
 	
 	@GetMapping("/western/pasta")
-	public String westernPasta() {
+	public String westernPasta(Model model) {
 		log.info("파스타");
+		List<GoodsDto> goodsList = goodsService.getGoodsSubCategory("파스타");
+		model.addAttribute("goodsList", goodsList);
 		return "category/pasta";
 	}
 	
 	@GetMapping("/western/steak")
-	public String westernStake() {
+	public String westernStake(Model model) {
 		log.info("스테이크");
+		List<GoodsDto> goodsList = goodsService.getGoodsSubCategory("스테이크");
+		model.addAttribute("goodsList", goodsList);
 		return "category/steak";
 	}
 	@GetMapping("/korean")
@@ -88,20 +108,26 @@ public class CategoryController {
 	
 	
 	@GetMapping("/korean/stew")
-	public String koreanStew() {
+	public String koreanStew(Model model) {
 		log.info("전골/찌개");
+		List<GoodsDto> goodsList = goodsService.getGoodsSubCategory("전골/찌개");
+		model.addAttribute("goodsList", goodsList);
 		return "category/stew";
 	}
 	
 	@RequestMapping("/korean/poaching")
-	public String koreanPoaching() {
+	public String koreanPoaching(Model model) {
 		log.info("찜/조림");
+		List<GoodsDto> goodsList = goodsService.getGoodsSubCategory("찜/조림");
+		model.addAttribute("goodsList", goodsList);
 		return "category/poaching";
 	}
 	
 	@GetMapping("/korean/roast")
-	public String koreanRoast() {
+	public String koreanRoast(Model model) {
 		log.info("볶음/구이");
+		List<GoodsDto> goodsList = goodsService.getGoodsSubCategory("볶음/구이");
+		model.addAttribute("goodsList", goodsList);
 		return "category/roast";
 	}	
 	
@@ -115,20 +141,26 @@ public class CategoryController {
 	}
 	
 	@GetMapping("/tradDrink/takju")
-	public String tradTakju() {
+	public String tradTakju(Model model) {
 		log.info("탁주");
+		List<GoodsDto> goodsList = goodsService.getGoodsSubCategory("탁주");
+        model.addAttribute("goodsList", goodsList);
 		return "category/takju";
 	}
 	
 	@GetMapping("/tradDrink/distilled")
-	public String tradDistilled() {
+	public String tradDistilled(Model model) {
 		log.info("증류주");
+		List<GoodsDto> goodsList = goodsService.getGoodsSubCategory("증류주");
+        model.addAttribute("goodsList", goodsList);
 		return "category/distilled";
 	}
 	
 	@GetMapping("/tradDrink/fruit")
-	public String tradFruit() {
+	public String tradFruit(Model model) {
 		log.info("과실주");
+		List<GoodsDto> goodsList = goodsService.getGoodsSubCategory("과실주");
+        model.addAttribute("goodsList", goodsList);
 		return "category/fruit";
 	}
 	

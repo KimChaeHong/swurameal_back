@@ -5,6 +5,20 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp" %>
 <%@ include file="/WEB-INF/views/common/carousel.jsp" %>
+<%@ include file="/WEB-INF/views/category/category.jsp" %>
+
+<ul class="category-container">
+		<li class="category-item">
+			<a class="item-title active" onclick="location.href='${pageContext.request.contextPath}/category/western'">전체보기</a>
+		</li>
+		<li class="category-item">
+			<a class="item-title" onclick="location.href='${pageContext.request.contextPath}/category/western/pasta'">파스타</a>
+		</li>
+		<li class="category-item">
+			<a class="item-title" onclick="location.href='${pageContext.request.contextPath}/category/western/steak'">스테이크</a>
+		</li>	
+	</ul>
+	
 <div class="goods-list">
     <c:forEach var="goods" items="${goodsList}" varStatus="status">
 		<div class="goods">

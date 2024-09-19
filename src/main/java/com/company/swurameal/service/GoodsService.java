@@ -39,4 +39,9 @@ public class GoodsService{
 	public List<GoodsDto> getGoodsCategory(String category){
 		return goodsDao.selectGoodsByCategory(category);
 	}
+	
+	//상품 서브 카테고리 가져오는 메서드
+	public List<GoodsDto> getGoodsSubCategory(String subCategory) {
+		return goodsDao.selectGoodsBySubCategory(subCategory);
+	}
 }

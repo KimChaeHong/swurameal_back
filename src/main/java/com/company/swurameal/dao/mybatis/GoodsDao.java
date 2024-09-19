@@ -22,6 +22,9 @@ public interface GoodsDao {
 	
 	//상품 카테고리 가져오기
 	public List<GoodsDto> selectGoodsByCategory(String category);
+	
+	//상품 서브 카테고리 가져오기
+	public List<GoodsDto> selectGoodsBySubCategory(String subcategory);
 
 
 }
