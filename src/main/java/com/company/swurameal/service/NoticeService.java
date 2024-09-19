@@ -14,10 +14,26 @@ public class NoticeService {
 	private NoticeDao noticeDao;
 	
 	public List<NoticeDto> getNotice() {
-		return noticeDao.selectAll();
+		return noticeDao.selectNotice();
+	}
+	
+	public NoticeDto getNoticeById(int noticeId) {
+		return noticeDao.selectByNoticeId(noticeId);
 	}
 	
 	public void insertNotice(NoticeDto noticeDto) {
 		noticeDao.insert(noticeDto);
+	}
+	
+	public void updateNotice(NoticeDto noticeDto) {
+		noticeDao.update(noticeDto);
+	}
+	
+	public void deleteNotice(int noticeId) {
+		noticeDao.delete(noticeId);
+	}
+	
+	public int getTotalRows() {
+		return noticeDao.countRows();
 	}
 }

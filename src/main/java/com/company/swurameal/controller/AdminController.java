@@ -3,9 +3,12 @@ package com.company.swurameal.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.company.swurameal.dto.NoticeDto;
 import com.company.swurameal.dto.NoticeWriteDto;
+import com.company.swurameal.dto.Pager;
 import com.company.swurameal.service.NoticeService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -60,6 +64,39 @@ public class AdminController {
 		noticeDto.setNoticeContent(noticeWriteDto.getNoticeContent());
 		noticeDto.setNoticeRegisterDate(date);
 		noticeService.insertNotice(noticeDto);
+		return "redirect:/admin/notice";
+	}
+	
+	@GetMapping("/noticeDetail")
+	public String adminNoticeDetail(@RequestParam int noticeId, Model model) {
+		NoticeDto noticeDto = noticeService.getNoticeById(noticeId);
+		model.addAttribute("notice", noticeDto);
+		return "admin/noticeDetail";
+	}
+	
+	@GetMapping("/noticeDelete")
+	public String adminNoticeDelete(int noticeId) {
+		noticeService.deleteNotice(noticeId);
+		return "redirect:/admin/notice";
+	}
+	
+	@GetMapping("/noticeUpdateForm")
+	public String adminNoticeUpdateForm(@RequestParam int noticeId, Model model) {
+		NoticeDto noticeDto = noticeService.getNoticeById(noticeId);
+		model.addAttribute("notice", noticeDto);
+		return "admin/noticeUpdateForm";
+	}
+	
+	@PostMapping("/noticeUpdate")
+	public String adminNoticeUpdate(@ModelAttribute NoticeWriteDto noticeWriteDto) {
+		NoticeDto noticeDto = new NoticeDto();
+		noticeDto.setNoticeId(noticeWriteDto.getNoticeId());
+		noticeDto.setNoticeTitle(noticeWriteDto.getNoticeTitle());
+		noticeDto.setNoticeContent(noticeWriteDto.getNoticeContent());
+		log.info(""+ noticeDto);
+		log.info(""+ noticeWriteDto);
+		
+		noticeService.updateNotice(noticeDto);
 		return "redirect:/admin/notice";
 	}
 	
