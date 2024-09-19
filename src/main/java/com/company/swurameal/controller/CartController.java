@@ -1,6 +1,7 @@
 package com.company.swurameal.controller;
 
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,10 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.company.swurameal.dto.Cart;
+import com.company.swurameal.dto.CartItem;
 import com.company.swurameal.dto.CartDto;
 import com.company.swurameal.dto.GoodsImgDto;
 import com.company.swurameal.service.CartService;
@@ -41,29 +43,41 @@ public class CartController {
 		return "cart/cart";
 	}
 	
-	
-	@GetMapping("/cartAdd")
-	public String cartAdd(CartDto item, HttpSession session) {
-		Cart cart = (Cart) session.getAttribute("cart");
-		if(cart == null) {
-			cart = new Cart();
-			session.setAttribute("cart", cart);
+	@GetMapping("/cart")
+	public String cart(Model model) {
+		List<CartDto> cart = new ArrayList<>();
+		for(int i=1; i<=5; i++) {
+			CartDto item = new CartDto();
+			item.setUserId("p" + i);
+			cart.add(item);
 		}
-		cart.addItem(item);
+		model.addAttribute("cart", cart);
 		return "cart/cart";
 	}
 	
+	
+	@GetMapping("/cartAdd")
+	public String cartAdd(CartDto item, HttpSession session) {
+		CartItem cart = (CartItem) session.getAttribute("cart");
+		if(cart == null) {
+			cart = new CartItem();
+			session.setAttribute("cart", cart);
+		}
+		cart.addItem(item);
+		return "redirect:/cart";
+	}
+	
 	@GetMapping("/deleteitem")
-	public String deleteitem(CartDto userId, HttpSession session) {
-		Cart cart = (Cart) session.getAttribute("cart");
+	public String deleteitem(CartDto goodsId, HttpSession session) {
+		CartItem cart = (CartItem) session.getAttribute("cart");
 		Iterator<CartDto> iterator = cart.getContents().iterator();
 		while(iterator.hasNext()) {
 			CartDto item = iterator.next();
-			if(item.getUserId().equals(userId)) {
+			if(item.getUserId().equals(goodsId)) {
 				iterator.remove();
 			}
 		}
-		return "cart/cart";
+		return "redirect:/cart";
 	}
 	
 	

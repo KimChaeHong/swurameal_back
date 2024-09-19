@@ -3,7 +3,7 @@ package com.company.swurameal.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart {
+public class CartItem {
 	private List<CartDto> contents = new ArrayList<>();
 
 	public List<CartDto> getContents() {
