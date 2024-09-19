@@ -13,8 +13,9 @@ public class CartService {
 	@Autowired
 	private CartDao cartDao;
 	
-	public List<CartDto> selectGoods(int goodsId) {
-		List<CartDto> cartList = cartDao.selectByGoodsId(goodsId);
+	public List<CartDto> selectGoods(String userId) {
+		List<CartDto> cartList = cartDao.selectByGoodsId(userId);
 		return cartList;
 	}
+
 }

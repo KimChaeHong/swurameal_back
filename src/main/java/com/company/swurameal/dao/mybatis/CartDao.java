@@ -9,6 +9,6 @@ import com.company.swurameal.dto.CartDto;
 @Mapper
 public interface CartDao {
 		
-	public List<CartDto> selectByGoodsId(int goodsId);
+	 List<CartDto> selectByGoodsId(String userId);
 }
 
