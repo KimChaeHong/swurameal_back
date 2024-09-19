@@ -1,6 +1,6 @@
 package com.company.swurameal.dto;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,9 +17,9 @@ public class UserDto {
 	private String userAddress;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate userBirth;
+	private Date userBirth;
 	
 	private String userRole;
-	private int userEnable;
+	private boolean userEnable;
 	
 }

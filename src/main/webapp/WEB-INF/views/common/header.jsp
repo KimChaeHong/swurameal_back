@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,22 +49,28 @@
 
             <!-- 로그인 정보 -->
             <div class="row align-items-start">
-                <!-- 로그인 전 -->
+             
                 <div id="logged-out-links" class="col">
                     <a class="nav-link" href="${pageContext.request.contextPath}/user/signup" id="signup-link">회원가입</a>
                     &nbsp;|&nbsp;
                     <a class="nav-link" href="${pageContext.request.contextPath}/user/login" id="login-link">로그인</a>
+                    &nbsp;|&nbsp;
+                    <a class="nav-link" href="${pageContext.request.contextPath}/support/notice" >고객센터</a>
                 </div>
+       
 
                 <!-- 로그인 후 -->
+                <sec:authorize access="isAuthenticated()"><!-- 로그인 했다는 뜻 -->
                 <div id="logged-in-links" class="col" style="display: none">
                     <a class="nav-link" href="#" id="logout-link">로그아웃</a>
                     &nbsp;|&nbsp;
                     <a class="nav-link admin-hide" href="/html/myPage.html" id="mypage-link">마이페이지</a>
+                    &nbsp;|&nbsp;
                     <a class="nav-link" href="/html/admin.html" id="admin-link">관리자페이지</a>
-                    &nbsp;<span class="admin-hide">|</span>&nbsp;
-                    <a class="nav-link admin-hide" href="/html/support.html">고객센터</a>
+                    &nbsp;|&nbsp;
+                    <a class="nav-link" href="${pageContext.request.contextPath}/support/notice" >고객센터</a>
                 </div>
+                </sec:authorize>
             </div>
         </div>
 </div>

@@ -7,10 +7,10 @@
 <body>
 	<main class="container login">
 		<h2>로그인</h2>
-		<form action="#">
-			<input id="id" type="text" placeholder="아이디를 입력해 주세요.">
+		<form method="post" action="${pageContext.request.contextPath}/login">
+			<input id="id" type="text" placeholder="아이디를 입력해 주세요." name="user_id">
 			<br>
-			<input id="pw" type="password" placeholder="비밀번호를 입력해 주세요.">
+			<input id="pw" type="password" placeholder="비밀번호를 입력해 주세요." name="user_pw">
 			<br>
 			
 			<div id="id-pw">
@@ -34,11 +34,12 @@
 		        </a>
 	      	</ul>
 			
-			<button class="login-btn" onclick="loginCheck(); return false;">로그인
-			</button>
+			<button class="login-btn">로그인</button>
 			<br>
-			<button class="signup-btn" onclick="toSignup(); return false;">회원가입
-			</button>
+		
+   			<button class="signup-btn" onclick="location.href='${pageContext.request.contextPath}/user/signup'">회원가입</button>
+
+
 		</form>
 	</main>
 </body>
