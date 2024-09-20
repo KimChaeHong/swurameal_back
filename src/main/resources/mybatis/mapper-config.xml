@@ -33,5 +33,7 @@
 				   alias="Review"/>
 		<typeAlias type="com.company.swurameal.dto.UserDto"
 				   alias="User"/>
+   		<typeAlias type="com.company.swurameal.dto.Pager"
+				   alias="Pager"/>
 	</typeAliases>
 </configuration>
