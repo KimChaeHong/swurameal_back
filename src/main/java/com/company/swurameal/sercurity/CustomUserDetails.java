@@ -19,7 +19,6 @@ public class CustomUserDetails extends User{
 				user.isUserEnable(),
 				true,true,true,
 				authorities
-				
 				);
 		
 		this.user= user;

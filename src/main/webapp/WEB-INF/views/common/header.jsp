@@ -51,31 +51,43 @@
             <!-- 로그인 정보 -->
             <div class="row align-items-start">
             
-            	<c:choose>
-					<c:when test="${not empty pageContext.request.userPrincipal}">
-					    <!-- 로그인 후 -->
-					    <div id="logged-in-links" class="col">
-					    	<div>${pageContext.request.userPrincipal.name}</div>
-					        &nbsp;|&nbsp;
-					        <a class="nav-link admin-hide" href="${pageContext.request.contextPath}/mypage/pick" id="mypage-link">마이페이지</a>
-					        &nbsp;|&nbsp;
-					        <a class="nav-link" href="${pageContext.request.contextPath}/support/notice" >고객센터</a>
-					        &nbsp;|&nbsp;
-					        <a class="nav-link" href="${pageContext.request.contextPath}/logout" id="logout-link">로그아웃</a>
-					    </div>
-					</c:when>
-					<c:otherwise>
-					    <!-- 로그인 전 -->
-					    <div id="logged-out-links" class="col">
-					        <a class="nav-link" href="${pageContext.request.contextPath}/user/signup" id="signup-link">회원가입</a>
-					        &nbsp;|&nbsp;
-					        <a class="nav-link" href="${pageContext.request.contextPath}/user/login" id="login-link">로그인</a>
-					        &nbsp;|&nbsp;
-					        <a class="nav-link" href="${pageContext.request.contextPath}/support/notice" >고객센터</a>	                    
-					    </div>
-					</c:otherwise>
-				</c:choose>
-               
+ <c:choose>
+    <c:when test="${not empty pageContext.request.userPrincipal}">
+        <!-- 로그인 후 -->
+        <div id="logged-in-links" class="col">
+            <sec:authorize access="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
+                <div>${pageContext.request.userPrincipal.name}</div>
+                &nbsp;|&nbsp;
+                <a class="nav-link" href="${pageContext.request.contextPath}/mypage/pick" id="mypage-link">마이페이지</a>
+                &nbsp;|&nbsp;
+                <a class="nav-link" href="${pageContext.request.contextPath}/support/notice" >고객센터</a>
+                &nbsp;|&nbsp;
+                <a class="nav-link" href="${pageContext.request.contextPath}/logout" >로그아웃</a>
+            </sec:authorize>
+            
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <div>${pageContext.request.userPrincipal.name}</div>
+                &nbsp;|&nbsp;
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/notice">관리자페이지</a>
+                &nbsp;|&nbsp;
+                <a class="nav-link" href="${pageContext.request.contextPath}/support/notice" >고객센터</a>
+                &nbsp;|&nbsp;
+                <a class="nav-link" href="${pageContext.request.contextPath}/logout">로그아웃</a>
+            </sec:authorize>  
+        </div>
+    </c:when>
+    <c:otherwise>
+        <!-- 로그인 전 -->
+        <div id="logged-out-links" class="col">
+            <a class="nav-link" href="${pageContext.request.contextPath}/user/signup" id="signup-link">회원가입</a>
+            &nbsp;|&nbsp;
+            <a class="nav-link" href="${pageContext.request.contextPath}/user/login" id="login-link">로그인</a>
+            &nbsp;|&nbsp;
+            <a class="nav-link" href="${pageContext.request.contextPath}/support/notice" >고객센터</a>                    
+        </div>
+    </c:otherwise>
+</c:choose>
+
             </div>
         </div>
 </div>
