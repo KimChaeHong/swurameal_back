@@ -1,5 +1,8 @@
 package com.company.swurameal.dto;
 
+import lombok.Data;
+
+@Data
 public class Pager {
 	
 	private int totalRows;

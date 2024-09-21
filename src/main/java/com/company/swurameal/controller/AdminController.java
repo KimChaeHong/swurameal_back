@@ -42,11 +42,18 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/notice")
-	public String adminNotice(Model model) {
-		log.info("관리자 공지사항");
-		List<NoticeDto> list = noticeService.getNotice();
-		model.addAttribute("list", list);
-		return "admin/notice";
+	public String adminNotice(
+		@RequestParam(defaultValue="1") int pageNo, 
+		HttpSession session,
+		Model model
+		) {
+			log.info("관리자 공지사항");
+			int totalRows = noticeService.getTotalRows();
+			Pager pager = new Pager(5, 5, totalRows, pageNo);
+			session.setAttribute("pager", pager);
+			List<NoticeDto> list = noticeService.getNotice(pager);
+			model.addAttribute("list", list);
+			return "admin/notice";
 	}
 	
 	@RequestMapping("/noticeWrite")

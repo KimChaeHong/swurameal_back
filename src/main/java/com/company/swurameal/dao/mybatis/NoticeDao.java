@@ -9,9 +9,9 @@ import com.company.swurameal.dto.Pager;
 
 @Mapper
 public interface NoticeDao {
-	public List<NoticeDto> selectNotice();
+	public List<NoticeDto> selectList();
+	public List<NoticeDto> selectListPager(Pager pager);
 	public NoticeDto selectByNoticeId(int noticeId);
-	public List<NoticeDto> selectList(Pager pager);
 	public int insert(NoticeDto noticeDto);
 	public int update(NoticeDto noticeDto);
 	public int delete(int noticeId);

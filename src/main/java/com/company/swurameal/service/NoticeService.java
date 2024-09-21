@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.company.swurameal.dao.mybatis.NoticeDao;
 import com.company.swurameal.dto.NoticeDto;
+import com.company.swurameal.dto.Pager;
 
 @Service
 public class NoticeService {
@@ -14,7 +15,11 @@ public class NoticeService {
 	private NoticeDao noticeDao;
 	
 	public List<NoticeDto> getNotice() {
-		return noticeDao.selectNotice();
+		return noticeDao.selectList();
+	}
+	
+	public List<NoticeDto> getNotice(Pager pager) {
+		return noticeDao.selectListPager(pager);
 	}
 	
 	public NoticeDto getNoticeById(int noticeId) {
