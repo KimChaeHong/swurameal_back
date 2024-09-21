@@ -27,4 +27,6 @@ public interface GoodsDao {
 	public List<GoodsDto> selectGoodsBySubCategory(String subcategory);
 
 
+
+
 }
