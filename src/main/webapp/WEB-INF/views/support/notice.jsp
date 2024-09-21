@@ -37,42 +37,38 @@
 				            </div>
 						</div>	            
 		            </c:forEach>
-		            <div class="pagination">
-		            	<!-- 
-		            	<button class="page-num active">1</button>
-		            	 -->
-		            </div> 
 		        </div>
-		        
-		        <div class="text-center">		
-				<div>
-					<a href="notice?pageNo=1" class="btn btn-outline-primary btn-sm">처음</a>
+		        		
+				<div class="pagination">
+					<a href="notice?pageNo=1" class="btn btn-outline-dark btn-sm">처음</a>
 		
 					<c:if test="${pager.groupNo>1}">
 						<a href="notice?pageNo=${pager.startPageNo-1}"
-							class="btn btn-outline-primary btn-sm">이전</a>
+							class="btn btn-outline-dark btn-sm">이전</a>
 					</c:if>
 		
 					<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
 						step="1" var="i">
 						<c:if test="${pager.pageNo==i}">
-							<a href="notice?pageNo=${i}" class="btn btn-danger btn-sm">${i}</a>
+								<button class="page-num active" onclick="location.href='${pageContext.request.contextPath}/support/notice?pageNo=${i}'">
+									${i}
+								</button>						
 						</c:if>
 						<c:if test="${pager.pageNo!=i}">
-							<a href="notice?pageNo=${i}"
-								class="btn btn-outline-success btn-sm">${i}</a>
+								<button class="page-num" onclick="location.href='${pageContext.request.contextPath}/support/notice?pageNo=${i}'">
+									${i}
+								</button>
 						</c:if>
 					</c:forEach>
 		
 					<c:if test="${pager.groupNo<pager.totalGroupNo}">
 						<a href="notice?pageNo=${pager.endPageNo+1}"
-							class="btn btn-outline-primary btn-sm">다음</a>
+							class="btn btn-outline-dark btn-sm">다음</a>
 					</c:if>
 		
 					<a href="notice?pageNo=${pager.totalPageNo}"
-						class="btn btn-outline-primary btn-sm">맨끝</a>
+						class="btn btn-outline-dark btn-sm text-nowrap">마지막</a>
 				</div>
-			</div>
 			          
 	        </div>
         </section>
