@@ -7,6 +7,18 @@
 <body>
 	<main class="container login">
 		<h2>로그인</h2>
+		<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != NULL}">
+	    	<div class="alert alert-danger mb-2" role=alert>
+	    			
+				<%-- <c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message ==  'Bad username'}">
+	    			아이디가 틀립니다.
+	    		</c:if> --%>
+	    		<c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
+	    			아이디 또는 비밀번호가 틀립니다.
+	    		</c:if>
+	    	</div>
+	    
+	    </c:if>
 		<form method="post" action="${pageContext.request.contextPath}/login">
 			<input id="id" name="user_id" type="text" placeholder="아이디를 입력해 주세요." >
 			<br>
