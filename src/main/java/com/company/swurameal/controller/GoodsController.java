@@ -1,14 +1,18 @@
 package com.company.swurameal.controller;
 
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.company.swurameal.dto.GoodsDto;
 import com.company.swurameal.dto.GoodsImgDto;
 import com.company.swurameal.service.GoodsService;
 
@@ -23,8 +27,34 @@ public class GoodsController {
 	
 	
 	@RequestMapping("/detail")
-	public String detail() {
+	public String detail(@RequestParam int goodsId, Model model) {
 		log.info("제품 상세");
+		GoodsDto goodsDto = goodsService.getGoodsById(goodsId);
+		List<GoodsDto> goodsDtoSameCategory = goodsService.getGoodsCategory(goodsDto.getCategory());
+		String suggestType = "";
+		switch (goodsDto.getCategory()) {
+			case "양식": 
+				suggestType = "과실주";
+				break;
+			case "한식":
+				suggestType = "증류주";
+				break;
+			case "분식":
+				suggestType = "탁주";
+				break;
+			case "전통주":
+				suggestType = "떡볶이";
+				break;
+			default:
+				suggestType = "증류주";
+				break;
+		}
+		List<GoodsDto> goodsDtoAlcohol = goodsService.getGoodsSubCategory(suggestType);
+		model.addAttribute("goods", goodsDto);
+		model.addAttribute("goodsSameCategory", goodsDtoSameCategory);
+		model.addAttribute("goodsAlcohol", goodsDtoAlcohol);
+		log.info(""+ goodsDtoAlcohol);
+		log.info(""+ goodsDtoSameCategory);
 		return "goods/detail";
 	}
 	

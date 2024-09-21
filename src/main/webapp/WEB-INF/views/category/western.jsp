@@ -22,22 +22,24 @@
 <div class="goods-list">
     <c:forEach var="goods" items="${goodsList}" varStatus="status">
 		<div class="goods">
-		 <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">
-		   <div class="button-wrapper">
-		       <button class="to-cart">
-		           <i class="bi bi-cart icon-margin"></i>담기
-		       </button>
-		   </div>
-		   <div class="goods-info">
-		       <span class="goods-category">[${goods.category}]</span>
-		       <span class="goods-name">${goods.goodsName}</span>
-		       <p class="goods-comment">${goods.goodsComment}</p>
-		       <span class="dimmed-price">
-		           <span class="price-number">
-		               <fmt:formatNumber value="${goods.price}" type="number" groupingUsed="true"/>
-		            </span> 원
-		        </span>
-		   </div>
+		<a href="${pageContext.request.contextPath}/goods/detail?goodsId=${goods.goodsId}">
+		 	<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">
+	 	</a>
+			<div class="button-wrapper">
+				<button class="to-cart">
+					<i class="bi bi-cart icon-margin"></i>담기
+				</button>
+			</div>
+			<div class="goods-info">
+				<span class="goods-category">[${goods.category}]</span> <span
+					class="goods-name">${goods.goodsName}</span>
+				<p class="goods-comment">${goods.goodsComment}</p>
+				<span class="dimmed-price"> <span class="price-number">
+						<fmt:formatNumber value="${goods.price}" type="number"
+							groupingUsed="true" />
+				</span> 원
+				</span>
+			</div>
 		</div>
     </c:forEach>
 </div>

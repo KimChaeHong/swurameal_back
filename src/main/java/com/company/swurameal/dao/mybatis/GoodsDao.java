@@ -12,7 +12,7 @@ import com.company.swurameal.dto.GoodsImgDto;
 public interface GoodsDao {
 
 	//상품 하나 가져오기
-	/*public GoodsDto selectByGoodsID(int goodsId);*/
+	public GoodsDto selectByGoodsID(int goodsId);
 
 	//상품 이미지 가져오기
 	public GoodsImgDto selectAttachByGoodsID(int goodsId);
