@@ -5,12 +5,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-	
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/cart.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/cart.css">
+<script src="${pageContext.request.contextPath}/resources/js/cart-list.js"></script>
 
 <main class="container cart">
-<h2>장바구니</h2>
+<h2>${user.userId}님의 장바구니</h2>
 <div id="select-btns">
 	<i class="bi bi-check-circle hover" id="allBtn"></i> 
 	<span class="hover" id="allBtnTxt">전체선택</span> 
@@ -20,15 +19,15 @@
 
 <div class="d-flex justify-content-between">
 	<div id="cart-items">
-		<c:forEach var="goods" items="${goodsList}">
+		<c:forEach var="goods" items="${cartGoods}">
 			<div class="item d-flex justify-content-between">
 				<i class="bi bi-check-circle hover"></i>
 				<img src="${pageContext.request.contextPath}/cart/downloadImage?goodsId=${goods.goodsId}"
 					class="goods-img" alt="${goods.goodsName}">
 
 				<div id="item-detail">
-					<p>${goods.category} ${goods.goodsName}</p>
-					<%-- <p>${goods.goodsName}</p> --%>
+					<p>[${goods.category}] ${goods.goodsName}</p>
+					<p>${goods.goodsName}</p>
 					<p>${goods.goodsComment}</p>
 					<div class="cnt-btn">
 						<button class="updown-btn">-</button>
@@ -70,5 +69,13 @@
 	</div>
 </div>
 </main>
+<script>
+	$(document).ready(function () {
+	    countItem(); // 상품 갯수 증감에 따른 각 아이템의 가격 변동
+	    checkItem(); // 선택 || 전체선택 버튼
+	    totalPriceOper(); // 전체 가격 계산
+	});
+</script>
+
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
