@@ -31,4 +31,8 @@ public interface GoodsDao {
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
 }
