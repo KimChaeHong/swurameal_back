@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,7 @@ public class CartController {
 	private GoodsService goodsService; 
 	
 	// 장바구니 페이지로 이동
+	@Secured("ROLE_USER")
 	@RequestMapping("/cart")
 	public String veiwCart(Model model, Authentication authentication)  {
 		

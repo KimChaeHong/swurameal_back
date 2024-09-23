@@ -12,7 +12,7 @@
 	
 	<security:http>
 		<security:form-login 
-			login-page="/user/login"
+			login-page="/user/loginForm"
 			username-parameter="user_id"	
 			password-parameter="user_pw"
 			login-processing-url="/login"
@@ -24,7 +24,7 @@
 				success-handler-ref ="logoutSuccessHandler"/>
 	
 		<security:csrf disabled="true"/>
-
+		<security:access-denied-handler error-page="/user/error403"/>
 	</security:http>
 	
 	<security:global-method-security secured-annotations="enabled"/>

@@ -26,7 +26,6 @@
 									
 				<div id="item-detail">
 					<p>[${goods.category}] ${goods.goodsName}</p>
-					<p>${goods.goodsName}</p>
 					<p>${goods.goodsComment}</p>
 					<div class="cnt-btn">
 						<button class="updown-btn">-</button>
@@ -68,13 +67,6 @@
 	</div>
 </div>
 </main>
-<script>
-	$(document).ready(function () {
-	    countItem(); // 상품 갯수 증감에 따른 각 아이템의 가격 변동
-	    checkItem(); // 선택 || 전체선택 버튼
-	    totalPriceOper(); // 전체 가격 계산
-	});
-</script>
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
