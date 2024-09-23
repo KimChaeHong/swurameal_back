@@ -47,12 +47,12 @@
 	            </div>
 	            <div class="d-flex flex-column order-list">
 		            <div class="order-product d-flex">
-	                <img src="${item.img}">
+	                <img src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${order.goodsId}&imgRole=G_MAIN" alt="${goods.goodsName}">
 	                <div class="order-info">
-	                    <p><strong>상품명</strong> ${item.title}</p>
-	                    <p><strong>주문 날짜</strong> ${item.orderDate}</p>
-	                    <p><strong>결제 금액</strong> ${item.price}</p>
-	                    <p><strong>주문 상태</strong> ${item.orderStatus}</p>
+	                    <p><strong>상품명</strong> ${order.orderId}</p>
+	                    <p><strong>주문 날짜</strong> ${order.orderDate}</p>
+	                    <p><strong>결제 금액</strong> ${order.goodsPrice}</p>
+	                    <p><strong>주문 상태</strong> ${order.orderStatus}</p>
 	                </div>
 	            	</div>	
 	            </div>
