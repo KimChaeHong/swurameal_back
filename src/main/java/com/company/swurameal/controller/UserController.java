@@ -36,7 +36,7 @@ public class UserController {
 	public String logout(HttpSession session) {
 		session.removeAttribute("login");
 		log.info("로그아웃");
-		return "redirect:/user/login";
+		return "redirect:/user/loginForm";
 	}
 	
 	@RequestMapping("/signup")
@@ -64,7 +64,7 @@ public class UserController {
 			model.addAttribute("errorMessage",errorMessage);
 			return "user/signup"; 
 		}else {
-			return "redirect:/user/login";			
+			return "redirect:/user/loginForm";			
 		}	
 	}
 	
