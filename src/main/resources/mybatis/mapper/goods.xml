@@ -103,7 +103,7 @@
 	
 	<!-- 상품 이미지 imgRole에 따라 가져오기 -->
 	<select id="selectAttachByImgRole" resultType="GoodsImg"
-		parameterType="map">
+		parameterType="GoodsImg">
 		SELECT
 			GOODS_IMG_ID,
 			GOODS_ID,

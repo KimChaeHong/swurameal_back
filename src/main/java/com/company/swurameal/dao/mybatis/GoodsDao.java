@@ -18,7 +18,7 @@ public interface GoodsDao {
 	public GoodsImgDto selectAttachByGoodsID(int goodsId);
 	
 	//상품 이미지 imgRole에 따라 가져오기
-	public GoodsImgDto selectAttachByImgRole(Map<String, Object> paramMap);
+	public GoodsImgDto selectAttachByImgRole(GoodsImgDto goodsImgDto);
 
 	//전체 상품 가져오기
 	public List<GoodsDto> selectAllGoods();

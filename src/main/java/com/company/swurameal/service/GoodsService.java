@@ -32,8 +32,8 @@ public class GoodsService{
 	}
 	
 	//상품 사진 imgRole에 따라 가져오는 메서드
-	public GoodsImgDto getGoodsAttachByRole(Map<String, Object> paramMap) {
-		GoodsImgDto goods = goodsDao.selectAttachByImgRole(paramMap);
+	public GoodsImgDto getGoodsAttachByRole(GoodsImgDto goodsImgDto) {
+		GoodsImgDto goods = goodsDao.selectAttachByImgRole(goodsImgDto);
 		return goods;
 	}
 	
