@@ -71,7 +71,7 @@
 			#{userId},
 			#{noticeTitle},
 			#{noticeContent},
-			#{noticeRegisterDate}
+			sysdate
 		)
 	</insert>
 	
