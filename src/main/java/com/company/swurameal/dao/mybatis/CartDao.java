@@ -11,7 +11,7 @@ import com.company.swurameal.dto.CartDto;
 public interface CartDao {
 	
 	// 사용자 ID로 장바구니에 담긴 모든 상품 조회 (여러 상품이 있을 수 있으므로 List로 반환)
-		public List<CartDto> selectCartByUserId(String userId);
+	public List<CartDto> selectCartByUserId(String userId);
 	
 	//사용자 ID와 상품ID로 장바구니의 특정 상품 조회
 	public CartDto selectGoodsInCart(String userId, int goodsId);

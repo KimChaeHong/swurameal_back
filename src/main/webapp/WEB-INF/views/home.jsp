@@ -18,7 +18,7 @@
 	        <c:if test="${goods.goodsId == 115 || goods.goodsId == 116 || goods.goodsId == 121 || goods.goodsId == 124}">
 	            <div class="goods">
 	            	<a href="goods/detail?goodsId=${goods.goodsId}">
-		                <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">	            	
+		                <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">	            	
 	            	</a>
 	                <div class="button-wrapper">
 	                    <button class="to-cart">
@@ -53,7 +53,7 @@
 	        <c:if test="${goods.goodsId == 214 || goods.goodsId == 221 || goods.goodsId == 211 || goods.goodsId == 223}">
 	            <div class="goods">
 	            	<a href="goods/detail?goodsId=${goods.goodsId}">
-	                	<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">
+	                	<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">
 	                </a>
 	                <div class="button-wrapper">
 	                    <button class="to-cart">
@@ -88,7 +88,7 @@
 	        <c:if test="${goods.goodsId == 311 || goods.goodsId == 314 || goods.goodsId == 324 || goods.goodsId == 333}">
 	            <div class="goods">
 	            	<a href="goods/detail?goodsId=${goods.goodsId}">
-	                	<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">
+	                	<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">
 	                </a>
 	                <div class="button-wrapper">
 	                    <button class="to-cart">
@@ -122,7 +122,7 @@
 	        <c:if test="${goods.goodsId == 411 || goods.goodsId == 431 || goods.goodsId == 423 || goods.goodsId == 413}">
 	            <div class="goods">
 	            	<a href="goods/detail?goodsId=${goods.goodsId}">
-	                	<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">
+	                	<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">
 	                </a>
 	                <div class="button-wrapper">
 	                    <button class="to-cart">

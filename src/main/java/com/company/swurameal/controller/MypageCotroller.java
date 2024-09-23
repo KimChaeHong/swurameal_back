@@ -2,15 +2,23 @@ package com.company.swurameal.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.company.swurameal.dto.PickDto;
 import com.company.swurameal.dto.UserDto;
+import com.company.swurameal.sercurity.CustomUserDetails;
+import com.company.swurameal.service.PickService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,10 +26,28 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/mypage")
 @Slf4j
 public class MypageCotroller {
+	@Autowired
+	private PickService pickService;
 
+	@Secured("ROLE_USER")
 	@RequestMapping("/pick")
-	public String mypagePick() {
+	public String mypagePick(Model model, Authentication authentication) {
 		log.info("찜");
+
+		// 사용자의 모든 정보를 얻고 싶을 경우
+		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+		UserDto user = userDetails.getUserDto();
+		String userId = user.getUserId(); // 로그인된 사용자의 userId
+
+		// 장바구니에 담긴 모든 상품 조회
+		List<PickDto> pickGoods = pickService.getCartByUserID(userId);
+
+		log.info(pickGoods.toString());
+
+		// 모델에 사용자와 찜 정보 추가
+		model.addAttribute("user", user);
+		model.addAttribute("pickGoods", pickGoods);
+
 		return "mypage/pick";
 	}
 

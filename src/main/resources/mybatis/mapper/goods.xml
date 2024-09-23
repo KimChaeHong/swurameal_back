@@ -95,9 +95,25 @@
 			GOODS_NAME,
 			G_ATTACH_ONAME,
 			G_ATTACH_TYPE,
-			G_ATTACH_DATA
+			G_ATTACH_DATA,
+			IMG_ROLE
 		FROM goods_img
 		WHERE GOODS_ID = #{goodsId}
+	</select>
+	
+	<!-- 상품 이미지 imgRole에 따라 가져오기 -->
+	<select id="selectAttachByImgRole" resultType="GoodsImg"
+		parameterType="GoodsImg">
+		SELECT
+			GOODS_IMG_ID,
+			GOODS_ID,
+			GOODS_NAME,
+			G_ATTACH_ONAME,
+			G_ATTACH_TYPE,
+			G_ATTACH_DATA,
+			IMG_ROLE
+		FROM goods_img
+		WHERE GOODS_ID = #{goodsId} AND IMG_ROLE = #{imgRole}
 	</select>
 	
 

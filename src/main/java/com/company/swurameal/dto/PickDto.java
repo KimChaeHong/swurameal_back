@@ -9,9 +9,15 @@ import lombok.Data;
 @Data
 public class PickDto {
 	
-	String userId;
-	int goodsID;
+	private String userId;
+	private int goodsId;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	Date createAt;
+	private Date createAt;
+	
+	private String goodsName; // 상품명
+	private int price; // 상품 가격
+	private String goodsComment; //상품 코멘트
+	private String category; //상품 카테고리
+	
 }

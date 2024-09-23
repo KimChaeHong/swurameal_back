@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
+@RequestMapping("/order")
 public class OrderCotroller {
 	
 	@RequestMapping("/order")

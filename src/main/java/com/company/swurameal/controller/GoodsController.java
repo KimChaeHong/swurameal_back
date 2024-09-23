@@ -22,9 +22,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/goods")
 public class GoodsController {
+	
 	@Autowired
 	private GoodsService goodsService; // GoodsService를 사용하여 상품 목록을 가져옴
-	
 	
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int goodsId, Model model) {
@@ -71,6 +71,32 @@ public class GoodsController {
 		String encodingfileName = new String(fileName.getBytes("UTF-8"),"ISO-8859-1");
 		response.setHeader("Content-Disposition", "attachment; filename=\""+encodingfileName+"\"");
 		
+		//응답 본문에 파일 데이터를 출력
+		OutputStream out = response.getOutputStream();
+		out.write(goods.getGAttachData());
+		out.flush();
+		out.close();
+	}
+	
+	@GetMapping("/downloadImageByRole")
+	public void attachDownloadDetail(
+			@RequestParam int goodsId, 
+			@RequestParam String imgRole, 
+			HttpServletResponse response
+			) throws Exception {
+		GoodsImgDto goodsImgDto = new GoodsImgDto();
+		goodsImgDto.setGoodsId(goodsId);
+		goodsImgDto.setImgRole(imgRole);
+		GoodsImgDto goods = goodsService.getGoodsAttachByRole(goodsImgDto);
+		
+		//응답 헤더에 들어가는 Content-Type 파일 확장명을 보고 저장을 자동으로 해주기
+		String contentType = goods.getGAttachType();
+		response.setContentType(contentType);
+		
+		//파일로 저장하기 위한 설정				
+		String fileName = goods.getGAttachOname();
+		String encodingfileName = new String(fileName.getBytes("UTF-8"),"ISO-8859-1");
+		response.setHeader("Content-Disposition", "attachment; filename=\""+encodingfileName+"\"");
 		
 		//응답 본문에 파일 데이터를 출력
 		OutputStream out = response.getOutputStream();
@@ -78,4 +104,5 @@ public class GoodsController {
 		out.flush();
 		out.close();
 	}
+	
 }

@@ -81,7 +81,7 @@
         <div id="logged-out-links" class="col">
             <a class="nav-link" href="${pageContext.request.contextPath}/user/signup" id="signup-link">회원가입</a>
             &nbsp;|&nbsp;
-            <a class="nav-link" href="${pageContext.request.contextPath}/user/login" id="login-link">로그인</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/user/loginForm" id="login-link">로그인</a>
             &nbsp;|&nbsp;
             <a class="nav-link" href="${pageContext.request.contextPath}/support/notice" >고객센터</a>                    
         </div>
