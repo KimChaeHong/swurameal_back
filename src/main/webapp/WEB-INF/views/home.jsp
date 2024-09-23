@@ -18,7 +18,7 @@
 	        <c:if test="${goods.goodsId == 115 || goods.goodsId == 116 || goods.goodsId == 121 || goods.goodsId == 124}">
 	            <div class="goods">
 	            	<a href="goods/detail?goodsId=${goods.goodsId}">
-		                <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">	            	
+		                <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">	            	
 	            	</a>
 	                <div class="button-wrapper">
 	                    <button class="to-cart">

@@ -22,9 +22,8 @@
 		<c:forEach var="goods" items="${cartGoods}">
 			<div class="item d-flex justify-content-between">
 				<i class="bi bi-check-circle hover"></i>
-				<img src="${pageContext.request.contextPath}/cart/downloadImage?goodsId=${goods.goodsId}"
-					class="goods-img" alt="${goods.goodsName}">
-
+				<img src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">
+									
 				<div id="item-detail">
 					<p>[${goods.category}] ${goods.goodsName}</p>
 					<p>${goods.goodsName}</p>

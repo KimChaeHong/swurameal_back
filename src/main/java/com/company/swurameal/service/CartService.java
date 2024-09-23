@@ -10,6 +10,7 @@ import com.company.swurameal.dao.mybatis.CartDao;
 import com.company.swurameal.dao.mybatis.GoodsDao;
 import com.company.swurameal.dto.CartDto;
 import com.company.swurameal.dto.GoodsDto;
+import com.company.swurameal.dto.GoodsImgDto;
 
 
 @Service
@@ -35,6 +36,8 @@ public class CartService {
         }
         return cartItems;
     }
+    
+
 	
 	//장바구니 상품 추가
 	public void addGoodsToCart(String userId, int goodsId, int quantity) {
