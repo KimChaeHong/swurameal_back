@@ -24,7 +24,7 @@
 		<div class="title-box">
 			<div class="addButton">
 				<p>공지사항 관리</p>
-					<button data-flag="notice">
+					<button data-flag="notice" onclick="location.href='${pageContext.request.contextPath}/admin/noticeWrite'">
 						작성하기
 					</button>
 			</div>
