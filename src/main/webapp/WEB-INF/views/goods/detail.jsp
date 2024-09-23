@@ -15,7 +15,7 @@
 	<main class="container">
 	    <section class="d-flex main-content">
 	        <div id="image-container">
-	            <img src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_MAIN" />
+	            <img src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" />
 	        </div>
 	        <div id="product-info">
 	            <p id="product-name">${goods.goodsName}</p>
@@ -74,7 +74,7 @@
 		        <c:if test="${status.index < 2}">
 			        <div class="goods">
 			        	<a href="detail?goodsId=${goodsSameCategory.goodsId}">
-				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goodsSameCategory.goodsId}" class="goods-img flex-grow-1" alt="${goodsSameCtgy.goodsName}">			        	
+				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img flex-grow-1" alt="${goodsSameCtgy.goodsName}">			        	
 			        	</a>
 			            <div class="button-wrapper">
 			                <button class="to-cart"><i class="bi bi-cart icon-margin"></i>담기</button>
@@ -98,7 +98,7 @@
 	    		<c:if test="${status.index < 2}">
 	    			<div class="goods">
 	    				<a href="detail?goodsId=${goodsAlcohol.goodsId}">
-				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goodsAlcohol.goodsId}" class="goods-img flex-grow-1" alt="${goodsAlcohol.goodsName}">	    				
+				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img flex-grow-1" alt="${goodsAlcohol.goodsName}">	    				
 	    				</a>
 			            <div class="button-wrapper">
 			                <button class="to-cart"><i class="bi bi-cart icon-margin"></i>담기</button>
@@ -129,14 +129,14 @@
 	        <div id="detail-img-container" class="">
 	            <img
 	                id="detail-img1"
-	                src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_DESCRIPTION" 
+	                src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_DESCRIPTION" 
 	                alt="${goods.goodsName}"
 	                class="detail-img"
 	            />
 	            <br />
 	            <img
 	                id="detail-img2"
-	                src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_DETAIL" 
+	                src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_DETAIL" 
 	                alt="${goods.goodsName}"
 	                class="detail-img"
 	            />
