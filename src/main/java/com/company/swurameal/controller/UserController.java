@@ -26,10 +26,10 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/login")
+	@RequestMapping("/loginForm")
 	public String login() {
 		log.info("로그인");
-		return "user/login";
+		return "user/loginForm";
 	}
 	
 	@GetMapping("/logout")
