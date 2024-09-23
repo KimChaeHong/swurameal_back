@@ -1,10 +1,7 @@
 package com.company.swurameal.controller;
 
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,9 +22,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/goods")
 public class GoodsController {
+	
 	@Autowired
 	private GoodsService goodsService; // GoodsService를 사용하여 상품 목록을 가져옴
-	
 	
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int goodsId, Model model) {
@@ -74,7 +71,6 @@ public class GoodsController {
 		String encodingfileName = new String(fileName.getBytes("UTF-8"),"ISO-8859-1");
 		response.setHeader("Content-Disposition", "attachment; filename=\""+encodingfileName+"\"");
 		
-		
 		//응답 본문에 파일 데이터를 출력
 		OutputStream out = response.getOutputStream();
 		out.write(goods.getGAttachData());
@@ -82,7 +78,7 @@ public class GoodsController {
 		out.close();
 	}
 	
-	@GetMapping("/downloadImageDetail")
+	@GetMapping("/downloadImageByRole")
 	public void attachDownloadDetail(
 			@RequestParam int goodsId, 
 			@RequestParam String imgRole, 
@@ -101,7 +97,6 @@ public class GoodsController {
 		String fileName = goods.getGAttachOname();
 		String encodingfileName = new String(fileName.getBytes("UTF-8"),"ISO-8859-1");
 		response.setHeader("Content-Disposition", "attachment; filename=\""+encodingfileName+"\"");
-		
 		
 		//응답 본문에 파일 데이터를 출력
 		OutputStream out = response.getOutputStream();
