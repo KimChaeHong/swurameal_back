@@ -1,17 +1,21 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp" %>
+
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/detail.css">
 
 	<main class="container">
 	    <section class="d-flex main-content">
 	        <div id="image-container">
-	            <img src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" />
+	            <img src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_MAIN" />
 	        </div>
 	        <div id="product-info">
 	            <p id="product-name">${goods.goodsName}</p>
@@ -43,7 +47,7 @@
 	            <div class="d-flex">
 	                <span id="product-quantity">상품선택</span>
 	                <div id="count-box">
-	                    <p id="mini-name">[한식]매운 돼지갈비찜</p>
+	                    <p id="mini-name">[${goods.category}] ${goods.goodsName}</p>
 	
 	                        <div class="cnt-btn d-flex justify-content-between align-items-center">
 	                            <button id="minus-button">-</button>
@@ -125,13 +129,15 @@
 	        <div id="detail-img-container" class="">
 	            <img
 	                id="detail-img1"
-	                src="../src/images/detail1.jpg"
+	                src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_DESCRIPTION" 
+	                alt="${goods.goodsName}"
 	                class="detail-img"
 	            />
 	            <br />
 	            <img
 	                id="detail-img2"
-	                src="../src/images/detail2.png"
+	                src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_DETAIL" 
+	                alt="${goods.goodsName}"
 	                class="detail-img"
 	            />
 	        </div>
@@ -159,3 +165,5 @@
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+<script src="${pageContext.request.contextPath}/resources/js/detail.js"></script>

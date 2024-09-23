@@ -1,7 +1,10 @@
 package com.company.swurameal.controller;
 
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -78,4 +81,33 @@ public class GoodsController {
 		out.flush();
 		out.close();
 	}
+	
+	@GetMapping("/downloadImageDetail")
+	public void attachDownloadDetail(
+			@RequestParam int goodsId, 
+			@RequestParam String imgRole, 
+			HttpServletResponse response
+			) throws Exception {
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("goodsId", goodsId);
+		paramMap.put("imgRole", imgRole);
+		GoodsImgDto goods = goodsService.getGoodsAttachByRole(paramMap);
+		
+		//응답 헤더에 들어가는 Content-Type 파일 확장명을 보고 저장을 자동으로 해주기
+		String contentType = goods.getGAttachType();
+		response.setContentType(contentType);
+		
+		//파일로 저장하기 위한 설정				
+		String fileName = goods.getGAttachOname();
+		String encodingfileName = new String(fileName.getBytes("UTF-8"),"ISO-8859-1");
+		response.setHeader("Content-Disposition", "attachment; filename=\""+encodingfileName+"\"");
+		
+		
+		//응답 본문에 파일 데이터를 출력
+		OutputStream out = response.getOutputStream();
+		out.write(goods.getGAttachData());
+		out.flush();
+		out.close();
+	}
+	
 }

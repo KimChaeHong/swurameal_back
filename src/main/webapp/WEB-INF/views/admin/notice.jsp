@@ -41,7 +41,7 @@
 					<c:forEach items="${list}" var="notice">
 						<div class="notice-info d-flex align-items-center">
 							<div>
-								<a href="noticeDetail?noticeId=${notice.noticeId}">${notice.noticeTitle}</a>
+								<a href="noticeDetail?noticeId=${notice.noticeId}" style="text-decoration: none; color: black;">${notice.noticeTitle}</a>
 							</div>
 							<div>${notice.userId}</div>
 							<div><fmt:formatDate value="${notice.noticeRegisterDate}" pattern="yyyy-MM-dd" /></div>
