@@ -1,15 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/common/header.jsp"%>
-<%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
+<%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/cart.css">
 <script src="${pageContext.request.contextPath}/resources/js/cart-list.js"></script>
 
 <main class="container cart">
-<h2>${user.userId}님의 장바구니</h2>
+<h2>${user.userName}님의 장바구니</h2>
 <div id="select-btns">
 	<i class="bi bi-check-circle hover" id="allBtn"></i> 
 	<span class="hover" id="allBtnTxt">전체선택</span> 

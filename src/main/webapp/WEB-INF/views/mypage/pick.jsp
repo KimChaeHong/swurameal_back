@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <link rel="stylesheet" type="text/css"
@@ -13,7 +14,7 @@
 		<i class="bi bi-person-fill"></i>
 		<div class="profile-detail">
 			<p>환영합니다.</p>
-			<p class="member-name">님</p>
+			<p class="member-name">${user.userName}님</p>
 		</div>
 	</div>
 	<div class="category-box d-flex flex-column">
@@ -52,19 +53,20 @@
 				</div>
 			</div>
 			<div class="pick-products d-flex flex-column">
+				<c:forEach var="goods" items="${pickGoods}">
 				<div class="pick-product d-flex">
 					<i class="bi bi-check-circle" data-select="1"></i>
 					<div class="img-product d-flex">
-						<img src="${item.img}">
+						<img src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">
 						<div class="product-info">
 							<p>
-								<strong>카테고리</strong> ${item.category}
+								<strong>카테고리</strong> ${goods.category}
 							</p>
 							<p>
-								<strong>상품명</strong> ${item.title}
+								<strong>상품명</strong> ${goods.goodsName}
 							</p>
 							<p>
-								<strong>가격</strong> ${item.price}
+								<strong>가격</strong> ${goods.price}
 							</p>
 						</div>
 					</div>
@@ -72,6 +74,8 @@
 						<i class="bi bi-cart2"></i> <i class="bi bi-x-lg"></i>
 					</div>
 				</div>
+				</c:forEach>
+
 			</div>
 			<div class="pagination"></div>
 		</div>

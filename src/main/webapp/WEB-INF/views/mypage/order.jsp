@@ -13,7 +13,7 @@
 		<i class="bi bi-person-fill"></i>
 		<div class="profile-detail">
 			<p>환영합니다.</p>
-			<p class="member-name"> 님</p>
+			<p class="member-name">${user.userName}님</p>
 		</div>
 	</div>
 	<div class="category-box d-flex flex-column">

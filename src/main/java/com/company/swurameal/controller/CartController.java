@@ -11,7 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.company.swurameal.dto.CartDto;
 import com.company.swurameal.dto.GoodsImgDto;
@@ -33,7 +32,7 @@ public class CartController {
 	
 	// 장바구니 페이지로 이동
 	@Secured("ROLE_USER")
-	@RequestMapping("/cart")
+	@GetMapping("/cart")
 	public String veiwCart(Model model, Authentication authentication)  {
 		
 		//사용자의 모든 정보를 얻고 싶을 경우
