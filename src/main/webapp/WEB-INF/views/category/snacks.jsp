@@ -27,7 +27,7 @@
     <c:forEach var="goods" items="${goodsList}" varStatus="status">
 		<div class="goods">
 		<a href="${pageContext.request.contextPath}/goods/detail?goodsId=${goods.goodsId}">
-		 	<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">
+		 	<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">
 	   	</a>
 		   <div class="button-wrapper">
 		       <button class="to-cart">
