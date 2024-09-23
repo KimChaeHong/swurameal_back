@@ -18,7 +18,6 @@ public class PickService {
 	@Autowired
 	private GoodsDao goodsDao;
 	
-	
 	// 사용자 ID로 찜에 담긴 모든 상품 조회
 	public List<PickDto> getCartByUserID(String userId) {
 		List<PickDto> pickItems = pickDao.selectPickByUserId(userId);
@@ -31,8 +30,23 @@ public class PickService {
             
         }
 		
-		
 		return pickItems;
 	}
+	
+	//찜 삭제
+	public void deletePick(int goodsId) {
+		pickDao.delete(goodsId);
+			
+	}
+
+	//찜 등록
+	public void addPick(PickDto pick) {
+		pickDao.insert(pick);
+		int goodsId = pick.getGoodsId();
+	}
+	
+	
+	
+	
 
 }
