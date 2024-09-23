@@ -88,10 +88,10 @@ public class GoodsController {
 			@RequestParam String imgRole, 
 			HttpServletResponse response
 			) throws Exception {
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put("goodsId", goodsId);
-		paramMap.put("imgRole", imgRole);
-		GoodsImgDto goods = goodsService.getGoodsAttachByRole(paramMap);
+		GoodsImgDto goodsImgDto = new GoodsImgDto();
+		goodsImgDto.setGoodsId(goodsId);
+		goodsImgDto.setImgRole(imgRole);
+		GoodsImgDto goods = goodsService.getGoodsAttachByRole(goodsImgDto);
 		
 		//응답 헤더에 들어가는 Content-Type 파일 확장명을 보고 저장을 자동으로 해주기
 		String contentType = goods.getGAttachType();
