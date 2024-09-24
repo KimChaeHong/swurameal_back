@@ -24,7 +24,7 @@
 		<div class="title-box">
 			<div class="addButton">
 				<p>공지사항 관리</p>
-					<button data-flag="notice" onclick="location.href='${pageContext.request.contextPath}/admin/noticeWrite'">
+					<button data-flag="notice" onclick="location.href='${pageContext.request.contextPath}/admin/notice/noticeWrite'">
 						작성하기
 					</button>
 			</div>
@@ -41,7 +41,7 @@
 					<c:forEach items="${list}" var="notice">
 						<div class="notice-info d-flex align-items-center">
 							<div>
-								<a href="noticeDetail?noticeId=${notice.noticeId}" style="text-decoration: none; color: black;">${notice.noticeTitle}</a>
+								<a href="notice/noticeDetail?noticeId=${notice.noticeId}" style="text-decoration: none; color: black;">${notice.noticeTitle}</a>
 							</div>
 							<div>${notice.userId}</div>
 							<div><fmt:formatDate value="${notice.noticeRegisterDate}" pattern="yyyy-MM-dd" /></div>
@@ -75,7 +75,7 @@
 				</c:forEach>
 	
 				<c:if test="${pager.groupNo<pager.totalGroupNo}">
-					<a href="notice?pageNo=${pager.endPageNo+1}"
+					<a href="/notice?pageNo=${pager.endPageNo+1}"
 						class="btn btn-outline-dark btn-sm">다음</a>
 				</c:if>
 	
