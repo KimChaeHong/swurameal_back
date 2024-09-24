@@ -10,29 +10,63 @@ import com.company.swurameal.dao.mybatis.GoodsDao;
 import com.company.swurameal.dto.CartDto;
 import com.company.swurameal.dto.GoodsDto;
 
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @Service
 public class CartService {
 	@Autowired
 	private CartDao cartDao;
-	
+
 	@Autowired
 	private GoodsDao goodsDao;
-	
-	// 사용자 ID로 장바구니에 담긴 모든 상품 조회
-    public List<CartDto> getCartByUserID(String userId) {
-        List<CartDto> cartItems = cartDao.selectCartByUserId(userId);
 
-        // 각 장바구니 항목에 해당하는 상품 정보 추가
-        for (CartDto cartItem : cartItems) {
-            GoodsDto goods = goodsDao.selectByGoodsID(cartItem.getGoodsId());
-            cartItem.setGoodsName(goods.getGoodsName()); // 상품명 설정
-            cartItem.setPrice(goods.getPrice()); // 상품 가격 설정
-            cartItem.setGoodsComment(goods.getGoodsComment());//상품 코멘트
-            cartItem.setCategory(goods.getCategory());//상품 카테고리
-            
-        }
-        return cartItems;
-    }
+	//상품 정보 가져오기
+	public List<CartDto> getGoods(String userId) {		
+		List<CartDto> cartItems = cartDao.selectCartByUserId(userId);
+		
+		for (CartDto item : cartItems) {
+			// 각 카트 아이템에 대한 상품 정보 가져오기
+			GoodsDto goods = goodsDao.selectByGoodsID(item.getGoodsId());
+			item.setGoodsName(goods.getGoodsName());
+			item.setCategory(goods.getCategory());
+			item.setGoodsComment(goods.getGoodsComment());
+			item.setPrice(goods.getPrice());
+		}
+		return cartItems;
+	}
+
+	//카트 아이템 추가하기
+	public void addGoodsToCart(CartDto cartItemDto) {
+
+		CartDto dbCartItem = cartDao.selectCartItem(cartItemDto);
+
+		if (dbCartItem != null) {
+			dbCartItem.setQuantity(dbCartItem.getQuantity() + 1);
+			cartDao.updateGoodsToCart(dbCartItem);
+		} else {
+			cartDao.insertGoodsToCart(cartItemDto);
+		}
+	}
+
+	//카트 아이템 삭제하기
+	public void deleteGoodsFromCart(CartDto cartItem, String userId) {
+		if (userId == null) {
+			throw new IllegalArgumentException("User ID cannot be null");
+		}
+		cartDao.deleteGoodsFromCart(cartItem);
+
+	}
+	
+	//카트 전체 아이템 삭제하기
+	public void deleteAllGoodsFromCart(String userId) {
+		cartDao.deleteAllGoodsFromCart(userId);
+		
+	}
+
+	//카트 아이템 DB 업데이트
+	public void updateGoodsFromCart(CartDto cartItem) {
+		cartDao.updateGoodsToCart(cartItem);		
+	}
+	
 }

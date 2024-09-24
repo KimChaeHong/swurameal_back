@@ -6,6 +6,7 @@
   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
   crossorigin="anonymous"></script>
 
+<<<<<<< HEAD
 
 <script>
     var contextPath = '<%= request.getContextPath() %>';
@@ -13,6 +14,12 @@
 <script src="${pageContext.request.contextPath}/resources/js/detail.js"></script>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp" %>
+=======
+	<%@ include file="/WEB-INF/views/common/header.jsp" %>
+    <%@ include file="/WEB-INF/views/common/nav.jsp" %>
+    
+
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back
 
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/detail.css">

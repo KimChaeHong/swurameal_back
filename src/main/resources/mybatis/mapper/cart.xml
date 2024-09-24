@@ -1,40 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.company.swurameal.dao.mybatis.CartDao">
 
-	<!-- 사용자 ID로 장바구니에 담긴 모든 상품 조회 -->
-	<select id="selectCartByUserId" parameterType="string"
-		resultType="Cart">
-		SELECT *
-		FROM cart
-		WHERE user_id = #{userId}
-	</select>
+    <!-- 카트에 아이템 추가하기 -->
+    <insert id="insertGoodsToCart" parameterType="Cart">
+        INSERT INTO cart (USER_ID, GOODS_ID, QUANTITY)
+        VALUES (#{userId}, #{goodsId}, #{quantity})
+    </insert>
+    
+    <!-- 상품 정보 가져오기 -->
+    <select id="selectCartByUserId" parameterType="String" resultType="Cart">
+    	SELECT USER_ID, GOODS_ID, QUANTITY FROM cart WHERE USER_ID = #{userId}
+    </select>
+    
+    <select id="selectCartItem" parameterType="Cart">
+    	SELECT USER_ID, GOODS_ID, QUANTITY FROM cart WHERE USER_ID = #{userId} AND GOODS_ID = #{goodsId}
+    </select>
+    
+    <!-- 카트 아이템 중복시 수량 증가 -->
+    <update id="updateGoodsToCart" parameterType="Cart">
+    	UPDATE cart 
+    	SET QUANTITY = #{quantity}
+    	WHERE USER_ID = #{userId} AND GOODS_ID = #{goodsId}	
+    </update>
+    
+    <!-- 카트 아이템 삭제 -->
+    <delete id="deleteGoodsFromCart" parameterType="Cart">
+    	DELETE FROM cart WHERE USER_ID = #{userId} AND GOODS_ID = #{goodsId}
+    </delete>
+    
+    <!-- 카트 전체 아이템 삭제 -->
+    <delete id="deleteAllGoodsFromCart" parameterType="String">
+    	DELETE FROM cart WHERE USER_ID = #{userId}
+    </delete>
 
-	<!-- 사용자 ID와 상품 ID로 장바구니의 특정 상품 조회 -->
-	<select id="selectGoodsInCart" parameterType="map"
-		resultType="Cart">
-		SELECT *
-		FROM cart
-		WHERE user_id = #{userId}
-		AND goods_id = #{goodsId}
-	</select>
-	
-	<!-- 장바구니에 새로운 상품 추가 -->
-	<insert id="insertGoodsIntoCart" parameterType="Cart">
-		INSERT INTO cart
-		(user_id, goods_id, quantity)
-		VALUES (#{userId}, #{goodsId},
-		#{quantity})
-	</insert>
-
-	<!-- 장바구니에 기존 상품 수량 업데이트 -->
-	<update id="updateGoodsQuantity" parameterType="Cart">
-		UPDATE cart
-		SET
-		quantity = #{quantity}
-		WHERE user_id = #{userId}
-		AND goods_id =
-		#{goodsId}
-	</update>
-
-</mapper>		
+</mapper>

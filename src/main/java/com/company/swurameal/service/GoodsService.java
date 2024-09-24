@@ -20,7 +20,8 @@ public class GoodsService{
 	private GoodsDao goodsDao;
 	
 	//상품 하나 가져오는 메서드
-	public GoodsDto getGoodsById(int goodsId) {
+	public GoodsDto getGoods(int goodsId) {
+
 		GoodsDto goods = goodsDao.selectByGoodsID(goodsId);
 		return goods;
 	}
