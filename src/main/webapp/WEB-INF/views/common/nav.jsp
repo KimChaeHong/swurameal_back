@@ -32,8 +32,8 @@
 
         <!-- 오른쪽 아이콘들 -->
         <div id="icon" class="col-auto d-flex justify-content-end">
-            <a class="nav-link" href="#" onclick="location.href='${pageContext.request.contextPath}/mypage/pick'"><i class="bi bi-heart"></i></a>
-            <a class="nav-link" href="#" onclick="location.href='${pageContext.request.contextPath}/cart'"><i class="bi bi-cart"></i></a>
+            <a class="nav-link" href='${pageContext.request.contextPath}/mypage/pick'><i class="bi bi-heart"></i></a>
+            <a class="nav-link" href='${pageContext.request.contextPath}/cart/itemList'><i class="bi bi-cart"></i></a>
         </div>
     </div>
 </div>

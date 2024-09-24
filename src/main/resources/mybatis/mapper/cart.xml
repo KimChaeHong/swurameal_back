@@ -1,14 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper 
-	namespace="com.company.swurameal.dao.mybatis.CartDao">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-	<select id ="selectByGoodsId" resultType="Cart" parameterType="String">
-			SELECT
-				USER_ID,
-				GOODS_ID,
-				QUANTITY	
-			FROM cart
-			WHERE USER_ID = #{userId}
-	</select>
-</mapper>		
+<mapper namespace="com.company.swurameal.dao.mybatis.CartDao">
+
+    <!-- 카트에 아이템 추가하기 -->
+    <insert id="insertGoodsToCart" parameterType="Cart">
+        INSERT INTO cart (USER_ID, GOODS_ID, QUANTITY)
+        VALUES (#{userId}, #{goodsId}, #{quantity})
+    </insert>
+    
+    <!-- 상품 정보 가져오기 -->
+    <select id="selectCartByUserId" parameterType="String" resultType="Cart">
+    	SELECT USER_ID, GOODS_ID, QUANTITY FROM cart WHERE USER_ID = #{userId}
+    </select>
+    
+    <select id="selectCartItem" parameterType="Cart">
+    	SELECT USER_ID, GOODS_ID, QUANTITY FROM cart WHERE USER_ID = #{userId} AND GOODS_ID = #{goodsId}
+    </select>
+    
+    <!-- 카트 아이템 중복시 수량 증가 -->
+    <update id="updateGoodsToCart" parameterType="Cart">
+    	UPDATE cart 
+    	SET QUANTITY = #{quantity}
+    	WHERE USER_ID = #{userId} AND GOODS_ID = #{goodsId}	
+    </update>
+    
+    <!-- 카트 아이템 삭제 -->
+    <delete id="deleteGoodsFromCart" parameterType="Cart">
+    	DELETE FROM cart WHERE USER_ID = #{userId} AND GOODS_ID = #{goodsId}
+    </delete>
+    
+    <!-- 카트 전체 아이템 삭제 -->
+    <delete id="deleteAllGoodsFromCart" parameterType="String">
+    	DELETE FROM cart WHERE USER_ID = #{userId}
+    </delete>
+
+</mapper>

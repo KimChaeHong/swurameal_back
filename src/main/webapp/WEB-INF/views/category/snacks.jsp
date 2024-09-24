@@ -28,9 +28,11 @@
 		<div class="goods">
 		 <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">
 		   <div class="button-wrapper">
-		       <button class="to-cart">
-		           <i class="bi bi-cart icon-margin"></i>담기
-		       </button>
+		       <a href="${pageContext.request.contextPath}/cart/itemAdd?goodsId=${goods.goodsId}">
+                 <button class="to-cart">
+                     <i class="bi bi-cart icon-margin"></i>담기
+                 </button>
+   				</a>
 		   </div>
 		   <div class="goods-info">
 		       <span class="goods-category">[${goods.category}]</span>

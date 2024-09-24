@@ -1,24 +1,21 @@
 package com.company.swurameal.controller;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.company.swurameal.dto.CartDto;
-import com.company.swurameal.dto.CartItem;
-import com.company.swurameal.dto.GoodsDto;
+import com.company.swurameal.sercurity.CustomUserDetails;
 import com.company.swurameal.service.CartService;
-import com.company.swurameal.service.GoodsService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,73 +23,101 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/cart")
 public class CartController {
-	
-	@Autowired
-	private GoodsService goodsService;
-	
 	@Autowired
 	private CartService cartService;
 
-	
-	@GetMapping("/authorityCheck")
-	public String authorityCheck(HttpSession session, Model model) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication !=null && authentication.isAuthenticated()) {
-			model.addAttribute("message", "로그인이 확인되었습니다.");
-			return "redirect:/cart";
-		} else {
-			model.addAttribute("message", "로그인이 필요합니다.");
-			return "user/login";
+	//카트 리스트 조회
+	@Secured("ROLE_USER")
+	@GetMapping("/itemList")
+	public String cartItemList(Authentication authentication, Model model) {
+		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+		String userInfo = userDetails.getUsername(); // 사용자 ID 가져오기
+		model.addAttribute("user", userDetails.getUserDto());
+
+		List<CartDto> cartList = cartService.getGoods(userInfo); // 항목조회
+		model.addAttribute("goodsList", cartList);
+
+		// 장바구니가 비어있을때
+		if (cartList.isEmpty()) {
+			model.addAttribute("message", "장바구니가 비어있습니다.");
 		}
+
+		return "cart/itemList";
 	}
-	
-	@GetMapping
-	public String cart(HttpSession session, Model model) {
-		log.info("장바구니");
-		String userId = (String) session.getAttribute("userId");
-		List<CartDto> goodsList = cartService.selectGoods(userId);
-		session.setAttribute("goodsList", goodsList);
-		model.addAttribute("goodsList", goodsList);
-		return "cart/cart";
-	}
-	
-	@GetMapping("/cart")
-	public String cart(Model model) {
-		List<CartDto> cart = new ArrayList<>();
-		for(int i=1; i<=5; i++) {
-			CartDto item = new CartDto();
-			item.setUserId("p" + i);
-			cart.add(item);
-		}
-		model.addAttribute("cart", cart);
-		return "cart/cart";
-	}
-	
-	
-	@GetMapping("/cartAdd")
-	public String cartAdd(int goodsId, HttpSession session) {
-		CartItem cart = (CartItem) session.getAttribute("cart");
-		if(cart == null) {
-			cart = new CartItem();
-			session.setAttribute("cart", cart);
-		}
-		GoodsDto item = goodsService.getGoods(goodsId);
+
+	//카트 데이터 추가
+	@Secured("ROLE_USER")
+	@GetMapping("/itemAdd")
+	public String addCartItem(int goodsId,
+			@RequestParam(defaultValue = "1") int quantity, 
+			Authentication authentication,
+			Model model) {
+
+		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+		String userInfo = userDetails.getUsername(); // 사용자 ID 가져오기
+
+		//goodsId가 제공되면 장바구니에 항목 추가
 		CartDto cartItem = new CartDto();
-		cart.addItem(cartItem);
-		session.setAttribute("message", "장바구니에 담았습니다.");
-		return "redirect:/cart";
+		cartItem.setGoodsId(goodsId);
+		cartItem.setQuantity(quantity);
+		cartItem.setUserId(userInfo);
+		cartService.addGoodsToCart(cartItem);
+
+		return "redirect:/cart/itemList";
+
+	}
+
+	//카트 아이템 삭제하기
+	@Secured("ROLE_USER")
+	@GetMapping("/itemDelete")
+	public String deleteCartItem(@RequestParam int goodsId, Authentication authentication) {
+
+		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+		String userInfo = userDetails.getUsername(); // 사용자 ID 가져오기
+
+		//goodsId가 null인 경우
+		if (userInfo == null) {
+			throw new IllegalArgumentException("User ID cannot be null");
+		}
+
+		//삭제할 아이템 생성
+		CartDto cartItem = new CartDto();
+		cartItem.setUserId(userInfo);
+		cartItem.setGoodsId(goodsId);
+		cartItem.setQuantity(1);
+
+		cartService.deleteGoodsFromCart(cartItem, userInfo);
+		return "redirect:/cart/itemList";
 	}
 	
-	@GetMapping("/deleteitem")
-	public String deleteitem(CartDto goodsId, HttpSession session) {
-		CartItem cart = (CartItem) session.getAttribute("cart");
-		Iterator<CartDto> iterator = cart.getContents().iterator();
-		while(iterator.hasNext()) {
-			CartDto item = iterator.next();
-			if(item.getUserId().equals(goodsId)) {
-				iterator.remove();
-			}
-		}
-		return "redirect:/cart";
+	//카트 전체 아이템 삭제하기
+	@Secured("ROLE_USER")
+	@GetMapping("/itemAllDelete")
+	public String itemAllDelete(Authentication authentication) {
+		String userId = authentication.getName();
+		cartService.deleteAllGoodsFromCart(userId);
+		
+		return "redirect:/cart/itemList";
 	}
+	
+	//DB에 데이터 넣기
+	@Secured("ROLE_USER")
+	@PostMapping("/update")
+	@ResponseBody
+	public String updateCartItem(@RequestParam int goodsId, @RequestParam int quantity, Authentication authentication) {
+		
+		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+		String userInfo = userDetails.getUsername(); // 사용자 ID 가져오기
+		
+		//업데이트할 아이템 생성
+		CartDto cartItem = new CartDto();
+		cartItem.setUserId(userInfo);
+		cartItem.setGoodsId(goodsId);
+		cartItem.setQuantity(quantity);
+
+		cartService.updateGoodsFromCart(cartItem);
+		return "ok";
+		
+	}
+	
 }

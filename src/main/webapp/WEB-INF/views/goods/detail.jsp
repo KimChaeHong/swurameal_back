@@ -2,6 +2,8 @@
 
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
     <%@ include file="/WEB-INF/views/common/nav.jsp" %>
+    
+    
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/detail.css">
 
