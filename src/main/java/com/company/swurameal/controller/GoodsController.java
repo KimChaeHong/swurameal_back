@@ -27,6 +27,7 @@ public class GoodsController {
 	@Autowired
 	private GoodsService goodsService; // GoodsService를 사용하여 상품 목록을 가져옴
 	
+	
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int goodsId, Model model) {
 		log.info("제품 상세");
@@ -105,5 +106,15 @@ public class GoodsController {
 		out.flush();
 		out.close();
 	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

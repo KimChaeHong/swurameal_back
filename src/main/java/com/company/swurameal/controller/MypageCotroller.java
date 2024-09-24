@@ -26,6 +26,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/mypage")
 @Slf4j
 public class MypageCotroller {
+	@Autowired
+	private PickService pickService;
 	
 	@Autowired
 	private OrderService orderService;
@@ -34,6 +36,20 @@ public class MypageCotroller {
 	@RequestMapping("/pick")
 	public String mypagePick() {
 		log.info("찜");
+		// 사용자의 모든 정보를 얻고 싶을 경우
+		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+		UserDto user = userDetails.getUserDto();
+		String userId = user.getUserId(); // 로그인된 사용자의 userId
+
+		// 찜에 담긴 모든 상품 조회
+		List<PickDto> pickGoods = pickService.getCartByUserID(userId);
+
+		log.info(pickGoods.toString());
+
+		// 모델에 사용자와 찜 정보 추가
+		model.addAttribute("user", user);
+		model.addAttribute("pickGoods", pickGoods);
+		
 		return "mypage/pick";
 	}
 

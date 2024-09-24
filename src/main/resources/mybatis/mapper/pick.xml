@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.swurameal.dao.mybatis.PickDao">
+
+	<!-- 사용자 ID로 찜에 담긴 모든 상품 조회 -->
+	<select id="selectPickByUserId" parameterType="string"
+		resultType="Pick">
+		SELECT *
+		FROM pick
+		WHERE user_id = #{userId}
+	</select>
+
+	<!-- 사용자 ID와 상품 ID로 찜의 특정 상품 조회 -->
+	<select id="selectGoodsInPick" parameterType="map"
+		resultType="Pick">
+		SELECT *
+		FROM pick
+		WHERE user_id = #{userId}
+		AND goods_id =
+		#{goodsId}
+	</select>
+
+	<!-- 찜 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from pick where
+		goods_id=#{goodsId}
+	</delete>
+	
+	<!-- 찜 등록 -->
+	<insert id="insert" parameterType="Pick">
+		INSERT INTO pick
+		(user_id, goods_id, create_at)
+		VALUES (#{userId}, #{goodsId}, SYSDATE)
+	</insert>
+
+
+</mapper>
