@@ -6,6 +6,11 @@
   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
   crossorigin="anonymous"></script>
 
+
+<script>
+    var contextPath = '<%= request.getContextPath() %>';
+</script>
+<script src="${pageContext.request.contextPath}/resources/js/detail.js"></script>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp" %>
 
@@ -17,8 +22,11 @@
 	        <div id="image-container">
 	            <img src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_MAIN" />
 	        </div>
-	        <div id="product-info">
-	            <p id="product-name">${goods.goodsName}</p>
+	        <div id="product-info"> 
+	            <p id="product-name">${goods.goodsName} </p>
+	        
+	            <p> ${user.userName} </p>
+	            
 	            <p id="product-coment">${goods.goodsComment}</p>
 	            <p id="product-price">
 		            <fmt:formatNumber value="${goods.price}" type="number" groupingUsed="true"/>	            
@@ -58,12 +66,22 @@
 	
 	                </div>
 	            </div>
+
 	            <p class="total-price" id="total-price">총 가격</p>
 	            <div id="button-box" class="d-flex justify-content-between">
-	                <span id="pick" class="btn" ><i id="pick-icon" class="bi bi-heart" ></i></span> <!--찜버튼 아이콘 -->
-	                <span id="cart" class="btn" ><i class="bi bi-cart"></i></span> <!--장바구니 아이콘-->
+	                <button type="button" id="pick" class="btn" data-goods-id="${goods.goodsId}">
+					    <!--찜 버튼 아이콘 -->
+					    <i id="pick-icon" class="bi bi-heart" ></i> 
+					</button>
+	                <button type="button" id="cart" class="btn" >
+	                 	<!--장바구니 아이콘-->
+	                	<i class="bi bi-cart"></i>
+	                </button>
+	                
 	                <span id="buy" class="btn">구매하기</span>
+	            
 	            </div>
+  
 	        </div>
 	    </section>
 	
@@ -164,6 +182,5 @@
 	<button onclick="backToTop()" id="btn-back-to-top">Top</button>
 
 
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
-<%-- <script src="${pageContext.request.contextPath}/resources/js/detail.js"></script> --%>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>

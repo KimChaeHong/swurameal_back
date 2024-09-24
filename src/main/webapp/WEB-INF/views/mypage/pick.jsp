@@ -71,8 +71,8 @@
 						</div>
 					</div>
 					<div class="button-list">
-						<i class="bi bi-cart2"></i> 
-						<a href="deletePick?goodsId=${goods.goodsId}"><i class="bi bi-x-lg"></i></a>
+						<i class="bi bi-cart"></i> 
+						<a href="${pageContext.request.contextPath}/pick/deletePick?goodsId=${goods.goodsId}"><i class="bi bi-x-lg"></i></a>
 						
 					</div>
 				</div>

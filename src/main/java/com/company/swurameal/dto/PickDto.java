@@ -9,11 +9,11 @@ import lombok.Data;
 @Data
 public class PickDto {
 	
-	private String userId;
-	private int goodsId;
+	private String userId;	// user_id 컬럼에 매핑
+	private int goodsId;	// goods_id 컬럼에 매핑
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date createAt;
+	private Date createAt;	// create_at 컬럼에 매핑
 	
 	private String goodsName; // 상품명
 	private int price; // 상품 가격

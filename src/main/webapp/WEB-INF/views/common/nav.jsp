@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css" />
 <nav id="nav-container" class="navbar">
 <div id="nav">
     <div id="bnav" class="row justify-content-center align-items-center">
@@ -33,7 +34,8 @@
         <!-- 오른쪽 아이콘들 -->
         <div id="icon" class="col-auto d-flex justify-content-end">
             <a class="nav-link" href="${pageContext.request.contextPath}/mypage/pick"><i class="bi bi-heart"></i></a>
-            <a class="nav-link" href="#" onclick="location.href='${pageContext.request.contextPath}/cart'"><i class="bi bi-cart"></i></a>
+
+            <a class="nav-link" href="${pageContext.request.contextPath}/cart"><i class="bi bi-cart"></i></a>
         </div>
     </div>
 </div>

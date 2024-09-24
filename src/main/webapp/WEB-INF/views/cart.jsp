@@ -3,10 +3,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
+<script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/cart.css">
-<script src="${pageContext.request.contextPath}/resources/js/cart-list.js"></script>
+
 
 <main class="container cart">
 <h2>${user.userName}님의 장바구니</h2>
@@ -21,7 +25,7 @@
 	<div id="cart-items">
 		<c:forEach var="goods" items="${cartGoods}">
 			<div class="item d-flex justify-content-between">
-				<i class="bi bi-check-circle hover"></i>
+				<i class="bi bi-check-circle hover" id="oneBtn"></i>
 				<img src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">
 									
 				<div id="item-detail">
@@ -35,8 +39,9 @@
 				</div>
 
 				<div id="item-price">
-					<span class="price-number"><fmt:formatNumber
-							value="${goods.price}" pattern="#,###" /></span> <span class="won">원</span>
+					<span class="price" data-price="${goods.price}">
+					<fmt:formatNumber value="${goods.price}" type="number" groupingUsed="true"/></span> 
+					<span class="won">원</span>
 				</div>
 				<i class="bi bi-x-lg hover" id="xBtn"></i>
 			</div>
@@ -47,9 +52,8 @@
 		<div id="how-much">
 			<p>주문내역</p>
 			<div class="d-flex justify-content-between">
-				<span>상품금액</span> <span> <span id="total-price">0</span> 
-				원
-				</span>
+				<span>상품금액</span>
+              	<span><span id="total-price">${goods.price}</span>원</span>
 			</div>
 			<div class="d-flex justify-content-between">
 				<span>배송비</span> 
@@ -57,10 +61,7 @@
 			</div>
 			<div class="d-flex justify-content-between total">
 				<span>결제예정금액</span>
-				<span>
-					<span id="pay-price">0</span>
-					원
-				</span>
+              <span><span id="pay-price">${goods.price}</span>원</span>
 			</div>
 		</div>
 		<button onclick="location.href='${pageContext.request.contextPath}/order'">주문하기</button>
@@ -68,5 +69,6 @@
 </div>
 </main>
 
+<script src="${pageContext.request.contextPath}/resources/js/cart-list.js"></script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
