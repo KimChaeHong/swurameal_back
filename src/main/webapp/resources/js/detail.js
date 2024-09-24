@@ -15,11 +15,19 @@ function reviewUpload() {
 }
 
 $(document).ready(function () {
-    var price = 12200; // 상품 가격 설정
+    var priceElement = $("#product-price"); // 상품 가격 설정
 
+    var price = Number(priceElement.text().replace(/,/g, '')); 
+    
+    // 수량을 숫자로 변환
+    var count = Number($("#count").text()); 
+    
+    // 총 가격 계산
+    var totalPrice = count * price; 
+    
     // 상품 가격을 화면에 표시 (천단위 ,)
-    $("#product-price").text(price.toLocaleString() + "원");
-    var totalPrice = Number($("#count").text()) * price; // 총 가격 계산
+//    $("#product-price").text(price.toLocaleString() + "원");
+//    var totalPrice = Number($("#count").text()) * Number(price); // 총 가격 계산
 
     // 상품 개수 감소 버튼 클릭 이벤트 처리
     $("#minus-button").on("click", function () {

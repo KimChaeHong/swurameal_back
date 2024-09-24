@@ -74,7 +74,7 @@
 		        <c:if test="${status.index < 2}">
 			        <div class="goods">
 			        	<a href="detail?goodsId=${goodsSameCategory.goodsId}">
-				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img flex-grow-1" alt="${goodsSameCtgy.goodsName}">			        	
+				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goodsSameCategory.goodsId}&imgRole=G_MAIN" class="goods-img flex-grow-1" alt="${goodsSameCtgy.goodsName}">			        	
 			        	</a>
 			            <div class="button-wrapper">
 			                <button class="to-cart"><i class="bi bi-cart icon-margin"></i>담기</button>
@@ -98,7 +98,7 @@
 	    		<c:if test="${status.index < 2}">
 	    			<div class="goods">
 	    				<a href="detail?goodsId=${goodsAlcohol.goodsId}">
-				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img flex-grow-1" alt="${goodsAlcohol.goodsName}">	    				
+				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goodsAlcohol.goodsId}&imgRole=G_MAIN" class="goods-img flex-grow-1" alt="${goodsAlcohol.goodsName}">	    				
 	    				</a>
 			            <div class="button-wrapper">
 			                <button class="to-cart"><i class="bi bi-cart icon-margin"></i>담기</button>
@@ -165,5 +165,5 @@
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
-<%-- <script src="${pageContext.request.contextPath}/resources/js/detail.js"></script> --%>
+ 
+<script src="${pageContext.request.contextPath}/resources/js/detail.js"></script>

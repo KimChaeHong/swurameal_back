@@ -52,7 +52,7 @@
 	    <c:forEach var="goods" items="${goodsList}" varStatus="status">
 	        <c:if test="${goods.goodsId == 214 || goods.goodsId == 221 || goods.goodsId == 211 || goods.goodsId == 223}">
 	            <div class="goods">
-	            	<a href="goods/detail?goodsId=${goods.goodsId}">
+	            	<a href="goods/detail?goodsId=${goods.goodsId}&goodsCategory=${goods.category}">
 	                	<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">
 	                </a>
 	                <div class="button-wrapper">

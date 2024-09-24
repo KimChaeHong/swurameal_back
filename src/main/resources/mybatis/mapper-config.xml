@@ -35,5 +35,9 @@
 				   alias="User"/>
    		<typeAlias type="com.company.swurameal.dto.Pager"
 				   alias="Pager"/>
+   		<typeAlias type="com.company.swurameal.dto.OrderWithItemsDto"
+				   alias="OrderWithItems"/>
+	   	<typeAlias type="com.company.swurameal.dto.GoodsSuggestDto"
+				   alias="GoodsSuggest"/>
 	</typeAliases>
 </configuration>
