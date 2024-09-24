@@ -15,9 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.company.swurameal.dto.OrderWithItemsDto;
 import com.company.swurameal.dto.PickDto;
 import com.company.swurameal.dto.UserDto;
 import com.company.swurameal.sercurity.CustomUserDetails;
+import com.company.swurameal.service.OrderService;
 import com.company.swurameal.service.PickService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,12 +30,14 @@ import lombok.extern.slf4j.Slf4j;
 public class MypageCotroller {
 	@Autowired
 	private PickService pickService;
+	
+	@Autowired
+	private OrderService orderService;
 
 	@Secured("ROLE_USER")
 	@RequestMapping("/pick")
 	public String mypagePick(Model model, Authentication authentication) {
 		log.info("찜");
-
 		// 사용자의 모든 정보를 얻고 싶을 경우
 		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 		UserDto user = userDetails.getUserDto();
@@ -47,13 +51,18 @@ public class MypageCotroller {
 		// 모델에 사용자와 찜 정보 추가
 		model.addAttribute("user", user);
 		model.addAttribute("pickGoods", pickGoods);
-
+		
 		return "mypage/pick";
 	}
-	
 
 	@RequestMapping("/order")
-	public String mypageOrder() {
+	public String mypageOrder(Model model, Authentication authentication) {
+		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+		UserDto user = userDetails.getUserDto();
+		String userId = user.getUserId();
+		
+		List<OrderWithItemsDto> order = orderService.getOrder(userId);
+		model.addAttribute("order", order);
 		log.info("주문내역");
 		return "mypage/order";
 	}
