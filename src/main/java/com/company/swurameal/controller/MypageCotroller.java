@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,11 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.company.swurameal.dto.AddPickForm;
 import com.company.swurameal.dto.PickDto;
 import com.company.swurameal.dto.UserDto;
 import com.company.swurameal.sercurity.CustomUserDetails;
@@ -50,6 +53,28 @@ public class MypageCotroller {
 
 		return "mypage/pick";
 	}
+	
+	@GetMapping("/deletePick")
+	public String deleteBoard(int goodsId, HttpSession session) {
+		pickService.deletePick(goodsId);
+	
+	
+		return "redirect:/mypage/pick";
+	}
+	
+	@PostMapping("/addPick")
+	public String addPick(AddPickForm form, HttpSession session) throws Exception {
+		PickDto pick = new PickDto();
+		pick.setGoodsId(form.getGoodsId());
+		pick.setUserId(form.getUserId());
+		
+		UserDto user = (UserDto) session.getAttribute("login");
+		pick.setUserId(user.getUserId());
+		
+		pickService.addPick(pick);
+		return "redirect:/ch13/detailBoard";
+	}
+	
 
 	@RequestMapping("/order")
 	public String mypageOrder() {

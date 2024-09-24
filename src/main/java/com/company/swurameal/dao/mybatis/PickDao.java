@@ -15,4 +15,10 @@ public interface PickDao {
 	//사용자 ID와 찜ID로 장바구니의 특정 상품 조회
 	public PickDto selectGoodsInPick(String userId, int goodsId);
 
+	//상품 ID로 찜한 상품 삭제
+	public int delete(int goodsId);
+
+	//찜 등록
+	public void insert(PickDto pick);
+
 }

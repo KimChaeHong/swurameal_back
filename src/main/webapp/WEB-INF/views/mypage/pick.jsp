@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <link rel="stylesheet" type="text/css"
@@ -47,8 +48,7 @@
 				</div>
 				<div class='choice-deselect'>
 					<p>
-						<span class="all-del">전체 삭제</span> | <span class="choice-del">선택
-							삭제</span>
+						<span class="all-del">전체 삭제</span> | <span class="choice-del">선택 삭제</span>
 					</p>
 				</div>
 			</div>
@@ -66,12 +66,14 @@
 								<strong>상품명</strong> ${goods.goodsName}
 							</p>
 							<p>
-								<strong>가격</strong> ${goods.price}
+								<strong>가격</strong> <fmt:formatNumber value="${goods.price}" type="number" groupingUsed="true"/>
 							</p>
 						</div>
 					</div>
 					<div class="button-list">
-						<i class="bi bi-cart2"></i> <i class="bi bi-x-lg"></i>
+						<i class="bi bi-cart2"></i> 
+						<a href="deletePick?goodsId=${goods.goodsId}"><i class="bi bi-x-lg"></i></a>
+						
 					</div>
 				</div>
 				</c:forEach>
