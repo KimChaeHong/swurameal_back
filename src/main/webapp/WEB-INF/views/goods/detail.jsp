@@ -1,46 +1,55 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
 
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
     <%@ include file="/WEB-INF/views/common/nav.jsp" %>
     
-    
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/detail.css">
+
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/detail.css">
 
 	<main class="container">
 	    <section class="d-flex main-content">
 	        <div id="image-container">
-	            <img src="../src/images/322.png" />
+	            <img src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_MAIN" />
 	        </div>
 	        <div id="product-info">
-	            <p id="product-name">[한식]매운 돼지갈비찜</p>
-	            <p id="product-coment">매콤한 제주도 신선 흑돼지</p>
-	            <p id="product-price"></p>
+	            <p id="product-name">${goods.goodsName}</p>
+	            <p id="product-coment">${goods.goodsComment}</p>
+	            <p id="product-price">
+		            <fmt:formatNumber value="${goods.price}" type="number" groupingUsed="true"/>	            
+	            </p>
 	            <hr />
 	            <div class="d-flex">
 	                <span id="delivery">배송</span>
-	                <span>1~2일</span>
+	                <span>${goods.deliveryInfo}</span>
 	            </div>
 	            <hr />
 	            <div class="d-flex">
 	                <span id="seller">판매자</span>
-	                <span>수라밀</span>
+	                <span>${goods.seller}</span>
 	            </div>
 	            <hr />
 	            <div class="d-flex">
 	                <span id="unit">판매단위</span>
-	                <span>1팩</span>
+	                <span>${goods.saleUnit}</span>
 	            </div>
 	            <hr />
 	            <div class="d-flex">
 	                <span id="product-weight">중량/용량</span>
-	                <span>840g</span>
+	                <span>${goods.weight}</span>
 	            </div>
 	            <hr />
 	            <div class="d-flex">
 	                <span id="product-quantity">상품선택</span>
 	                <div id="count-box">
-	                    <p id="mini-name">[한식]매운 돼지갈비찜</p>
+	                    <p id="mini-name">[${goods.category}] ${goods.goodsName}</p>
 	
 	                        <div class="cnt-btn d-flex justify-content-between align-items-center">
 	                            <button id="minus-button">-</button>
@@ -53,8 +62,8 @@
 	            </div>
 	            <p class="total-price" id="total-price">총 가격</p>
 	            <div id="button-box" class="d-flex justify-content-between">
-	                <span id="pick" class="btn"><i id="pick-icon" class="bi bi-heart"></i></span> <!--찜버튼 아이콘 -->
-	                <span id="cart" class="btn"><i class="bi bi-cart"></i></span> <!--장바구니 아이콘-->
+	                <span id="pick" class="btn" ><i id="pick-icon" class="bi bi-heart" ></i></span> <!--찜버튼 아이콘 -->
+	                <span id="cart" class="btn" ><i class="bi bi-cart"></i></span> <!--장바구니 아이콘-->
 	                <span id="buy" class="btn">구매하기</span>
 	            </div>
 	        </div>
@@ -63,69 +72,53 @@
 	    <!--추천상품-->
 	    <p><h4 class="ms-3">고객님을 위한 추천 상품</h4></p>
 	    <section class="product-recommend">
-	        <div class="goods">
-	            <img id="goods-img" src="../src/images/321.png" class="goods-img flex-grow-1" alt="${goods.goodsName}">
-	            <div class="button-wrapper">
-	                <button class="to-cart"><i class="bi bi-cart icon-margin"></i>담기</button>
-	            </div>
-	            <div class="goods-info">
-	                <span class="goods-category">[한식]</span>
-	                <span class="goods-name">간장 돼지갈비찜</span>
-	                <p class="goods-comment">제주도 출신 신선</p>
-	                <span class="dimmed-price">
-	                    <span class="price-number">11,500</span>
-	                    <span class="won">원</span>
-	                </span>
-	            </div>
-	        </div>
-	
-	        <div class="goods">
-	            <img id="goods-img" src="../src/images/312.png" class="goods-img flex-grow-1" alt="${goods.goodsName}">
-	            <div class="button-wrapper">
-	                <button class="to-cart"><i class="bi bi-cart icon-margin"></i>담기</button>
-	            </div>
-	            <div class="goods-info">
-	                <span class="goods-category">[한식]</span>
-	                <span class="goods-name">된장찌개</span>
-	                <p class="goods-comment">김치찌개 먹고 싶은 날 딱!</p>
-	                <span class="dimmed-price">
-	                    <span class="price-number">6,900</span>
-	                    <span class="won">원</span>
-	                </span>
-	            </div>
-	        </div>
-	
-	        <div class="goods">
-	            <img id="goods-img" src="../src/images/423.png" class="goods-img flex-grow-1" alt="${goods.goodsName}">
-	            <div class="button-wrapper">
-	                <button class="to-cart"><i class="bi bi-cart icon-margin"></i>담기</button>
-	            </div>
-	            <div class="goods-info">
-	                <span class="goods-category">[전통주]</span>
-	                <span class="goods-name">독도 소주</span>
-	                <p class="goods-comment">한국 사람 1인 1명이 국법</p>
-	                <span class="dimmed-price">
-	                    <span class="price-number">11,500</span>
-	                    <span class="won">원</span>
-	                </span>
-	            </div>
-	        </div>
-	
-	        <div class="goods">
-	            <img id="goods-img" src="../src/images/424.png" class="goods-img flex-grow-1" alt="${goods.goodsName}">
-	            <div class="button-wrapper">
-	                <button class="to-cart"><i class="bi bi-cart icon-margin"></i>담기</button>
-	            </div>
-	            <div class="goods-info">
-	                <span class="goods-category">[전통주]</span>
-	                <span class="goods-name">제주 탐라주</span>
-	                <p class="goods-comment">한라산은 가라...</p>
-	                <span class="dimmed-price">
-	                    <span class="price-number">7,000</span>
-	                    <span class="won">원</span>
-	                </span>
-	            </div>
-	        </div>
+	    	<c:forEach var="goodsSameCategory" items="${goodsSameCategory}" varStatus="status">
+		        <c:if test="${status.index < 2}">
+			        <div class="goods">
+			        	<a href="detail?goodsId=${goodsSameCategory.goodsId}">
+				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goodsSameCategory.goodsId}" class="goods-img flex-grow-1" alt="${goodsSameCtgy.goodsName}">			        	
+			        	</a>
+			            <div class="button-wrapper">
+			                <button class="to-cart"><i class="bi bi-cart icon-margin"></i>담기</button>
+			            </div>
+			            <div class="goods-info">
+			                <span class="goods-category">[${goodsSameCategory.category}]</span>
+			                <span class="goods-name">${goodsSameCategory.goodsName}</span>
+			                <p class="goods-comment">${goodsSameCategory.goodsComment}</p>
+			                <span class="dimmed-price">
+			                    <span class="price-number">
+				                    <fmt:formatNumber value="${goodsSameCategory.price}" type="number" groupingUsed="true"/>		                    
+			                    </span>
+			                    <span class="won">원</span>
+			                </span>
+			            </div>
+			        </div>	    			        
+		        </c:if>
+	        </c:forEach>
+	    	
+	    	<c:forEach var="goodsAlcohol" items="${goodsAlcohol}" varStatus="status">
+	    		<c:if test="${status.index < 2}">
+	    			<div class="goods">
+	    				<a href="detail?goodsId=${goodsAlcohol.goodsId}">
+				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goodsAlcohol.goodsId}" class="goods-img flex-grow-1" alt="${goodsAlcohol.goodsName}">	    				
+	    				</a>
+			            <div class="button-wrapper">
+			                <button class="to-cart"><i class="bi bi-cart icon-margin"></i>담기</button>
+			            </div>
+			            <div class="goods-info">
+			                <span class="goods-category">[${goodsAlcohol.category}]</span>
+			                <span class="goods-name">${goodsAlcohol.goodsName}</span>
+			                <p class="goods-comment">${goodsAlcohol.goodsComment}</p>
+			                <span class="dimmed-price">
+			                    <span class="price-number">
+				                    <fmt:formatNumber value="${goodsAlcohol.price}" type="number" groupingUsed="true"/>			                    
+			                    </span>
+			                    <span class="won">원</span>
+			                </span>
+			            </div>
+			        </div>	    
+	    		</c:if>
+	    	</c:forEach>
 	
 	    </section>
 	
@@ -138,13 +131,15 @@
 	        <div id="detail-img-container" class="">
 	            <img
 	                id="detail-img1"
-	                src="../src/images/detail1.jpg"
+	                src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_DESCRIPTION" 
+	                alt="${goods.goodsName}"
 	                class="detail-img"
 	            />
 	            <br />
 	            <img
 	                id="detail-img2"
-	                src="../src/images/detail2.png"
+	                src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_DETAIL" 
+	                alt="${goods.goodsName}"
 	                class="detail-img"
 	            />
 	        </div>
@@ -170,4 +165,7 @@
 	
 	<button onclick="backToTop()" id="btn-back-to-top">Top</button>
 
+
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+<%-- <script src="${pageContext.request.contextPath}/resources/js/detail.js"></script> --%>

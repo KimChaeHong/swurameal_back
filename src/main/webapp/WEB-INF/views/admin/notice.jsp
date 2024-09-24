@@ -5,6 +5,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/notice.css">
 
@@ -18,15 +19,14 @@
 			<p onclick="location.href='${pageContext.request.contextPath}/admin/faq'" style="color: rgb(117, 117, 117); font-weight: normal;">FAQ 관리</p>
 		</div>
 	</div>
+	
 	<div class="admin-box flex-grow-1">
 		<div class="title-box">
 			<div class="addButton">
 				<p>공지사항 관리</p>
-				<a href="${pageContext.request.contextPath}/admin/noticeWrite">
-					<button data-flag="notice">
+					<button data-flag="notice" onclick="location.href='${pageContext.request.contextPath}/admin/noticeWrite'">
 						작성하기
 					</button>
-				</a>
 			</div>
 			<div class="horizontal-line"></div>
 		</div>
@@ -41,19 +41,52 @@
 					<c:forEach items="${list}" var="notice">
 						<div class="notice-info d-flex align-items-center">
 							<div>
-								<a href="noticeDetail?noticeId=${notice.noticeId}">${notice.noticeTitle}</a>
+								<a href="noticeDetail?noticeId=${notice.noticeId}" style="text-decoration: none; color: black;">${notice.noticeTitle}</a>
 							</div>
 							<div>${notice.userId}</div>
 							<div><fmt:formatDate value="${notice.noticeRegisterDate}" pattern="yyyy-MM-dd" /></div>
 						</div>
 					</c:forEach>
-				</div>
-				<div class="pagination">
-					<button class="page-num active">1</button>
+					</div>
 				</div>
 			</div>
-		</div>
+		
+				
+			<div class="pagination">
+				<a href="notice?pageNo=1" class="btn btn-outline-dark btn-sm">처음</a>
+	
+				<c:if test="${pager.groupNo>1}">
+					<a href="notice?pageNo=${pager.startPageNo-1}"
+						class="btn btn-outline-dark btn-sm">이전</a>
+				</c:if>
+	
+				<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
+					step="1" var="i">
+					<c:if test="${pager.pageNo==i}">
+							<button class="page-num active" onclick="location.href='${pageContext.request.contextPath}/admin/notice?pageNo=${i}'">
+								${i}
+							</button>						
+					</c:if>
+					<c:if test="${pager.pageNo!=i}">
+							<button class="page-num" onclick="location.href='${pageContext.request.contextPath}/admin/notice?pageNo=${i}'">
+								${i}
+							</button>
+					</c:if>
+				</c:forEach>
+	
+				<c:if test="${pager.groupNo<pager.totalGroupNo}">
+					<a href="notice?pageNo=${pager.endPageNo+1}"
+						class="btn btn-outline-dark btn-sm">다음</a>
+				</c:if>
+	
+				<a href="notice?pageNo=${pager.totalPageNo}"
+					class="btn btn-outline-dark btn-sm">마지막</a>
+			</div>
+		
+			
 	</div>
+ 
+	
 	
 </main>
 

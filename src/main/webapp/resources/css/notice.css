@@ -48,6 +48,7 @@
 }
 .pagination {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     margin-top: 20px;
 }
@@ -65,4 +66,9 @@
 .pagination button.active {
     color: black;
     font-weight: bold;
+}
+
+a {
+	text-decoration: none;
+	color: black;
 }

@@ -11,5 +11,6 @@ public class GoodsImgDto {
 	private String gAttachOname;
 	private String gAttachType;
 	private byte[] gAttachData;
+	private String imgRole;
 	
 }

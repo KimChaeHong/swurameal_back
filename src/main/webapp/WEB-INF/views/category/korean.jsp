@@ -25,6 +25,7 @@
 <div class="goods-list">
     <c:forEach var="goods" items="${goodsList}" varStatus="status">
 		<div class="goods">
+
 		 <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">
 		   <div class="button-wrapper">
 		       <a href="${pageContext.request.contextPath}/cart/itemAdd?goodsId=${goods.goodsId}">
@@ -43,6 +44,7 @@
 		            </span> 원
 		        </span>
 		   </div>
+
 		</div>
     </c:forEach>
 </div>

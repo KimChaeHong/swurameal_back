@@ -43,6 +43,7 @@ public class CartController {
 		}
 
 		return "cart/itemList";
+
 	}
 
 	//카트 데이터 추가
@@ -117,7 +118,5 @@ public class CartController {
 
 		cartService.updateGoodsFromCart(cartItem);
 		return "ok";
-		
-	}
-	
+	}	
 }

@@ -108,4 +108,3 @@ function updateQuantityInDB(goodsId, quantity) {
         }
     });
 }
-
