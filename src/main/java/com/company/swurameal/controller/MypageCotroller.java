@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.company.swurameal.dto.OrderWithItemsDto;
+import com.company.swurameal.dto.PickDto;
 import com.company.swurameal.dto.UserDto;
 import com.company.swurameal.sercurity.CustomUserDetails;
 import com.company.swurameal.service.OrderService;
+import com.company.swurameal.service.PickService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,7 +36,7 @@ public class MypageCotroller {
 
 	@Secured("ROLE_USER")
 	@RequestMapping("/pick")
-	public String mypagePick() {
+	public String mypagePick(Model model, Authentication authentication) {
 		log.info("찜");
 		// 사용자의 모든 정보를 얻고 싶을 경우
 		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
