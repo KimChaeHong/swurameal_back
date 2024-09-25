@@ -2,6 +2,12 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+	crossorigin="anonymous"></script>
+	
+<script src="${pageContext.request.contextPath}/resources/js/info.js"></script>
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/mypage.css">
 <link rel="stylesheet" type="text/css"
@@ -107,33 +113,6 @@
 
 
 
-
-
-
-
-<!-- <script>
-			function modifyAjax(){
-				var param1 = $("#param1").val();
-				var param2 = $("#param2").val();
-				var param3 = $("#param3").val();
-				var param4 = $("#param4").val();
-				var param5 = $("#param5").val();
-				var param6 = $("#param6").val();
-				var param7 = $("#param7").val();
-			
-				const params = {param1, param2, param3, param4, param5,  param6,  param7};
-				console.log(params);
-				
-				$.ajax({
-					url:"modifyAjax",
-					type:"post",
-					data : params,
-					success:function(data){
-						console.log(data);
-					}
-				});
-
-			}
-		</script> -->
-
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+
