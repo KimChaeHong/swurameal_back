@@ -152,32 +152,4 @@
 	</div>
 </div>
 
-<!-- JavaScript 코드 추가 -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.to-cart').click(function() {
-                var goodsId = $(this).closest('.goods').find('a').attr('href').split('goodsId=')[1];
-                var userId = '로그인된 사용자 ID'; // 실제 로그인된 사용자 ID로 수정해야 합니다.
-
-                $.ajax({
-                    url: '${pageContext.request.contextPath}/cart/add',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({
-                        userId: userId,
-                        goodsId: parseInt(goodsId),
-                        quantity: 1 // 기본 수량 1로 설정
-                    }),
-                    success: function(response) {
-                        alert('상품이 장바구니에 추가되었습니다.');
-                    },
-                    error: function(error) {
-                        alert('상품 추가에 실패했습니다.');
-                    }
-                });
-            });
-        });
-    </script>
-
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
