@@ -68,7 +68,7 @@
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <div>${pageContext.request.userPrincipal.name}</div>
                 &nbsp;|&nbsp;
-                <a class="nav-link" href="${pageContext.request.contextPath}/admin/notice">관리자페이지</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/notice/noticeList">관리자페이지</a>
                 &nbsp;|&nbsp;
                 <a class="nav-link" href="${pageContext.request.contextPath}/support/notice" >고객센터</a>
                 &nbsp;|&nbsp;

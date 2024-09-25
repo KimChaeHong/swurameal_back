@@ -42,11 +42,15 @@ public class PickService {
 	//찜 등록
 	public void addPick(PickDto pick) {
 		pickDao.insert(pick);
-		int goodsId = pick.getGoodsId();
 	}
 	
 	
-	
+	// 찜 여부 확인 메서드
+    public boolean isPicked(String userId, int goodsId) {
+        PickDto pick = pickDao.selectGoodsInPick(userId, goodsId);
+        return pick != null;  // pick이 null이 아니면 찜한 상태, null이면 찜하지 않은 상태
+    }
+	                                                                                                                                                                                                                                                                              
 	
 
 }

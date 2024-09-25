@@ -38,9 +38,9 @@
 						</div>	            
 		            </c:forEach>
 		        </div>
-		        		
-				<div class="pagination">
-					<a href="notice?pageNo=1" class="btn btn-outline-dark btn-sm">처음</a>
+	        </div>
+	        <div class="pagination">
+					<a href="notice?pageNo=1" class="btn btn-outline-dark btn-sm d-flex justify-content-center align-items-center">처음</a>
 		
 					<c:if test="${pager.groupNo>1}">
 						<a href="notice?pageNo=${pager.startPageNo-1}"
@@ -67,10 +67,8 @@
 					</c:if>
 		
 					<a href="notice?pageNo=${pager.totalPageNo}"
-						class="btn btn-outline-dark btn-sm text-nowrap">마지막</a>
+						class="btn btn-outline-dark btn-sm text-nowrap d-flex justify-content-center align-items-center">마지막</a>
 				</div>
-			          
-	        </div>
         </section>
 
    </main>

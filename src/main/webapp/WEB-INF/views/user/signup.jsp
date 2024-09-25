@@ -5,7 +5,7 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/signup.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
-<script src="${pageContext.request.contextPath}/resources/js/signup.js"></script>
+
 
 <main class="container signup">
 	<h2>회원가입</h2>

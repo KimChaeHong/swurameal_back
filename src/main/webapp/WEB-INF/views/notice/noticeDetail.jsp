@@ -15,7 +15,7 @@
                     <h3>관리자 메뉴</h3>
                     <p onclick="location.href='${pageContext.request.contextPath}/admin/goodsManagement'" style="color: rgb(117, 117, 117); font-weight: normal;">상품 관리</p>
 					<p onclick="location.href='${pageContext.request.contextPath}/admin/answer'" style="color: rgb(117, 117, 117); font-weight: normal;">1:1 문의 관리</p>
-					<p onclick="location.href='${pageContext.request.contextPath}/admin/notice'" style="color: rgb(107, 6, 9); font-weight: bold;">공지사항 관리</p>
+					<p onclick="location.href='${pageContext.request.contextPath}/notice/noticeList'" style="color: rgb(107, 6, 9); font-weight: bold;">공지사항 관리</p>
 					<p onclick="location.href='${pageContext.request.contextPath}/admin/faq'" style="color: rgb(117, 117, 117); font-weight: normal;">FAQ 관리</p>
                 </div>
             </div>
@@ -44,11 +44,11 @@
    			</div>
         
         <div class="update-button d-flex flex-grow-1 justify-content-end">
-            <a href="noticeUpdateForm?noticeId=${notice.noticeId}">
+            <a href="${pageContext.request.contextPath}/notice/noticeUpdateForm?noticeId=${notice.noticeId}">
             	<button>수정</button> 
             </a>
             <span>|</span>
-            <a href="noticeDelete?noticeId=${notice.noticeId}">
+            <a href="${pageContext.request.contextPath}/notice/noticeDelete?noticeId=${notice.noticeId}">
             	<button>삭제</button>            
             </a>
         </div>
