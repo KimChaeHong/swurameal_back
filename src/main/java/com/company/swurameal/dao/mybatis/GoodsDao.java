@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.company.swurameal.dto.GoodsDto;
 import com.company.swurameal.dto.GoodsImgDto;
+import com.company.swurameal.dto.GoodsSuggestDto;
 
 
 @Mapper
@@ -28,5 +29,8 @@ public interface GoodsDao {
 	
 	//상품 서브 카테고리 가져오기
 	public List<GoodsDto> selectGoodsBySubCategory(String subcategory);
+	
+	//상품 추천 카테고리 가져오기
+	public List<GoodsSuggestDto> selectGoodsBySuggest(GoodsDto goodsDto);
 
 }

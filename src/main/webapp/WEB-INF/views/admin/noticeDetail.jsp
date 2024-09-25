@@ -44,11 +44,11 @@
    			</div>
         
         <div class="update-button d-flex flex-grow-1 justify-content-end">
-            <a href="noticeUpdateForm?noticeId=${notice.noticeId}">
+            <a href="notice/noticeUpdateForm?noticeId=${notice.noticeId}">
             	<button>수정</button> 
             </a>
             <span>|</span>
-            <a href="noticeDelete?noticeId=${notice.noticeId}">
+            <a href="notice/noticeDelete?noticeId=${notice.noticeId}">
             	<button>삭제</button>            
             </a>
         </div>

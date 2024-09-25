@@ -6,18 +6,19 @@
   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
   crossorigin="anonymous"></script>
 
-	<%@ include file="/WEB-INF/views/common/header.jsp" %>
-    <%@ include file="/WEB-INF/views/common/nav.jsp" %>
-    
-
-
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/nav.jsp" %>
+<script>
+    var contextPath = '<%= request.getContextPath() %>';
+</script>
+<script src="${pageContext.request.contextPath}/resources/js/detail.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/detail.css">
 
 	<main class="container">
 	    <section class="d-flex main-content">
 	        <div id="image-container">
-	            <img src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_MAIN" />
+	            <img src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" />
 	        </div>
 	        <div id="product-info">
 	            <p id="product-name">${goods.goodsName}</p>
@@ -62,8 +63,14 @@
 	            </div>
 	            <p class="total-price" id="total-price">총 가격</p>
 	            <div id="button-box" class="d-flex justify-content-between">
-	                <span id="pick" class="btn" ><i id="pick-icon" class="bi bi-heart" ></i></span> <!--찜버튼 아이콘 -->
-	                <span id="cart" class="btn" ><i class="bi bi-cart"></i></span> <!--장바구니 아이콘-->
+	                <button type="button" id="pick" class="btn" data-goods-id="${goods.goodsId}">
+					    <!--찜 버튼 아이콘 -->
+					    <i id="pick-icon" class="bi bi-heart" ></i> 
+					</button>
+	                <button type="button" id="cart" class="btn" >
+	                 	<!--장바구니 아이콘-->
+	                	<i class="bi bi-cart"></i>
+	                </button>
 	                <span id="buy" class="btn">구매하기</span>
 	            </div>
 	        </div>
@@ -76,7 +83,7 @@
 		        <c:if test="${status.index < 2}">
 			        <div class="goods">
 			        	<a href="detail?goodsId=${goodsSameCategory.goodsId}">
-				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goodsSameCategory.goodsId}" class="goods-img flex-grow-1" alt="${goodsSameCtgy.goodsName}">			        	
+				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goodsSameCategory.goodsId}&imgRole=G_MAIN" class="goods-img flex-grow-1" alt="${goodsSameCtgy.goodsName}">			        	
 			        	</a>
 			            <div class="button-wrapper">
 			                <button class="to-cart"><i class="bi bi-cart icon-margin"></i>담기</button>
@@ -100,7 +107,7 @@
 	    		<c:if test="${status.index < 2}">
 	    			<div class="goods">
 	    				<a href="detail?goodsId=${goodsAlcohol.goodsId}">
-				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goodsAlcohol.goodsId}" class="goods-img flex-grow-1" alt="${goodsAlcohol.goodsName}">	    				
+				            <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goodsAlcohol.goodsId}&imgRole=G_MAIN" class="goods-img flex-grow-1" alt="${goodsAlcohol.goodsName}">	    				
 	    				</a>
 			            <div class="button-wrapper">
 			                <button class="to-cart"><i class="bi bi-cart icon-margin"></i>담기</button>
@@ -131,14 +138,14 @@
 	        <div id="detail-img-container" class="">
 	            <img
 	                id="detail-img1"
-	                src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_DESCRIPTION" 
+	                src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_DESCRIPTION" 
 	                alt="${goods.goodsName}"
 	                class="detail-img"
 	            />
 	            <br />
 	            <img
 	                id="detail-img2"
-	                src="${pageContext.request.contextPath}/goods/downloadImageDetail?goodsId=${goods.goodsId}&imgRole=G_DETAIL" 
+	                src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_DETAIL" 
 	                alt="${goods.goodsName}"
 	                class="detail-img"
 	            />
@@ -167,5 +174,5 @@
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
-<%-- <script src="${pageContext.request.contextPath}/resources/js/detail.js"></script> --%>
+ 
+<script src="${pageContext.request.contextPath}/resources/js/detail.js"></script>

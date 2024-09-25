@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <link rel="stylesheet" type="text/css"
@@ -45,17 +47,20 @@
 	                <div class="col-3 one-year">1년</div>
 	                <div class="col-3 three-year">3년</div>
 	            </div>
-	            <div class="d-flex flex-column order-list">
-		            <div class="order-product d-flex">
-	                <img src="${item.img}">
-	                <div class="order-info">
-	                    <p><strong>상품명</strong> ${item.title}</p>
-	                    <p><strong>주문 날짜</strong> ${item.orderDate}</p>
-	                    <p><strong>결제 금액</strong> ${item.price}</p>
-	                    <p><strong>주문 상태</strong> ${item.orderStatus}</p>
-	                </div>
-	            	</div>	
-	            </div>
+	            
+	            <c:forEach items="${order}" var="order">
+		            <div class="d-flex flex-column order-list">
+			            <div class="order-product d-flex">
+		                <img src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${order.goodsId}&imgRole=G_MAIN" alt="${order.goodsId}">
+		                <div class="order-info">
+		                    <p><strong>상품명</strong> ${order.orderId}</p>
+		                    <p><strong>주문 날짜</strong> ${order.orderDate}</p>
+		                    <p><strong>결제 금액</strong> ${order.goodsPrice}</p>
+		                    <p><strong>주문 상태</strong> ${order.orderStatus}</p>
+		                </div>
+		            	</div>	
+		            </div>	            
+	            </c:forEach>
 	            <div class="pagination"></div> 
 	        </div>
         </div>

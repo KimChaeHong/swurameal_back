@@ -1,8 +1,8 @@
 /* 상품 갯수 증감에 따른 각 아이템의 가격변동 */
 $(document).ready(function() {
-	countItem();
-	checkItem();
-	totalPriceOper();
+   countItem();
+   checkItem();
+   totalPriceOper();
 });
 
 function countItem() {
@@ -31,41 +31,41 @@ function countItem() {
 
 /* 선택 || 전체선택 버튼 */
 function checkItem() {
-	  const checkBtn = $(".bi:not(#xBtn, #allBtn, .bi-cart, .bi-search)");
+     const checkBtn = $(".bi:not(#xBtn, #allBtn, .bi-cart, .bi-search)");
 
-	  // 전체선택 버튼
-	  $("#allBtn, #allBtnTxt").click(function () {
-		  
-		  const isChecked = $("#allBtn").hasClass("bi-check-circle-fill");
-		  
-		  if (isChecked) {
-			  $("#allBtn").removeClass("bi-check-circle-fill").addClass("bi-check-circle");
-			  checkBtn.removeClass("bi-check-circle-fill").addClass("bi-check-circle");
-		  } else {
-			  $("#allBtn").removeClass("bi-check-circle").addClass("bi-check-circle-fill");
-			  checkBtn.addClass("bi-check-circle-fill").removeClass("bi-check-circle");
-		  
-		  }		  
-	   
-	      totalPriceOper();
+     // 전체선택 버튼
+     $("#allBtn, #allBtnTxt").click(function () {
+        
+        const isChecked = $("#allBtn").hasClass("bi-check-circle-fill");
+        
+        if (isChecked) {
+           $("#allBtn").removeClass("bi-check-circle-fill").addClass("bi-check-circle");
+           checkBtn.removeClass("bi-check-circle-fill").addClass("bi-check-circle");
+        } else {
+           $("#allBtn").removeClass("bi-check-circle").addClass("bi-check-circle-fill");
+           checkBtn.addClass("bi-check-circle-fill").removeClass("bi-check-circle");
+        
+        }        
+      
+         totalPriceOper();
 
-	  });
+     });
 
-	  // 개별선택 버튼
-	  $(document).on("click", ".item .bi-check-circle, .item .bi-check-circle-fill", function() {
-		  $(this).toggleClass("bi-check-circle-fill bi-check-circle");
-	  
+     // 개별선택 버튼
+     $(document).on("click", ".item .bi-check-circle, .item .bi-check-circle-fill", function() {
+        $(this).toggleClass("bi-check-circle-fill bi-check-circle");
+     
 
-	    // 체크된 아이템의 갯수에 따른 전체선택 버튼 toggle
-		  const checkedCount = $(".bi-check-circle-fill:not(#allBtn)").length;
-		  const totalCount = $(".item").length;
-		  
-		  $("#allBtn").toggleClass("bi-check-circle-fill", checkedCount === totalCount)
-		  			.toggleClass("bi-check-circle", checkedCount !== totalCount);	
-	   
-	    totalPriceOper();
-	  });
-	}
+       // 체크된 아이템의 갯수에 따른 전체선택 버튼 toggle
+        const checkedCount = $(".bi-check-circle-fill:not(#allBtn)").length;
+        const totalCount = $(".item").length;
+        
+        $("#allBtn").toggleClass("bi-check-circle-fill", checkedCount === totalCount)
+                 .toggleClass("bi-check-circle", checkedCount !== totalCount);   
+      
+       totalPriceOper();
+     });
+   }
 
 /* 전체 가격을 계산 */
 function totalPriceOper() {
@@ -87,7 +87,7 @@ function totalPriceOper() {
 
 //DB에 저장
 function updateQuantityInDB(goodsId, quantity) {
-	console.log("goodsId:", goodsId, "quantity:", quantity);
+   console.log("goodsId:", goodsId, "quantity:", quantity);
     $.ajax({
         url: contextPath + '/cart/update', // 서버의 URL (컨트롤러 경로)
         type: 'POST',

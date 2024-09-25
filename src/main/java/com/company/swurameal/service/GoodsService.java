@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.company.swurameal.dao.mybatis.GoodsDao;
 import com.company.swurameal.dto.GoodsDto;
 import com.company.swurameal.dto.GoodsImgDto;
+import com.company.swurameal.dto.GoodsSuggestDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +22,7 @@ public class GoodsService{
 	
 	//상품 하나 가져오는 메서드
 	public GoodsDto getGoodsById(int goodsId) {
+
 		GoodsDto goods = goodsDao.selectByGoodsID(goodsId);
 		return goods;
 	}
@@ -50,5 +52,10 @@ public class GoodsService{
 	//상품 서브 카테고리 가져오는 메서드
 	public List<GoodsDto> getGoodsSubCategory(String subCategory) {
 		return goodsDao.selectGoodsBySubCategory(subCategory);
+	}
+	
+	//상품 추천 메서드
+	public List<GoodsSuggestDto> getGoodsBySuggest(GoodsDto goodsDto) {
+		return goodsDao.selectGoodsBySuggest(goodsDto);
 	}
 }
