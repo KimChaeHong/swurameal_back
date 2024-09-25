@@ -33,27 +33,7 @@ public class GoodsController {
 		log.info("제품 상세");
 		GoodsDto goodsDto = goodsService.getGoodsById(goodsId);
 		List<GoodsSuggestDto> goodsSuggestDto = goodsService.getGoodsBySuggest(goodsDto);
-		List<GoodsSuggestDto> goodsSuggestAlcohol = goodsService.getGoodsBySuggest(goodsDto); 
-//		List<GoodsDto> goodsDtoSameCategory = goodsService.getGoodsCategory(goodsDto.getCategory());
-//		String suggestType = "";
-//		switch (goodsDto.getCategory()) {
-//			case "양식": 
-//				suggestType = "과실주";
-//				break;
-//			case "한식":
-//				suggestType = "증류주";
-//				break;
-//			case "분식":
-//				suggestType = "탁주";
-//				break;
-//			case "전통주":
-//				suggestType = "떡볶이";
-//				break;
-//			default:
-//				suggestType = "증류주";
-//				break;
-//		}
-//		List<GoodsDto> goodsDtoAlcohol = goodsService.getGoodsSubCategory(suggestType);
+		List<GoodsSuggestDto> goodsSuggestAlcohol = goodsService.getAlcoholBySuggest(goodsDto); 
 		model.addAttribute("goods", goodsDto);
 		model.addAttribute("goodsSameCategory", goodsSuggestDto);
 		model.addAttribute("goodsAlcohol", goodsSuggestAlcohol);
