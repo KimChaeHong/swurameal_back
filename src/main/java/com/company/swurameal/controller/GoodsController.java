@@ -31,12 +31,21 @@ public class GoodsController {
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int goodsId, Model model) {
 		log.info("제품 상세");
+<<<<<<< HEAD
 		GoodsDto goodsDto = goodsService.getGoodsById(goodsId);
 		List<GoodsSuggestDto> goodsSuggestDto = goodsService.getGoodsBySuggest(goodsDto);
 		List<GoodsSuggestDto> goodsSuggestAlcohol = goodsService.getAlcoholBySuggest(goodsDto); 
 		model.addAttribute("goods", goodsDto);
 		model.addAttribute("goodsSameCategory", goodsSuggestDto);
 		model.addAttribute("goodsAlcohol", goodsSuggestAlcohol);
+=======
+		 GoodsDto goodsDto = goodsService.getGoodsById(goodsId);
+	      List<GoodsSuggestDto> goodsSuggestDto = goodsService.getGoodsBySuggest(goodsDto);
+	      List<GoodsSuggestDto> goodsSuggestAlcohol = goodsService.getAlcoholBySuggest(goodsDto); 
+	      model.addAttribute("goods", goodsDto);
+	      model.addAttribute("goodsSameCategory", goodsSuggestDto);
+	      model.addAttribute("goodsAlcohol", goodsSuggestAlcohol);
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
 		return "goods/detail";
 	}
 	
