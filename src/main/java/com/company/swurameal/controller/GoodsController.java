@@ -31,12 +31,12 @@ public class GoodsController {
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int goodsId, Model model) {
 		log.info("제품 상세");
-		 GoodsDto goodsDto = goodsService.getGoodsById(goodsId);
-	      List<GoodsSuggestDto> goodsSuggestDto = goodsService.getGoodsBySuggest(goodsDto);
-	      List<GoodsSuggestDto> goodsSuggestAlcohol = goodsService.getAlcoholBySuggest(goodsDto); 
-	      model.addAttribute("goods", goodsDto);
-	      model.addAttribute("goodsSameCategory", goodsSuggestDto);
-	      model.addAttribute("goodsAlcohol", goodsSuggestAlcohol);
+		GoodsDto goodsDto = goodsService.getGoodsById(goodsId);
+		List<GoodsSuggestDto> goodsSuggestDto = goodsService.getGoodsBySuggest(goodsDto);
+		List<GoodsSuggestDto> goodsSuggestAlcohol = goodsService.getAlcoholBySuggest(goodsDto); 
+		model.addAttribute("goods", goodsDto);
+		model.addAttribute("goodsSameCategory", goodsSuggestDto);
+		model.addAttribute("goodsAlcohol", goodsSuggestAlcohol);
 		return "goods/detail";
 	}
 	

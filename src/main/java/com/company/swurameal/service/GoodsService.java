@@ -59,7 +59,6 @@ public class GoodsService {
 		return goodsDao.selectGoodsBySuggest(goodsDto);
 	}
 
-	// 알콜 추천 메서드
 	public List<GoodsSuggestDto> getAlcoholBySuggest(GoodsDto goodsDto) {
 		goodsDto.setCategory("전통주");
 		return goodsDao.selectGoodsBySuggest(goodsDto);
