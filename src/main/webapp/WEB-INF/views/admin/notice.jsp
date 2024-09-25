@@ -5,7 +5,6 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/notice.css">
 

@@ -42,10 +42,22 @@
     margin-left: 70px;
     text-align: center;
 }
-.addButton button {
-    background-color: var(--theme);
-    color: white;
+.addButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.addButton button {
+   background-color: black;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    width: 100px;
+    height: 36px;
+    font-size: 16px;
+}
+
 .pagination {
     display: flex;
     flex-direction: row;
