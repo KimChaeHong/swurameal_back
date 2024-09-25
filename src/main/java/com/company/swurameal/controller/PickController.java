@@ -40,7 +40,7 @@ public class PickController {
 	
 	@Secured("ROLE_USER")
 	@GetMapping("/deletePick")
-	public String deleteBoard(int goodsId, HttpSession session) {
+	public String deletePick(int goodsId, HttpSession session) {
 		pickService.deletePick(goodsId);
 	
 		return "redirect:/mypage/pick";

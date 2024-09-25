@@ -30,12 +30,6 @@ public class AdminController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	@RequestMapping("/goodsManagement")
-	public String adminGm() {
-		log.info("상품관리");
-		return "admin/goodsManagement";
-	}
-	
 	@RequestMapping("/faq")
 	public String adminFaq() {
 		log.info("자주하는 질문");
