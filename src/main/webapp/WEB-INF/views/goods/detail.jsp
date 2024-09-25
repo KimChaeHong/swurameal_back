@@ -63,7 +63,7 @@
 	            </div>
 	            <p class="total-price" id="total-price">총 가격</p>
 	            <div id="button-box" class="d-flex justify-content-between">
-	                <button type="button" id="pick" class="btn" data-goods-id="${goods.goodsId}">
+	                <button type="button" id="pick" class="btn" >
 					    <!--찜 버튼 아이콘 -->
 					    <i id="pick-icon" class="bi bi-heart" ></i> 
 					</button>
