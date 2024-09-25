@@ -58,13 +58,7 @@ public class GoodsService {
 	public List<GoodsSuggestDto> getGoodsBySuggest(GoodsDto goodsDto) {
 		return goodsDao.selectGoodsBySuggest(goodsDto);
 	}
-<<<<<<< HEAD
-	
-	//알콜 추천 메서드
-=======
 
-	// 알콜 추천 메서드
->>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
 	public List<GoodsSuggestDto> getAlcoholBySuggest(GoodsDto goodsDto) {
 		goodsDto.setCategory("전통주");
 		return goodsDao.selectGoodsBySuggest(goodsDto);
