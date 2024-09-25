@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class UserService {
+
 	public enum JoinResult{
 		SUCCESS,
 		FAIL_DUPLICATED_USERID
@@ -39,14 +40,10 @@ public class UserService {
 	
 	}
 
-	private boolean isUserid(String userId) {
-		UserDto user = userDao.selectByUserId(userId);
-		if (user == null) {
-			return false;
-		}else {
-			return true;
-		}
-	}
+	// 중복 체크를 위한 메서드
+    public boolean isUserid(String userId) {
+        return userDao.existsByUserId(userId); // userId가 존재하는지 확인하는 메서드
+    }
 	
 	public LoginResult login(UserDto user) {
 		UserDto dbuser = userDao.selectByUserId(user.getUserId());
@@ -69,9 +66,5 @@ public class UserService {
 		return LoginResult.SUCCESS;
 	}
 
-	// userId가 데이터베이스에 존재하는지 확인
-    public boolean isUserIdExists(String userId) {
-        return userDao.existsByUserId(userId);
-    }
-
+	 
 }
