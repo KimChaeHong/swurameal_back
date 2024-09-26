@@ -8,10 +8,7 @@
 	href="${pageContext.request.contextPath}/resources/css/mypage.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/order.css">
-<script
-  src="https://code.jquery.com/jquery-3.7.1.js"
-  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-  crossorigin="anonymous"></script>
+
 
 <main class="container d-flex mypage">
 <div class="mypage-category">
@@ -108,30 +105,5 @@
         </div>
 	</div>
 </main>
-<!-- 
-<script src="${pageContext.request.contextPath}/resources/js/mypage.js"></script>
- -->
+
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
-<script>
-	$.ajax({
-		url: /mypage/order,
-		method: "GET",
-		data: 3
-		success: function (data) {
-			<c:forEach items="${order}" var="order">
-            <div class="order-product d-flex">
-            <img src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${order.goodsId}&imgRole=G_MAIN" alt="${order.goodsId}">
-            <div class="order-info">
-                <p><strong>상품명</strong> ${order.orderId}</p>
-                <p><strong>주문 날짜</strong> ${order.orderDate}</p>
-                <p><strong>결제 금액</strong> ${order.goodsPrice}</p>
-                <p><strong>주문 상태</strong> ${order.orderStatus}</p>
-            </div>
-        	</div>	
-    		</c:forEach>
-		},
-		error: function (jqXHR, textStatus, errorThrown) {
-			alert("오류가 발생하였습니다.")
-		}
-	})
-</script>
