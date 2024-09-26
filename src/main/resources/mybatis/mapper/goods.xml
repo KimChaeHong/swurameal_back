@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.company.swurameal.dao.mybatis.GoodsDao">
+	<insert id="insert" parameterType="Goods">
+		<selectKey keyProperty="goodsId" resultType="int" order="BEFORE">
+			select SEQ_GOODSID.nextval from dual
+		</selectKey>
+		insert into goods(
+			GOODS_ID,
+			GOODS_NAME,
+			CATEGORY,
+			SUBCATEGORY,
+			PRICE,
+			GOODS_COMMENT,
+			GOODS_ORIGIN,
+			DELIVERY_INFO,
+			SELLER,
+			SALE_UNIT,
+			WEIGHT,
+			STOCK,
+			STATUS
+		)
+		values(
+			#{goodsId},
+	        #{goodsName},
+	        #{category},
+	        #{subcategory},
+	        #{price},
+	        #{goodsComment},
+	        #{goodsOrigin},
+	        #{deliveryInfo},
+	        #{seller},
+	        #{saleUnit},
+	        #{weight},
+	        #{stock},
+	        #{status}
+		)
+	</insert>
+
+
 
 	<!-- 특정 상품 가져오기 -->
 	<select id="selectByGoodsID" resultType="Goods">

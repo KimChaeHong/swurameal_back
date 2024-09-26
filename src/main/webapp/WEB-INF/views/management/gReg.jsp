@@ -11,22 +11,19 @@
 	href="${pageContext.request.contextPath}/resources/css/admin.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/goodsMgmt.css">
-
+	
+<script src="${pageContext.request.contextPath}/resources/js/gReg.js"></script>
 <main class="container d-flex admin">
 <div class="admin-category">
 	<div class="category-box d-flex flex-column">
 		<h3>관리자 메뉴</h3>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/mgmt/gMgmt'"
+		<p onclick="location.href='${pageContext.request.contextPath}/management/registedList'"
 			style="color: rgb(117, 117, 117); font-weight: bold;">상품 관리</p>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/admin/answer'">1:1
+		<p onclick="location.href='${pageContext.request.contextPath}/admin/answer'">1:1
 			문의 관리</p>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/admin/notice'">공지사항
+		<p onclick="location.href='${pageContext.request.contextPath}/notice/noticeList'">공지사항
 			관리</p>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/admin/faq'">FAQ
+		<p onclick="location.href='${pageContext.request.contextPath}/admin/faq'">FAQ
 			관리</p>
 	</div>
 </div>
@@ -34,10 +31,84 @@
 	<div class="title-box">
 		<div class="addButton">
 			<p>상품 관리</p>
-		</div>
+		</div>	
 		<div class="horizontal-line"></div>
 	</div>
-	<div class="page-upload"></div>
+	<div class="page-upload">
+		<div class="form-container">
+            <form method="post" action="registGoods">
+                <div class="form-group">
+				    <label for="goods-name">상품명<span class="rq">*</span></label>
+				    <input type="text" id="goods-name" name="goodsName" placeholder="상품명" required>
+				</div>
+
+                <div class="form-group">
+				    <label for="goods-category">카테고리<span class="rq">*</span></label>
+				    <select id="goods-category" name="category" required>
+				        <option value="" disabled selected>카테고리를 선택하세요</option>
+				        <option value="분식">분식</option>
+				        <option value="양식">양식</option>
+				        <option value="한식">한식</option>
+				        <option value="전통주">전통주</option>
+				    </select>
+				</div>
+				<div class="form-group">
+				    <label for="goods-subcategory">서브 카테고리<span class="rq">*</span></label>
+				    <select id="goods-subcategory" name="subcategory" required>
+				        <option value="" disabled selected>서브 카테고리를 선택하세요</option>
+				    </select>
+				</div>
+                <div class="form-group">
+                    <label for="goods-price">가격<span class="rq">*</span></label>
+                    <input type="text" id="goods-price" name="price" >
+                </div>
+                <div class="form-group">
+                    <label for="goods-comment">제품 코멘트<span class="rq">*</span></label>
+                    <input type="text" id="goods-comment" name="goodsComment" required placeholder="제품 코멘트 한 줄">
+                </div>
+                <div class="form-group">
+                    <label for="goods-origin">원산지<span class="rq">*</span></label>
+                    <input type="text" id="goods-origin" name="goodsOrigin"required >
+                </div>
+                <div class="form-group">
+                    <label for="order-info">배송정보<span class="rq">*</span></label>
+                    <input type="text" id="order-info" name="deliveryInfo" required >
+                </div>
+                <div class="form-group">
+                    <label for="seller">판매자<span class="rq">*</span></label>
+                    <input type="text" id="seller" name="seller" required >
+                </div>
+                <div class="form-group">
+                    <label for="sales-unit">판매단위<span class="rq">*</span></label>
+                    <input type="text" id="sales-unit" name="saleUnit" required >
+                </div>
+                <div class="form-group">
+                    <label for="goods-weight">중량/용량<span class="rq">*</span></label>
+                    <input type="text" id="goods-weight" name="weight" required >
+                </div>
+                
+                <div class="form-group">
+                    <label for="goods-stockStatus">재고 수량<span class="rq">*</span></label>
+                    <input type="text" id="goods-stockStatus" name="stock" required >
+                </div>
+                
+
+                <div class="form-group">
+			        <label for="goods-status">상태(판매/품절)<span class="rq">*</span></label>
+			        <!-- 숨겨진 input 필드 추가 -->
+			        <input type="hidden" id="goods-status" name="status" value="1">
+			        <!-- 버튼 클릭 시 상태를 설정 -->
+			        <button type="button" class="sale" id="onGoing">판매</button>
+			        <button type="button" class="sold-out" id="soldOut">품절</button>
+			    </div>
+
+			    
+			   <div class="buttons">
+                    <button type="submit" class="goods-update">등록</button>
+                </div>                
+            </form>
+        </div>
+	</div>
 </div>
 </main>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

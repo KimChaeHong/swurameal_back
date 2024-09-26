@@ -63,4 +63,11 @@ public class GoodsService {
 		goodsDto.setCategory("전통주");
 		return goodsDao.selectGoodsBySuggest(goodsDto);
 	}
+
+	//상품 DB에 등록
+	public void registGoods(GoodsDto goods) {
+		goodsDao.insert(goods);
+		log.info(goods.toString());
+		int goodsId = goods.getGoodsId();
+	}
 }

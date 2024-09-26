@@ -33,4 +33,7 @@ public interface GoodsDao {
 	//상품 추천 카테고리 가져오기
 	public List<GoodsSuggestDto> selectGoodsBySuggest(GoodsDto goodsDto);
 
+	//상품 등록하기
+	public int insert(GoodsDto goods);
+
 }

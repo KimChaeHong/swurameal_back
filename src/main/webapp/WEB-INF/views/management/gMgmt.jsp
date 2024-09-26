@@ -6,24 +6,24 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/goods.css">
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/admin.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/goodsMgmt.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/goods.css">
 
 <main class="container d-flex admin">
 <div class="admin-category">
 	<div class="category-box d-flex flex-column">
 		<h3>관리자 메뉴</h3>
 		<p
-			onclick="location.href='${pageContext.request.contextPath}/mgmt/gMgmt'"
+			onclick="location.href='${pageContext.request.contextPath}/management/registedList'"
 			style="color: rgb(117, 117, 117); font-weight: bold;">상품 관리</p>
 		<p
 			onclick="location.href='${pageContext.request.contextPath}/admin/answer'">1:1
 			문의 관리</p>
 		<p
-			onclick="location.href='${pageContext.request.contextPath}/admin/notice'">공지사항
+			onclick="location.href='${pageContext.request.contextPath}/notice/noticeList'">공지사항
 			관리</p>
 		<p
 			onclick="location.href='${pageContext.request.contextPath}/admin/faq'">FAQ
@@ -53,22 +53,24 @@
 				<div>상태</div>
 				<div>선택</div>
 			</div>
+			<c:forEach var="goods" items="${goodsList}" varStatus="status">
 			<div class="product-list">
 				<div class="goods-info d-flex align-items-center">
 					<i class="bi bi-check-square" data-select="1"></i>
-					<p>${item.goodsId}</p>
-					<img src="${item.mainImg}" />
-					<p>${item.goodsName}</p>
-					<p>${item.category}</p>
-					<p>${item.price}</p>
-					<p>${item.stockStatus}</p>
-					<p>${item.status}</p>
+					<p>${goods.goodsId}</p>
+			   		<img id="goods-info" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">		   
+					<p>${goods.goodsName}</p>
+					<p>${goods.category}</p>
+					<p><fmt:formatNumber value="${goods.price}" type="number" groupingUsed="true"/></p>
+					<p>${goods.stock}</p>
+					<p>${goods.status}</p>
 					<div class="d-flex flex-column">
-						<button>수정</button>
+						<button onclick="location.href='${pageContext.request.contextPath}/mgmt/gReg'">수정</button>
 						<button>삭제</button>
 					</div>
 				</div>
 			</div>
+			</c:forEach>
 			<button class="select-delete">선택상품삭제</button>
 			<div class="pagination"></div>
 		</div>

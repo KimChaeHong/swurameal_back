@@ -16,7 +16,7 @@ public class GoodsDto {
 	private String seller;
 	private String saleUnit;
 	private String weight;
-	private int stockStatus;
+	private int stock;
 	private int status;
 
 }
