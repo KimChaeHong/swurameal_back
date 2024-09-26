@@ -17,7 +17,7 @@
 	<div class="category-box d-flex flex-column">
 		<h3>관리자 메뉴</h3>
 		<p
-			onclick="location.href='${pageContext.request.contextPath}/management/registedList'"
+			onclick="location.href='${pageContext.request.contextPath}/mgmt/registedList'"
 			style="color: rgb(117, 117, 117); font-weight: bold;">상품 관리</p>
 		<p
 			onclick="location.href='${pageContext.request.contextPath}/admin/answer'">1:1
@@ -35,8 +35,6 @@
 		<div class="addButton">
 			<p>상품 관리</p>
 			<button data-flag="goods" onclick="location.href='${pageContext.request.contextPath}/mgmt/gReg'">상품등록</button>
-		
-		
 		</div>
 		<div class="horizontal-line"></div>
 	</div>
@@ -65,8 +63,8 @@
 					<p>${goods.stock}</p>
 					<p>${goods.status}</p>
 					<div class="d-flex flex-column">
-						<button onclick="location.href='${pageContext.request.contextPath}/mgmt/gReg'">수정</button>
-						<button>삭제</button>
+						<button onclick="location.href='${pageContext.request.contextPath}/mgmt/gUpdate?goodsId=${goods.goodsId}'">수정</button>
+						<button style="font-size: 11px">미판매</button>
 					</div>
 				</div>
 			</div>

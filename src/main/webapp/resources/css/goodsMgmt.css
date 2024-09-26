@@ -78,9 +78,7 @@
     border-radius: 4px;
     margin-right: 3px;
 }
-.sold-out:hover {
-    cursor: default;
-}
+
 .form-group button {
     border: 1px ridge var(--darkgray);
     background-color: white;

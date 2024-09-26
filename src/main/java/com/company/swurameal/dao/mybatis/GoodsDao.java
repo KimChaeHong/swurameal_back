@@ -16,7 +16,7 @@ public interface GoodsDao {
 	public GoodsDto selectByGoodsID(int goodsId);
 
 	//상품 이미지 가져오기
-	public GoodsImgDto selectAttachByGoodsID(int goodsId);
+	public GoodsImgDto selectAttachByGoodsImgId(int goodsImgId);
 	
 	//상품 이미지 imgRole에 따라 가져오기
 	public GoodsImgDto selectAttachByImgRole(GoodsImgDto goodsImgDto);
@@ -33,12 +33,13 @@ public interface GoodsDao {
 	//상품 추천 카테고리 가져오기
 	public List<GoodsSuggestDto> selectGoodsBySuggest(GoodsDto goodsDto);
 
-<<<<<<< HEAD
-	//상품 등록하기
-	public int insert(GoodsDto goods);
-
-=======
 	//알콜 추천 카테고리 가져오기
 	public List<GoodsSuggestDto> selectAlcoholBySuggest(GoodsDto goodsDto);
->>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back
+	
+	//상품 등록하기
+	public int insert(GoodsDto goods);
+	
+	//상품 수정하기
+	public int update(GoodsDto goods);
+
 }
