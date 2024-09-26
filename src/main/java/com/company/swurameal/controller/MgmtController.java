@@ -28,18 +28,17 @@ import lombok.extern.slf4j.Slf4j;
 public class MgmtController {
 	@Autowired
 	private GoodsService goodsService;
-
+	
 	// 등록 된 상품 목록 보기
 	@RequestMapping("/registedList")
 	public String adminGm(Model model) {
 		log.info("상품관리");
 		List<GoodsDto> goodsList = goodsService.getAllGoods();
 		model.addAttribute("goodsList", goodsList);
-
 		return "management/gMgmt";
 	}
 
-	// 상품 새로 등록하기 버튼
+	// 상품 새로 등록하기
 	@GetMapping("/gReg")
 	public String gReg() {
 
@@ -81,7 +80,7 @@ public class MgmtController {
 			imgList.add(goodsImg);
 		}
 
-		MultipartFile descAttach = form.getMainAttach();
+		MultipartFile descAttach = form.getDescAttach();
 		if (!descAttach.isEmpty()) {
 			GoodsImgDto goodsImg = new GoodsImgDto();
 			// goodsImg.setGoodsId(goods.getGoodsId());
@@ -93,7 +92,7 @@ public class MgmtController {
 			imgList.add(goodsImg);
 		}
 
-		MultipartFile detailAttach = form.getMainAttach();
+		MultipartFile detailAttach = form.getDetailAttach();
 		if (!detailAttach.isEmpty()) {
 			GoodsImgDto goodsImg = new GoodsImgDto();
 			// goodsImg.setGoodsId(goods.getGoodsId());
@@ -136,27 +135,66 @@ public class MgmtController {
 		goods.setWeight(form.getWeight());
 		goods.setStock(form.getStock());
 		goods.setStatus(form.getStatus());
+		
+		// 사진 3개를 받기 위해 맵으로 저장한다.
+		List<GoodsImgDto> imgList = new ArrayList<GoodsImgDto>();
 
+		MultipartFile mainAttach = form.getMainAttach();
+		if (!mainAttach.isEmpty()) {
+			GoodsImgDto goodsImg = new GoodsImgDto();
+			// goodsImg.setGoodsId(goods.getGoodsId());
+			goodsImg.setGoodsName(form.getGoodsName());
+			goodsImg.setImgRole("G_MAIN");
+			goodsImg.setGAttachData(mainAttach.getBytes());
+			goodsImg.setGAttachOname(mainAttach.getOriginalFilename());
+			goodsImg.setGAttachType(mainAttach.getContentType());
+			imgList.add(goodsImg);
+		}
 
-		goodsService.updateGoods(goods);
+		MultipartFile descAttach = form.getDescAttach();
+		if (!descAttach.isEmpty()) {
+			GoodsImgDto goodsImg = new GoodsImgDto();
+			// goodsImg.setGoodsId(goods.getGoodsId());
+			goodsImg.setGoodsName(form.getGoodsName());
+			goodsImg.setImgRole("G_DESCRIPTION");
+			goodsImg.setGAttachData(descAttach.getBytes());
+			goodsImg.setGAttachOname(descAttach.getOriginalFilename());
+			goodsImg.setGAttachType(descAttach.getContentType());
+			imgList.add(goodsImg);
+		}
+
+		MultipartFile detailAttach = form.getDetailAttach();
+		if (!detailAttach.isEmpty()) {
+			GoodsImgDto goodsImg = new GoodsImgDto();
+			// goodsImg.setGoodsId(goods.getGoodsId());
+			goodsImg.setGoodsName(form.getGoodsName());
+			goodsImg.setImgRole("G_DETAIL");
+			goodsImg.setGAttachData(detailAttach.getBytes());
+			goodsImg.setGAttachOname(detailAttach.getOriginalFilename());
+			goodsImg.setGAttachType(detailAttach.getContentType());
+			imgList.add(goodsImg);
+		}
+
+		goodsService.updateGoods(goods, imgList);
 		
 		return "redirect:/mgmt/registedList";
 	}
 
+	// 이미지 저장
 	@GetMapping("/downloadImage")
 	public void attachDownload(int goodsId, HttpServletResponse response) throws Exception {
 		GoodsImgDto goods = goodsService.getGoodsAttach(goodsId);
-
-		// 응답 헤더에 들어가는 Content-Type 파일 확장명을 보고 저장을 자동으로 해주기
+		
+		//응답 헤더에 들어가는 Content-Type 파일 확장명을 보고 저장을 자동으로 해주기
 		String contentType = goods.getGAttachType();
 		response.setContentType(contentType);
-
-		// 파일로 저장하기 위한 설정
+		
+		//파일로 저장하기 위한 설정				
 		String fileName = goods.getGAttachOname();
-		String encodingfileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
-		response.setHeader("Content-Disposition", "attachment; filename=\"" + encodingfileName + "\"");
-
-		// 응답 본문에 파일 데이터를 출력
+		String encodingfileName = new String(fileName.getBytes("UTF-8"),"ISO-8859-1");
+		response.setHeader("Content-Disposition", "attachment; filename=\""+encodingfileName+"\"");
+		
+		//응답 본문에 파일 데이터를 출력
 		OutputStream out = response.getOutputStream();
 		out.write(goods.getGAttachData());
 		out.flush();

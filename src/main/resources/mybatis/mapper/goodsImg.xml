@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.company.swurameal.dao.mybatis.GoodsImgDao">
-
+	<!-- 상품 이미지 등록 하기 -->
 	<insert id="insert" parameterType="GoodsImg">
 		<selectKey keyProperty="goodsImgId" resultType="int" order="BEFORE">
 			select SEQ_GOODSIMGID.nextval from dual
@@ -16,17 +16,18 @@
 			IMG_ROLE
 		)
 		values (
-			#{goodsImgId}, -- GOODS_IMG_ID: 이미지 ID
-			#{goodsId}, -- GOODS_ID: 상품 ID
-			#{goodsName}, -- GOODS_NAME: 상품 이름
-			#{gAttachOname}, -- G_ATTACH_ONAME: 원본 파일 이름
-			#{gAttachType}, -- G_ATTACH_TYPE: 파일 타입 (예: jpg, png)
-			#{gAttachData}, -- G_ATTACH_DATA: 파일 데이터 (BLOB 등)
-			#{imgRole} -- IMG_ROLE: 이미지 역할 (메인, 설명, 상세)
+			#{goodsImgId},
+			#{goodsId}, 
+			#{goodsName}, 
+			#{gAttachOname}, 
+			#{gAttachType}, 
+			#{gAttachData},
+			#{imgRole} 
 		)
 	</insert>
 	
-	<update id="update" parameterType="Goods">
+	<!-- 상품 이미지 수정하기 -->
+	<update id="update" parameterType="GoodsImg">
 		update goods set
 		<if test="gAttachOname != null">
 			G_ATTACH_ONAME = #{gAttachOname},

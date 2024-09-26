@@ -1,9 +1,6 @@
 package com.company.swurameal.service;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -85,7 +82,7 @@ public class GoodsService {
 		return goodsDao.selectAlcoholBySuggest(goodsDto);
 	}
 
-	// 상품 DB에 등록
+	// 상품 등록하기
 	@Transactional // 서비스 동작 처리 - 테이블 저장이 다 저장 되면 성공 하나라도 안되면 실패
 	public void registGoods(GoodsDto goods, List<GoodsImgDto> imgList) {
 		// goods 테이블
@@ -98,9 +95,17 @@ public class GoodsService {
 		}
 	}
 
-	// 상품 업데이트
-	public void updateGoods(GoodsDto goods) {
+	// 상품 수정하기
+	@Transactional
+	public void updateGoods(GoodsDto goods, List<GoodsImgDto> imgList) {
+		// goods 테이블
 		goodsDao.update(goods);
+		
+		// goodsImg 테이블
+		for (GoodsImgDto goodsImg : imgList) {
+			goodsImg.setGoodsId(goods.getGoodsId());
+			goodsImgDao.update(goodsImg);
+		}
 
 	}
 

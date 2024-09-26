@@ -56,7 +56,7 @@
 				<div class="goods-info d-flex align-items-center">
 					<i class="bi bi-check-square" data-select="1"></i>
 					<p>${goods.goodsId}</p>
-			   		<img id="goods-info" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">		   
+			   		<img id="goods-info" src="${pageContext.request.contextPath}/mgmt/downloadImage?goodsImgId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">		   
 					<p>${goods.goodsName}</p>
 					<p>${goods.category}</p>
 					<p><fmt:formatNumber value="${goods.price}" type="number" groupingUsed="true"/></p>
