@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <link rel="stylesheet" type="text/css"
@@ -48,27 +51,30 @@
 				</div>
 			</div>
 			<div class="review-writeable-page">
-				<div class="product-box">
-					<div class="product-details d-flex">
-						<img src="${item.img}" class="product-image" />
-						<div class="d-flex flex-column product-info">
-							<p>
-								<strong>주문 번호</strong> ${item.orderNumber}
-							</p>
-							<p>
-								<strong>주문 날짜</strong> ${item.orderDay}
-							</p>
-							<p>
-								<strong>상품명</strong> <span>${item.title}</span>
-							</p>
-							<p>
-								<strong>가격</strong> ${item.price}
-							</p>
-						</div>
+				<c:forEach items="${order}" var="order">
+					<div class="product-box">
+							<div class="product-details d-flex">
+								<img src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${order.goodsId}&imgRole=G_MAIN" alt="${order.goodsName}" class="product-image" />
+								<div class="d-flex flex-column product-info">
+									<p>
+										<strong>주문 번호</strong> ${order.orderId}
+									</p>
+									<p>
+										<strong>주문 날짜</strong> <fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd"/>
+									</p>
+									<p>
+										<strong>상품명</strong> <span>${order.goodsName}</span>
+									</p>
+									<p>
+										<strong>가격</strong> <fmt:formatNumber value="${order.goodsPrice}" type="number" groupingUsed="true"/>
+									</p>
+								</div>
+								
+							</div>					
+						<button class="insert-button" data-bs-toggle="modal"
+							data-bs-target="#staticBackdrop">작성하기</button>
 					</div>
-					<button class="insert-button" data-bs-toggle="modal"
-						data-bs-target="#staticBackdrop">작성하기</button>
-				</div>
+				</c:forEach>
 			</div>
 			<div class="review-written-page">
 				<div class="review-box d-flex flex-column">
@@ -87,7 +93,35 @@
 
 
 			</div>
-			<div class="pagination"></div>
+			<div class="pagination">
+					<a href="review?pageNo=1&month=${month}" class="btn btn-outline-dark btn-sm">처음</a>
+		
+					<c:if test="${pager.groupNo>1}">
+						<a href="review?pageNo=${pager.startPageNo-1}&month=${month}"
+							class="btn btn-outline-dark btn-sm">이전</a>
+					</c:if>
+		
+					<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
+						<c:if test="${pager.pageNo==i}">
+								<button class="page-num active" onclick="location.href='${pageContext.request.contextPath}/mypage/review?pageNo=${i}&month=${month}'">
+									${i}
+								</button>						
+						</c:if>
+						<c:if test="${pager.pageNo!=i}">
+								<button class="page-num" onclick="location.href='${pageContext.request.contextPath}/mypage/review?pageNo=${i}&month=${month}'">
+									${i}
+								</button>
+						</c:if>
+					</c:forEach>
+		
+					<c:if test="${pager.groupNo<pager.totalGroupNo}">
+						<a href="review?pageNo=${pager.endPageNo+1}&month=${month}"
+							class="btn btn-outline-dark btn-sm">다음</a>
+					</c:if>
+		
+					<a href="review?pageNo=${pager.totalPageNo}&month=${month}"
+						class="btn btn-outline-dark btn-sm">마지막</a>
+				</div>
 		</div>
 
 	</div>
@@ -95,5 +129,5 @@
 </div>
 </main>
 
-
+<script src="${pageContext.request.contextPath}/resources/js/review.js"></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

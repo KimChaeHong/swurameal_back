@@ -87,9 +87,30 @@ public class MypageCotroller {
 	}
 
 	@RequestMapping("/review")
-	public String mypageReview() {
-		log.info("후기");
-		return "mypage/review";
+	public String mypageReview(
+		@RequestParam(defaultValue="1") int pageNo,
+		@RequestParam(defaultValue="0") int month,
+		HttpSession session,
+		Model model, 
+		Authentication authentication
+		) {
+			CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+			UserDto user = userDetails.getUserDto();
+			String userId = user.getUserId();
+			
+			Map<String, Object> orderParams = new HashMap<>();
+			orderParams.put("userId", userId);
+			orderParams.put("month", month);
+			int totalRows = orderService.getTotalRows(orderParams);			
+			Pager pager = new Pager(5, 5, totalRows, pageNo);
+			orderParams.put("endRowNo", pager.getEndRowNo());
+			orderParams.put("startRowNo", pager.getStartRowNo());
+			session.setAttribute("pager", pager);
+			model.addAttribute("month", month);
+			
+			List<OrderWithItemsDto> order = orderService.getOrder(orderParams);
+			model.addAttribute("order", order);
+			return "mypage/review";
 	}
 
 	@RequestMapping("/modify")
