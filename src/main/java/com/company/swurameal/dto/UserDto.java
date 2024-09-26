@@ -22,4 +22,7 @@ public class UserDto {
 	private String userRole;
 	private boolean userEnable;
 	
+	// 중복 여부를 나타내는 필드 추가
+    private boolean isDuplicated;
+	
 }

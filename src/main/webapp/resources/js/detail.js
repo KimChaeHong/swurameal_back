@@ -59,7 +59,20 @@ $(document).ready(function() {
 		}
 	});
 
+	// 제품정보 버튼 클릭 시 해당 이미지로 이동
+    $("#move-info").on("click", function () {
+        $("#detail-img1")[0].scrollIntoView();
+    });
 
+    // 제품상세 버튼 클릭 시 해당 이미지로 이동
+    $("#move-detail").on("click", function () {
+        $("#detail-img2")[0].scrollIntoView();
+    });
+
+    // 리뷰 버튼 클릭 시 리뷰 섹션으로 이동
+    $("#move-review").on("click", function () {
+        $("#review-container")[0].scrollIntoView();
+    });
 
 });
 

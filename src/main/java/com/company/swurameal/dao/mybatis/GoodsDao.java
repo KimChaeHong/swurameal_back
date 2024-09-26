@@ -24,16 +24,21 @@ public interface GoodsDao {
 	//전체 상품 가져오기
 	public List<GoodsDto> selectAllGoods();
 	
-	//상품 카테고리 가져오기
+	//동일 카테고리 상품 가져오기
 	public List<GoodsDto> selectGoodsByCategory(String category);
 	
-	//상품 서브 카테고리 가져오기
+	//동일 서브 카테고리 상품 가져오기
 	public List<GoodsDto> selectGoodsBySubCategory(String subcategory);
 	
 	//상품 추천 카테고리 가져오기
 	public List<GoodsSuggestDto> selectGoodsBySuggest(GoodsDto goodsDto);
 
+<<<<<<< HEAD
 	//상품 등록하기
 	public int insert(GoodsDto goods);
 
+=======
+	//알콜 추천 카테고리 가져오기
+	public List<GoodsSuggestDto> selectAlcoholBySuggest(GoodsDto goodsDto);
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back
 }

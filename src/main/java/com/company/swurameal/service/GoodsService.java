@@ -58,10 +58,25 @@ public class GoodsService {
 	public List<GoodsSuggestDto> getGoodsBySuggest(GoodsDto goodsDto) {
 		return goodsDao.selectGoodsBySuggest(goodsDto);
 	}
-
+	
+	// 알콜 추천 메서드
 	public List<GoodsSuggestDto> getAlcoholBySuggest(GoodsDto goodsDto) {
-		goodsDto.setCategory("전통주");
-		return goodsDao.selectGoodsBySuggest(goodsDto);
+		String category = goodsDto.getCategory();
+		switch(category) {
+			case "한식":
+				goodsDto.setSubcategory("증류주");
+				break;
+			case "양식":
+				goodsDto.setSubcategory("과실주");
+				break;
+			case "분식":
+				goodsDto.setSubcategory("탁주");
+				break;
+			default:
+				goodsDto.setSubcategory("떡볶이");
+				break;
+		}			
+		return goodsDao.selectAlcoholBySuggest(goodsDto);			
 	}
 
 	//상품 DB에 등록

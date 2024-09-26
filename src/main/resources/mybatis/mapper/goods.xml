@@ -186,5 +186,39 @@
 	    ]]>
 	</select>
 
+	<select id="selectAlcoholBySuggest" parameterType="Goods" resultType="GoodsSuggest">
+		<![CDATA[
+		SELECT * FROM (
+			SELECT
+			    g.GOODS_ID,
+			    g.GOODS_NAME,
+			    DBMS_LOB.SUBSTR(g.GOODS_COMMENT, 30, 1) AS GOODS_COMMENT,
+			    g.CATEGORY,
+			    g.SUBCATEGORY,
+			    g.PRICE,
+			    COUNT(oi.GOODS_ID) AS COUNT_GOODS
+			FROM
+			    goods g
+			JOIN
+			    order_item oi ON oi.GOODS_ID = g.GOODS_ID
+			JOIN
+			    "ORDER" o ON o.ORDER_ID = oi.ORDER_ID
+			WHERE
+			    g.SUBCATEGORY = #{subcategory} 
+			    AND o.ORDER_DATE BETWEEN (SYSDATE - 90) AND SYSDATE
+			GROUP BY 
+			    g.GOODS_ID,
+			    g.GOODS_NAME,
+			    DBMS_LOB.SUBSTR(g.GOODS_COMMENT, 30, 1),
+			    g.CATEGORY,
+			    g.SUBCATEGORY,
+			    g.PRICE
+			ORDER BY 
+			    COUNT_GOODS DESC
+	    )
+	    WHERE ROWNUM <= 2
+	    ]]>
+	</select>
+
 </mapper>
 
