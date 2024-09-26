@@ -1,121 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.company.swurameal.dao.mybatis.GoodsDao">
+	<insert id="insert" parameterType="Goods">
+		<selectKey keyProperty="goodsId" resultType="int"
+			order="BEFORE">
+			select SEQ_GOODSID.nextval from dual
+		</selectKey>
+		insert into goods(
+		GOODS_ID,
+		GOODS_NAME,
+		CATEGORY,
+		SUBCATEGORY,
+		PRICE,
+		GOODS_COMMENT,
+		GOODS_ORIGIN,
+		DELIVERY_INFO,
+		SELLER,
+		SALE_UNIT,
+		WEIGHT,
+		STOCK,
+		STATUS
+		)
+		values(
+		#{goodsId},
+		#{goodsName},
+		#{category},
+		#{subcategory},
+		#{price},
+		#{goodsComment},
+		#{goodsOrigin},
+		#{deliveryInfo},
+		#{seller},
+		#{saleUnit},
+		#{weight},
+		#{stock},
+		#{status}
+		)
+	</insert>
+
+
+	<update id="update" parameterType="Goods">
+		UPDATE goods
+		SET
+		GOODS_NAME = #{goodsName},
+		CATEGORY = #{category},
+		SUBCATEGORY = #{subcategory},
+		PRICE = #{price},
+		GOODS_COMMENT = #{goodsComment},
+		GOODS_ORIGIN = #{goodsOrigin},
+		DELIVERY_INFO = #{deliveryInfo},
+		SELLER = #{seller},
+		SALE_UNIT = #{saleUnit},
+		WEIGHT = #{weight},
+		STOCK = #{stock},
+		STATUS = #{status}
+		WHERE
+		GOODS_ID = #{goodsId}
+	</update>
 
 	<!-- 특정 상품 가져오기 -->
 	<select id="selectByGoodsID" resultType="Goods">
 		SELECT
-			GOODS_ID,
-			GOODS_NAME,
-			CATEGORY,
-			SUBCATEGORY,
-			PRICE,
-			GOODS_COMMENT, 
-	        GOODS_ORIGIN, 
-	        DELIVERY_INFO, 
-	        SELLER, 
-	        SALE_UNIT, 
-	        WEIGHT, 
-	        STOCK, 
-	        STATUS
+		GOODS_ID,
+		GOODS_NAME,
+		CATEGORY,
+		SUBCATEGORY,
+		PRICE,
+		GOODS_COMMENT,
+		GOODS_ORIGIN,
+		DELIVERY_INFO,
+		SELLER,
+		SALE_UNIT,
+		WEIGHT,
+		STOCK,
+		STATUS
 		FROM goods
-		WHERE GOODS_ID = #{goodsId}
+		WHERE
+		GOODS_ID = #{goodsId}
 	</select>
 
 	<!-- 상품 전체 가져오기 -->
 	<select id="selectAllGoods" resultType="Goods">
 		SELECT
-			GOODS_ID,
-			GOODS_NAME,
-			CATEGORY,
-			SUBCATEGORY,
-			PRICE,
-			GOODS_COMMENT, 
-	        GOODS_ORIGIN, 
-	        DELIVERY_INFO, 
-	        SELLER, 
-	        SALE_UNIT, 
-	        WEIGHT, 
-	        STOCK, 
-	        STATUS
+		GOODS_ID,
+		GOODS_NAME,
+		CATEGORY,
+		SUBCATEGORY,
+		PRICE,
+		GOODS_COMMENT,
+		GOODS_ORIGIN,
+		DELIVERY_INFO,
+		SELLER,
+		SALE_UNIT,
+		WEIGHT,
+		STOCK,
+		STATUS
 		FROM goods
+		ORDER BY
+		GOODS_ID DESC
 	</select>
-	
+
 	<!-- 상품 카테고리 가져오기 -->
-	<select id ="selectGoodsByCategory" resultType="Goods" 
+	<select id="selectGoodsByCategory" resultType="Goods"
 		parameterType="String">
 		SELECT
-			GOODS_ID,
-			GOODS_NAME,
-			CATEGORY,
-			SUBCATEGORY,
-			PRICE,
-			GOODS_COMMENT, 
-	        GOODS_ORIGIN, 
-	        DELIVERY_INFO, 
-	        SELLER, 
-	        SALE_UNIT, 
-	        WEIGHT, 
-	        STOCK, 
-	        STATUS
+		GOODS_ID,
+		GOODS_NAME,
+		CATEGORY,
+		SUBCATEGORY,
+		PRICE,
+		GOODS_COMMENT,
+		GOODS_ORIGIN,
+		DELIVERY_INFO,
+		SELLER,
+		SALE_UNIT,
+		WEIGHT,
+		STOCK,
+		STATUS
 		FROM goods
 		WHERE CATEGORY = #{Category}
-		
+
 	</select>
-	
+
 	<!-- 상품 서브 카테고리 가져오기 -->
-	<select id ="selectGoodsBySubCategory" resultType="Goods" 
+	<select id="selectGoodsBySubCategory" resultType="Goods"
 		parameterType="String">
 		SELECT
-			GOODS_ID,
-			GOODS_NAME,
-			CATEGORY,
-			SUBCATEGORY,
-			PRICE,
-			GOODS_COMMENT, 
-	        GOODS_ORIGIN, 
-	        DELIVERY_INFO, 
-	        SELLER, 
-	        SALE_UNIT, 
-	        WEIGHT, 
-	        STOCK, 
-	        STATUS
+		GOODS_ID,
+		GOODS_NAME,
+		CATEGORY,
+		SUBCATEGORY,
+		PRICE,
+		GOODS_COMMENT,
+		GOODS_ORIGIN,
+		DELIVERY_INFO,
+		SELLER,
+		SALE_UNIT,
+		WEIGHT,
+		STOCK,
+		STATUS
 		FROM goods
 		WHERE SUBCATEGORY = #{subcategory}
-		
+
 	</select>
-	
+
 	<!-- 상품 이미지 가져오기 -->
-	<select id="selectAttachByGoodsID" resultType="GoodsImg"
+	<select id="selectAttachByGoodsImgId" resultType="GoodsImg"
 		parameterType="int">
 		SELECT
-			GOODS_IMG_ID,
-			GOODS_ID,
-			GOODS_NAME,
-			G_ATTACH_ONAME,
-			G_ATTACH_TYPE,
-			G_ATTACH_DATA,
-			IMG_ROLE
+		GOODS_IMG_ID,
+		GOODS_ID,
+		GOODS_NAME,
+		G_ATTACH_ONAME,
+		G_ATTACH_TYPE,
+		G_ATTACH_DATA,
+		IMG_ROLE
 		FROM goods_img
-		WHERE GOODS_ID = #{goodsId}
+		WHERE GOODS_ID =
+		#{goodsId}
 	</select>
-	
+
 	<!-- 상품 이미지 imgRole에 따라 가져오기 -->
 	<select id="selectAttachByImgRole" resultType="GoodsImg"
 		parameterType="GoodsImg">
 		SELECT
-			GOODS_IMG_ID,
-			GOODS_ID,
-			GOODS_NAME,
-			G_ATTACH_ONAME,
-			G_ATTACH_TYPE,
-			G_ATTACH_DATA,
-			IMG_ROLE
+		GOODS_IMG_ID,
+		GOODS_ID,
+		GOODS_NAME,
+		G_ATTACH_ONAME,
+		G_ATTACH_TYPE,
+		G_ATTACH_DATA,
+		IMG_ROLE
 		FROM goods_img
-		WHERE GOODS_ID = #{goodsId} AND IMG_ROLE = #{imgRole}
+		WHERE GOODS_ID =
+		#{goodsId} AND IMG_ROLE = #{imgRole}
 	</select>
-	
-	<select id="selectGoodsBySuggest" parameterType="Goods" resultType="GoodsSuggest">
+
+	<select id="selectGoodsBySuggest" parameterType="Goods"
+		resultType="GoodsSuggest">
 		<![CDATA[
 		SELECT * FROM (
 			SELECT
@@ -149,7 +211,8 @@
 	    ]]>
 	</select>
 
-	<select id="selectAlcoholBySuggest" parameterType="Goods" resultType="GoodsSuggest">
+	<select id="selectAlcoholBySuggest" parameterType="Goods"
+		resultType="GoodsSuggest">
 		<![CDATA[
 		SELECT * FROM (
 			SELECT
