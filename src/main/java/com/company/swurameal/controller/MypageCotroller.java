@@ -2,9 +2,12 @@ package com.company.swurameal.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.company.swurameal.dto.OrderWithItemsDto;
+import com.company.swurameal.dto.Pager;
 import com.company.swurameal.dto.PickDto;
 import com.company.swurameal.dto.UserDto;
 import com.company.swurameal.sercurity.CustomUserDetails;
@@ -56,15 +61,29 @@ public class MypageCotroller {
 	}
 
 	@RequestMapping("/order")
-	public String mypageOrder(Model model, Authentication authentication) {
-		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-		UserDto user = userDetails.getUserDto();
-		String userId = user.getUserId();
-		
-		List<OrderWithItemsDto> order = orderService.getOrder(userId);
-		model.addAttribute("order", order);
-		log.info("주문내역");
-		return "mypage/order";
+	public String mypageOrder(
+		@RequestParam(defaultValue="1") int pageNo,
+		@RequestParam(defaultValue="3") int month,
+		HttpSession session,
+		Model model, 
+		Authentication authentication) {
+			CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+			UserDto user = userDetails.getUserDto();
+			String userId = user.getUserId();
+			
+			Map<String, Object> orderParams = new HashMap<>();
+			orderParams.put("userId", userId);
+			orderParams.put("month", month);
+			int totalRows = orderService.getTotalRows(orderParams);			
+			Pager pager = new Pager(5, 5, totalRows, pageNo);
+			orderParams.put("endRowNo", pager.getEndRowNo());
+			orderParams.put("startRowNo", pager.getStartRowNo());
+			session.setAttribute("pager", pager);
+			model.addAttribute("month", month);
+			
+			List<OrderWithItemsDto> order = orderService.getOrder(orderParams);
+			model.addAttribute("order", order);
+			return "mypage/order";
 	}
 
 	@RequestMapping("/review")

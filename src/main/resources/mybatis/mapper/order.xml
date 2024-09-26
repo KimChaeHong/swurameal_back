@@ -11,6 +11,7 @@
 			o.ORDER_DATE,
 			oi.GOODS_ID,
 			oi.GOODS_PRICE,
+			gi.GOODS_NAME,
 			gi.G_ATTACH_ONAME,
 			gi.G_ATTACH_TYPE,
 			gi.G_ATTACH_DATA,
@@ -22,7 +23,82 @@
 		JOIN
 			goods_img gi on oi.GOODS_ID = gi.GOODS_ID
 		WHERE
-			o.USER_ID = #{userId} <!-- AND o.ORDER_DATE BETWEEN TODATE(sysdate, 'yyyy-MM-dd') AND #{end_date} -->
+			o.USER_ID = #{userId}
+		AND o.ORDER_DATE BETWEEN (SYSDATE - 90) AND SYSDATE
+	</select>
+	
+	<select id="selectOrderList" parameterType="map" resultType="OrderWithItems">
+		
+			SELECT 
+			    ORDER_ID,
+			    USER_ID,
+			    DELIVERY_STATUS,
+			    ORDER_STATUS,
+			    ORDER_DATE,
+			    GOODS_ID,
+			    GOODS_PRICE,
+			    GOODS_NAME,
+			    G_ATTACH_ONAME,
+			    G_ATTACH_TYPE,
+			    G_ATTACH_DATA,
+			    IMG_ROLE
+			FROM (
+			    SELECT 
+			        rownum as rnum, 
+			        ORDER_ID,
+			        USER_ID,
+			        DELIVERY_STATUS,
+			        ORDER_STATUS,
+			        ORDER_DATE,
+			        GOODS_ID,
+			        GOODS_PRICE,
+			        GOODS_NAME,
+			        G_ATTACH_ONAME,
+			        G_ATTACH_TYPE,
+			        G_ATTACH_DATA,
+			        IMG_ROLE
+			    FROM (
+			        SELECT
+			            o.ORDER_ID,
+			            o.USER_ID,
+			            o.DELIVERY_STATUS,
+			            o.ORDER_STATUS,
+			            o.ORDER_DATE,
+			            oi.GOODS_ID,
+			            oi.GOODS_PRICE,
+			            gi.GOODS_NAME,
+			            gi.G_ATTACH_ONAME,
+			            gi.G_ATTACH_TYPE,
+			            gi.G_ATTACH_DATA,
+			            gi.IMG_ROLE
+			        FROM
+			            "ORDER" o 
+			        JOIN 
+			            order_item oi ON o.ORDER_ID = oi.ORDER_ID
+			        JOIN
+			            goods_img gi ON oi.GOODS_ID = gi.GOODS_ID
+			        WHERE
+			            o.USER_ID = #{userId}
+			            <if test="month != 0">
+			            	AND o.ORDER_DATE BETWEEN add_months(SYSDATE, -#{month}) AND SYSDATE
+			            </if>
+			        ORDER BY o.ORDER_DATE DESC
+			    )
+			    WHERE rownum &lt;= #{endRowNo}
+			) 
+			WHERE rnum &gt;= #{startRowNo}			
+		
+	</select>
+	
+	<select id="countRows" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM "ORDER" o
+		JOIN order_item oi On o.ORDER_ID = oi.ORDER_ID
+		JOIN goods_img gi ON oi.GOODS_ID = gi.GOODS_ID
+		WHERE o.USER_ID = #{userId}
+		<if test="month != 0">
+        	AND o.ORDER_DATE BETWEEN add_months(SYSDATE, -#{month}) AND SYSDATE
+        </if>
 	</select>
 
 </mapper>
