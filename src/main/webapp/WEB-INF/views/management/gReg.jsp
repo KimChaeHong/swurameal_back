@@ -44,7 +44,7 @@
 				</div>
 				<div class="form-group">
 				    <label>대표 이미지<span class="rq">*</span></label>
-				    <input type="file" id="rep-img" name="mainAttach"tyle="display: none;" onchange="showFileName(this, 'rep-img-input')">
+				    <input type="file" id="rep-img" name="mainAttach" style="display: none;" onchange="showFileName(this, 'rep-img-input')">
 				    <div id="rep-img-input">선택된 파일이 없습니다.</div>
 				    <button type="button" class="file-select" data-btn="rep-img" onclick="document.getElementById('rep-img').click()">파일 선택</button>
 				</div>

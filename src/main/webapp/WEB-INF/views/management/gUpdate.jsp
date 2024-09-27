@@ -37,7 +37,7 @@
 	<div class="page-upload">
 		<div class="form-container">
             <form method="post" action="updateGoods" enctype="multipart/form-data">
-				<input id="bno" type="hidden" name="goodsId" class="form-control" readonly value="${goods.goodsId}"/>
+				<input type="hidden" name="goodsId" class="form-control" readonly value="${goods.goodsId}"/> 
                 <div class="form-group">
 				    <label for="goods-name">상품명<span class="rq">*</span></label>
 				    <input type="text" id="goods-name" name="goodsName" value="${goods.goodsName}" required>
@@ -51,7 +51,7 @@
 				<div class="form-group">
 				    <label>설명 이미지<span class="rq">*</span></label>
 				    <input type="file" id="description-img" name="descAttach" style="display: none;" onchange="showFileName(this, 'description-img-input')">
-				    <div id="description-img-input" >선택된 파일이 없습니다.</div>
+				    <div id="description-img-input">선택된 파일이 없습니다.</div>
 				    <button type="button" class="file-select" data-btn="description-img" onclick="document.getElementById('description-img').click()">파일 선택</button>
 				</div>
 				<div class="form-group">
