@@ -49,7 +49,19 @@
               <div id="collapse0" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="">
                   <div id="content0" class="accordion-body">
                       ${faq.faqContent}
-                      <div class="form-button-container"><span class="btn btn-md form-button" data-num="0">${faq.userId}</span></div>
+                      
+                     <div class="form-button-container"><span class="btn btn-md form-button" data-num="0"></span></div>
+                   
+	                   <div class="update-button d-flex flex-grow-1 justify-content-end">
+				            <a href="${pageContext.request.contextPath}/faq/faqUpdateForm?faqId=${faq.faqId}">
+				            	<button>수정</button> 
+				            </a>
+				            <span>|</span>
+				            <a href="${pageContext.request.contextPath}/faq/faqDelete?faqId=${faq.faqId}">
+				            	<button>삭제</button>            
+				            </a>
+				        </div>   
+                 
                   </div>
               </div>
           </div>

@@ -237,3 +237,22 @@ h5.active {
 .page-upload {
     margin-bottom: 50px;
 }
+
+
+.update-button {
+    margin-top: 5px;
+    margin-left: auto;
+    width: 100px;
+    height: 30px;
+}
+
+
+.update-button button {
+    background-color:transparent;
+    color: #999999;
+    border: none;
+    border-radius: 4px;
+    margin: 0px;
+    padding-left: 5px;
+    font-size: 14px;
+}

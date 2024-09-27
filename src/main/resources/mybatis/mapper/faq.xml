@@ -86,8 +86,8 @@
 	<update id="update" parameterType="Faq">
 		UPDATE faq
 		SET
-			USER_ID = #{userId},
-			FAQ_TITLE = #{faqTitle}
+			FAQ_TITLE = #{faqTitle},
+			FAQ_CONTENT = #{faqContent}
 		WHERE FAQ_ID = #{faqId}
 	</update>
 	

@@ -120,25 +120,28 @@ public class MypageCotroller {
 	@Secured("ROLE_USER")
 	@PostMapping("/update")
     public String updateUser(UserDto userDto, Authentication authentication) {
+		String userId = authentication.getName();
+		
 		if (userDto.getUserRole() == null || userDto.getUserRole().isEmpty()) {
-			userDto.setUserRole("ROLE_USER"); //적절한 기본값으로 설정
+			userDto.setUserRole("ROLE_USER");
 		}
 		
-		//기존 사용자 정보 가져오기
-		UserDto existingUser = userService.findUserById(userDto.getUserId());
-		//비밀번호가 입력된 경우만 업데이트
+		//비밀번호 업데이트 처리
 		if (userDto.getUserPw() != null && !userDto.getUserPw().isEmpty()) {
-			
-			userDto.setUserPw(userDto.getUserPw());
+			PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+			String hashedPassword = passwordEncoder.encode(userDto.getUserPw());
+			userDto.setUserPw(hashedPassword);
 		} else {
 			//비밀번호가 입력되지 않으면 기존 비밀번호 유지
+			UserDto existingUser = userService.findUserById(userId);
 			userDto.setUserPw(existingUser.getUserPw());
 		}
 		
-		log.info("비밀번호" + userDto.getUserPw() + userDto.toString());
 		userService.updateByUserId(userDto);
 		return "mypage/modify";
-    }	
+	
+	}
+		
 	
 	//Db에서 사용자 정보 가져오기
 		@Secured("ROLE_USER")
