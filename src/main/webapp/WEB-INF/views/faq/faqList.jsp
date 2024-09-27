@@ -15,7 +15,7 @@
 		<div class="category-box d-flex flex-column">
 			<h3>관리자 메뉴</h3>
 			<p onclick="location.href='${pageContext.request.contextPath}/mgmt/registedList'" style="color: rgb(117, 117, 117); font-weight: normal;">상품 관리</p>
-			<p onclick="location.href='${pageContext.request.contextPath}/admin/answer'" style="color: rgb(117, 117, 117); font-weight: normal;">1:1 문의 관리</p>
+			<p onclick="location.href='${pageContext.request.contextPath}/qna/qnaList'" style="color: rgb(117, 117, 117); font-weight: normal;">QnA 관리</p>
 			<p onclick="location.href='${pageContext.request.contextPath}/notice/noticeList'" style="color: rgb(117, 117, 117); font-weight: normal;">공지사항 관리</p>
 			<p onclick="location.href='${pageContext.request.contextPath}/faq/faqList'" style="color: rgb(107, 6, 9); font-weight: bold;">FAQ 관리</p>
 		</div>
@@ -49,7 +49,19 @@
               <div id="collapse0" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="">
                   <div id="content0" class="accordion-body">
                       ${faq.faqContent}
-                      <div class="form-button-container"><span class="btn btn-md form-button" data-num="0">${faq.userId}</span></div>
+                      
+                     <div class="form-button-container"><span class="btn btn-md form-button" data-num="0"></span></div>
+                   
+	                   <div class="update-button d-flex flex-grow-1 justify-content-end">
+				            <a href="${pageContext.request.contextPath}/faq/faqUpdateForm?faqId=${faq.faqId}">
+				            	<button>수정</button> 
+				            </a>
+				            <span>|</span>
+				            <a href="${pageContext.request.contextPath}/faq/faqDelete?faqId=${faq.faqId}">
+				            	<button>삭제</button>            
+				            </a>
+				        </div>   
+                 
                   </div>
               </div>
           </div>
