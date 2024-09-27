@@ -2,14 +2,11 @@ package com.company.swurameal.controller;
 
 import java.util.HashMap;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -20,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -66,24 +64,6 @@ public class MypageCotroller {
 		model.addAttribute("pickGoods", pickGoods);
 		
 		return "mypage/pick";
-	}
-
-	@RequestMapping("/order")
-	public String mypageOrder(Model model, Authentication authentication) {
-		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-		UserDto user = userDetails.getUserDto();
-		String userId = user.getUserId();
-		
-		List<OrderWithItemsDto> order = orderService.getOrder(userId);
-		model.addAttribute("order", order);
-		log.info("주문내역");
-		return "mypage/order";
-	}
-
-	@RequestMapping("/review")
-	public String mypageReview() {
-		log.info("후기");
-		return "mypage/review";
 	}
 
 	/*@PostMapping("/modifyAjax")
