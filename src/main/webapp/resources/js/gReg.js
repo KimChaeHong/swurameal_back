@@ -1,5 +1,4 @@
-document
-		.addEventListener(
+document.addEventListener(
 				"DOMContentLoaded",
 				function() {
 					// 카테고리와 서브 카테고리 매핑 정보
