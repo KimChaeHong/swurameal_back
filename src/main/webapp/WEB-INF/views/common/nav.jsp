@@ -43,7 +43,7 @@
         </div>
 
         <!-- 오른쪽 아이콘들 -->
-        <sec:authorize access="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
+        
 	        <div id="icon" class="col-auto d-flex justify-content-end">
 	            <a class="nav-link" href='${pageContext.request.contextPath}/mypage/pick'><i class="bi bi-heart"></i></a>
 	            <a class="nav-link" href='${pageContext.request.contextPath}/cart/itemList'><i class="bi bi-cart"></i></a>            
@@ -54,7 +54,7 @@
 	            	<span id="cartCnt" class="cartCount position-absolute">Loading..</span>
 	            </c:if>	
 	        </div>
-        </sec:authorize>
+       
     </div>
 </div>
 </nav>
