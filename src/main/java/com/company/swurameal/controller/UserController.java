@@ -4,6 +4,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.company.swurameal.dto.UserDto;
+import com.company.swurameal.sercurity.CustomUserDetails;
 import com.company.swurameal.service.UserService;
 import com.company.swurameal.service.UserService.JoinResult;
 
@@ -93,6 +96,4 @@ public class UserController {
 		log.info("확인용");
 		return "user/findPassword";
 	}
-	
-	
 }

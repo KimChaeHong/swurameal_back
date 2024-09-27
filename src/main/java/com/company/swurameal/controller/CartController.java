@@ -119,4 +119,14 @@ public class CartController {
 		cartService.updateGoodsFromCart(cartItem);
 		return "ok";
 	}	
+	
+	//수량 업데이트
+	@Secured("ROLE_USER")
+	@GetMapping("/itemCount")
+	@ResponseBody //응답 본문으로 직접 데이터를 반환
+	public int itemCount(Authentication authentication) {	
+		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+		String userId = userDetails.getUsername(); //사용자 ID 가져오기
+		return cartService.countItemsInCart(userId); //현재 카트 아이템 수량 반환
+	}
 }
