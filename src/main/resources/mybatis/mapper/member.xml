@@ -27,13 +27,6 @@
 		#{userBirth},
 		1, 'ROLE_USER')
 	</insert>
-
- 	 <!-- userId로 아이디 존재 여부를 확인하는 select 구문 -->
-	 <select id="existsByUserId" resultType="boolean" parameterType="string">
-        SELECT COUNT(*) > 0
-        FROM member
-        WHERE user_id = #{userId}
-    </select>
     
 </mapper>
 

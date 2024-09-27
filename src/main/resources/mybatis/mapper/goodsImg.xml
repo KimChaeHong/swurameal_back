@@ -28,13 +28,15 @@
 	
 	<!-- 상품 이미지 수정하기 -->
 	<update id="update" parameterType="GoodsImg">
-		update goods set
+		update goods_img set
 		<if test="gAttachOname != null">
 			G_ATTACH_ONAME = #{gAttachOname},
 			G_ATTACH_TYPE = #{gAttachType},
 			G_ATTACH_DATA = #{gAttachData}
 		</if>
 		where GOODS_ID = #{goodsId}
+			AND IMG_ROLE = #{imgRole}
+	
 	</update>
 	
 	

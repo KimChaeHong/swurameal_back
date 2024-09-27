@@ -9,5 +9,5 @@ public interface UserDao {
 	
 	public int insert(UserDto user);
 	public UserDto selectByUserId(String userId);
-	public boolean existsByUserId(String userId);
+	
 }

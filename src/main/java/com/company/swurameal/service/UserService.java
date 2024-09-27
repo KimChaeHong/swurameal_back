@@ -42,7 +42,12 @@ public class UserService {
 
 	// 중복 체크를 위한 메서드
     public boolean isUserid(String userId) {
-        return userDao.existsByUserId(userId); // userId가 존재하는지 확인하는 메서드
+        UserDto user = userDao.selectByUserId(userId);
+        if (user == null) {
+			return false;
+		}else {
+			return true;
+		}
     }
 	
 	public LoginResult login(UserDto user) {

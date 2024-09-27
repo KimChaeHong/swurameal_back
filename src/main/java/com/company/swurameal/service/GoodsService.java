@@ -96,14 +96,13 @@ public class GoodsService {
 	}
 
 	// 상품 수정하기
+	// goodsId, goodsRole 
 	@Transactional
 	public void updateGoods(GoodsDto goods, List<GoodsImgDto> imgList) {
 		// goods 테이블
 		goodsDao.update(goods);
-		
 		// goodsImg 테이블
 		for (GoodsImgDto goodsImg : imgList) {
-			goodsImg.setGoodsId(goods.getGoodsId());
 			goodsImgDao.update(goodsImg);
 		}
 

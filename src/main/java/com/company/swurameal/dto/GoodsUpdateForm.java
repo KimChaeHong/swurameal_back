@@ -6,7 +6,8 @@ import lombok.Data;
 
 @Data
 public class GoodsUpdateForm {
-	private int goodsId;
+	
+	public int goodsId;
 	private String goodsName;
 	private String category;
 	private String subcategory;
@@ -23,4 +24,5 @@ public class GoodsUpdateForm {
 	private MultipartFile mainAttach;
 	private MultipartFile descAttach;
 	private MultipartFile detailAttach;
+
 }
