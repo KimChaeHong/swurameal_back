@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.company.swurameal.dto.FaqDto;
 import com.company.swurameal.dto.NoticeDto;
 import com.company.swurameal.dto.Pager;
+import com.company.swurameal.service.FaqService;
 import com.company.swurameal.service.NoticeService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +24,9 @@ import lombok.extern.slf4j.Slf4j;
 public class SupportController {
 	@Autowired
 	private NoticeService noticeService;
+	
+	@Autowired
+	private FaqService faqService;
 	
 	@RequestMapping("/notice")
 	public String supportNotice(
@@ -36,10 +41,13 @@ public class SupportController {
 			model.addAttribute("list", list);		
 			return "support/notice";
 	}
-	
+
 	@RequestMapping("/faq")
-	public String supportFaq() {
+	public String supportFaq(String faq, Model model) {
+		List<FaqDto> list = faqService.getFaq(faq);
+		model.addAttribute("list", list);
 		log.info("자주하는 질문");
+		
 		return "support/faq";
 	}
 	

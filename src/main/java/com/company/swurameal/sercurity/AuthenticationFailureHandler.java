@@ -21,7 +21,7 @@ public class AuthenticationFailureHandler extends SimpleUrlAuthenticationFailure
 		
 		log.info("실패");
 		log.info(exception.getMessage());
-		setDefaultFailureUrl("/user/login");
+		setDefaultFailureUrl("/user/loginForm");
 		
 		super.onAuthenticationFailure(request, response, exception);
 		

@@ -3,7 +3,6 @@ package com.company.swurameal.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.company.swurameal.dto.UserDto;
 import com.company.swurameal.service.UserService;
@@ -68,19 +66,7 @@ public class UserController {
 		}	
 	}
 	
-	// GET 요청으로 /user/check-duplicate 경로를 처리
-    @GetMapping("/check-duplicate")
-    public ResponseEntity<Boolean> checkDuplicate(@RequestParam("userId") String userId) {
-        // userId가 비어 있는지 확인 (유효성 검사)
-        if (userId == null || userId.trim().isEmpty()) {
-            return ResponseEntity.badRequest().body(false);
-        }
 
-        // userService를 통해 userId 중복 확인
-        boolean isDuplicate = userService.isUserIdExists(userId);
-        return ResponseEntity.ok(isDuplicate);
-    }
-	
 	@RequestMapping("/find/id")
 	public String findId() {
 		log.info("아이디 찾기");
@@ -93,6 +79,4 @@ public class UserController {
 		log.info("확인용");
 		return "user/findPassword";
 	}
-	
-	
 }

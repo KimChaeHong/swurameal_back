@@ -28,5 +28,91 @@
         FROM faq	
 	</select>
 	
+	<!-- 페이징 처리 -->
+	<select id="selectListPager" parameterType="Pager" resultType="Faq">
+		<![CDATA[
+			SELECT 
+				FAQ_ID, 
+				USER_ID, 
+				FAQ_TITLE, 
+				FAQ_CONTENT, 
+				FAQ_REGISTER_DATE
+			FROM (
+				SELECT 
+					ROWNUM AS rnum,
+					FAQ_ID,
+					USER_ID,
+					FAQ_TITLE,
+					FAQ_CONTENT,
+					FAQ_REGISTER_DATE
+				FROM (
+					SELECT
+						FAQ_ID,
+						USER_ID,
+						FAQ_TITLE,
+						FAQ_CONTENT,
+						FAQ_REGISTER_DATE
+					FROM faq
+					ORDER BY FAQ_ID DESC
+				)
+				WHERE ROWNUM <= #{endRowNo}
+			)
+			WHERE rnum >= #{startRowNo}
+		]]>
+	</select>
+	
+	<!-- FAQ 작성 -->
+	<insert id="insert" parameterType="Faq">
+		<selectKey keyProperty="faqId" resultType="int" order="BEFORE">
+			select seq_faqId.nextval from dual
+		</selectKey>
+		INSERT INTO faq (
+			FAQ_ID, 
+			USER_ID, 
+			FAQ_TITLE, 
+			FAQ_CONTENT, 
+			FAQ_REGISTER_DATE
+			) 
+		VALUES (
+			#{faqId},
+			#{userId},
+			#{faqTitle},
+			#{faqContent},
+			sysdate
+		)
+	</insert>
+		
+	<!-- FAQ 수정 -->
+	<update id="update" parameterType="Faq">
+		UPDATE faq
+		SET
+			USER_ID = #{userId},
+			FAQ_TITLE = #{faqTitle}
+		WHERE FAQ_ID = #{faqId}
+	</update>
+	
+	<!-- FAQ 삭제 -->
+	<delete id="delete" parameterType="Faq">
+		DELETE FROM faq
+		WHERE FAQ_ID = #{faqId}
+	</delete>
+	
+	<!-- FAQ 하나의 내용 가져오기 -->
+	<select id="selectByFaqId" parameterType="int" resultType="Faq">
+		SELECT 
+			FAQ_ID, 
+			FAQ_ID,
+			FAQ_TITLE, 
+			FAQ_CONTENT, 
+			FAQ_REGISTER_DATE
+		FROM faq
+		WHERE FAQ_ID = #{faqId}
+	</select>
+	
+	<!-- FAQ 데이터 갯수 카운터 > pager -->
+	<select id="countRows" resultType="int">
+		SELECT COUNT(*) FROM faq
+	</select>
+	
 </mapper>	
 	

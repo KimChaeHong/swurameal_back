@@ -1,7 +1,11 @@
 package com.company.swurameal.controller;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.company.swurameal.service.NoticeService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -10,10 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AdminController {
 	
-	@RequestMapping("/faq")
-	public String adminFaq() {
-		log.info("자주하는 질문");
-		return "admin/faq";
+	@Autowired
+	private NoticeService noticeService;
+	
+	@RequestMapping("/goodsManagement")
+	public String adminGm() {
+		log.info("상품관리");
+		return "admin/goodsManagement";
 	}
 	
 	@RequestMapping("/answer")

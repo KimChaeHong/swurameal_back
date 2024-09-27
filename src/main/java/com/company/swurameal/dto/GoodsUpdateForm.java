@@ -1,11 +1,13 @@
 package com.company.swurameal.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
-public class GoodsDto {
+public class GoodsUpdateForm {
 	
-	private int goodsId;
+	public int goodsId;
 	private String goodsName;
 	private String category;
 	private String subcategory;
@@ -19,5 +21,8 @@ public class GoodsDto {
 	private int stock;
 	private int status;
 	
+	private MultipartFile mainAttach;
+	private MultipartFile descAttach;
+	private MultipartFile detailAttach;
 
 }

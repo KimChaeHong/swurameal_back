@@ -14,8 +14,8 @@
 			<h3>관리자 메뉴</h3>
 			<p onclick="location.href='${pageContext.request.contextPath}/admin/goodsManagement'" style="color: rgb(117, 117, 117); font-weight: normal;">상품 관리</p>
 			<p onclick="location.href='${pageContext.request.contextPath}/admin/answer'" style="color: rgb(117, 117, 117); font-weight: normal;">1:1 문의 관리</p>
-			<p onclick="location.href='${pageContext.request.contextPath}/notice/noticeList'" style="color: rgb(107, 6, 9); font-weight: bold;">공지사항 관리</p>
-			<p onclick="location.href='${pageContext.request.contextPath}/faq/faqList'" style="color: rgb(117, 117, 117); font-weight: normal;">FAQ 관리</p>
+			<p onclick="location.href='${pageContext.request.contextPath}/notice/noticeList'" style="color: rgb(117, 117, 117); font-weight: normal;">공지사항 관리</p>
+			<p onclick="location.href='${pageContext.request.contextPath}/faq/faqList'" style="color: rgb(107, 6, 9); font-weight: bold;">FAQ 관리</p>
 		</div>
 	</div>
 	
@@ -28,18 +28,19 @@
 		</div>
 		<div class="page-upload">
 			<div class="notice-form d-flex flex-column">
-				<form action="${pageContext.request.contextPath}/notice/noticeWrite" method="post">
+				<form action="${pageContext.request.contextPath}/faq/faqUpdate" method="post">
 					<div class="notice-title-box">
 						<p>
 							제목<span>*</span>
 						</p>
-						<input type="text" name="noticeTitle" class="notice-form-title" placeholder="제목을 입력해주세요.">
+						<input type="hidden" name="faqId" value="${faq.faqId}">
+						<input type="text" name="faqTitle" value="${faq.faqTitle}" class="notice-form-title" placeholder="제목을 입력해주세요.">
 					</div>
 					<div class="notice-content-box">
 						<p>
 							내용<span>*</span>
 						</p>
-						<textarea class="notice-form-content" name="noticeContent" placeholder="내용을 입력해주세요."></textarea>
+						<textarea class="notice-form-content" name="faqContent" placeholder="내용을 입력해주세요.">${faq.faqContent}</textarea>
 					</div>
 					<div class="notice-form-buttons">
 						<button type="submit" name="action" value="delete">삭제</button>
