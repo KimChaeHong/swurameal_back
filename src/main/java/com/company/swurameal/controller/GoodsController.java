@@ -29,10 +29,9 @@ public class GoodsController {
 	
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int goodsId, Model model) {
-		log.info("제품 상세");
 		GoodsDto goodsDto = goodsService.getGoodsById(goodsId);
 		List<GoodsSuggestDto> goodsSuggestDto = goodsService.getGoodsBySuggest(goodsDto);
-		List<GoodsSuggestDto> goodsSuggestAlcohol = goodsService.getAlcoholBySuggest(goodsDto); 
+		List<GoodsSuggestDto> goodsSuggestAlcohol = goodsService.getAlcoholBySuggest(goodsDto);
 		model.addAttribute("goods", goodsDto);
 		model.addAttribute("goodsSameCategory", goodsSuggestDto);
 		model.addAttribute("goodsAlcohol", goodsSuggestAlcohol);
@@ -69,7 +68,7 @@ public class GoodsController {
 		goodsImgDto.setGoodsId(goodsId);
 		goodsImgDto.setImgRole(imgRole);
 		GoodsImgDto goods = goodsService.getGoodsAttachByRole(goodsImgDto);
-		
+
 		//응답 헤더에 들어가는 Content-Type 파일 확장명을 보고 저장을 자동으로 해주기
 		String contentType = goods.getGAttachType();
 		response.setContentType(contentType);

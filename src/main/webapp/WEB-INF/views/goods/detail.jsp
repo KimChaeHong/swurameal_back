@@ -130,12 +130,12 @@
 	            <span id="move-review" class="btn flex-grow-1 detail-button">리뷰</span>
 	        </div>
 	        <div id="detail-img-container" class="">
-	            <img
-	                id="detail-img1"
-	                src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_DESCRIPTION" 
-	                alt="${goods.goodsName}"
-	                class="detail-img"
-	            />
+		            <img
+		                id="detail-img1"
+		                src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_DESCRIPTION" 
+		                alt="${goods.goodsName}"
+		                class="detail-img"
+		            />	        	
 	            <br />
 	            <img
 	                id="detail-img2"
