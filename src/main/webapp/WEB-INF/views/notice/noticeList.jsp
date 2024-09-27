@@ -16,7 +16,7 @@
 			<p onclick="location.href='${pageContext.request.contextPath}/mgmt/registedList'" >상품 관리</p>
 			<p onclick="location.href='${pageContext.request.contextPath}/admin/answer'" >1:1 문의 관리</p>
 			<p onclick="location.href='${pageContext.request.contextPath}/notice/noticeList'" style="color: rgb(107, 6, 9); font-weight: bold;">공지사항 관리</p>
-			<p onclick="location.href='${pageContext.request.contextPath}/admin/faq'" >FAQ 관리</p>
+			<p onclick="location.href='${pageContext.request.contextPath}/faq/faqList'" >FAQ 관리</p>
 		</div>
 	</div>
 	

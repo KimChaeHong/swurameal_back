@@ -109,5 +109,10 @@
 		WHERE FAQ_ID = #{faqId}
 	</select>
 	
+	<!-- FAQ 데이터 갯수 카운터 > pager -->
+	<select id="countRows" resultType="int">
+		SELECT COUNT(*) FROM faq
+	</select>
+	
 </mapper>	
 	

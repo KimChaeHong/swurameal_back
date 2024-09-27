@@ -163,6 +163,9 @@ function searchAddress() {
 //유효성 검사 및 제출 함수
 function submitForm() {
 	 if (validateCurrentPassword() && validateNewPassword() && validateConfirmPassword() && validateEmail() && validatePhone() && validateBirthday()) {
+		 $('#modifyForm').off('submit');
+		 $('#modifyForm').submit();
+		 
     const userData = {
         userId: $('#userId').val(),
         userPw: $('#current-password').val(),

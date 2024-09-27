@@ -65,12 +65,12 @@
 
 				<div class="form-group">
 					<label for="current-password">비밀번호</label> <input type="password"
-						id="current-password" name="userPw" placeholder="비밀번호를 입력하세요">
+						id="current-password" placeholder="비밀번호를 입력하세요">
 				</div>
 
 				<div class="form-group">
 					<label for="new-password">새 비밀번호</label> <input type="password"
-						id="new-password" placeholder="새 비밀번호를 입력하세요.">
+						id="new-password"  name="userPw" placeholder="새 비밀번호를 입력하세요.">
 				</div>
 
 				<div class="form-group">

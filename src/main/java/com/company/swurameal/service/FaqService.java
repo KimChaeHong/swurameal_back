@@ -44,5 +44,5 @@ public class FaqService {
 	//FAQ 데이터 갯수를 행으로 세는 메서드
 	public int getTotalRows() {
 		return faqDao.countRows();
-		}
+	}
 }

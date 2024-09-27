@@ -59,10 +59,38 @@
 			</c:forEach>
 		</div>
 		<div class="d-flex justify-content-center">
-			</div>
-				<div class="pagination"></div>
-			</div>
-	
+			
+				<div class="pagination">
+					<a href="faq?pageNo=1" class="btn btn-outline-dark btn-sm d-flex justify-content-center align-items-center">처음</a>
+		
+					<c:if test="${pager.groupNo>1}">
+						<a href="faq?pageNo=${pager.startPageNo-1}"
+							class="btn btn-outline-dark btn-sm">이전</a>
+					</c:if>
+		
+					<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}"
+						step="1" var="i">
+						<c:if test="${pager.pageNo==i}">
+								<button class="page-num active" onclick="location.href='${pageContext.request.contextPath}/support/faq?pageNo=${i}'">
+									${i}
+								</button>						
+						</c:if>
+						<c:if test="${pager.pageNo!=i}">
+								<button class="page-num" onclick="location.href='${pageContext.request.contextPath}/support/faq?pageNo=${i}'">
+									${i}
+								</button>
+						</c:if>
+					</c:forEach>
+		
+					<c:if test="${pager.groupNo<pager.totalGroupNo}">
+						<a href="faq?pageNo=${pager.endPageNo+1}"
+							class="btn btn-outline-dark btn-sm">다음</a>
+					</c:if>
+		
+					<a href="faq?pageNo=${pager.totalPageNo}"
+						class="btn btn-outline-dark btn-sm text-nowrap d-flex justify-content-center align-items-center">마지막</a>
+				</div>
+		</div>
 	
 </section>
 </main>
