@@ -79,6 +79,4 @@ public class UserController {
 		log.info("확인용");
 		return "user/findPassword";
 	}
-	
-	
 }

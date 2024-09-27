@@ -71,5 +71,26 @@ public class UserService {
 		return LoginResult.SUCCESS;
 	}
 
-	 
+	// userId가 데이터베이스에 존재하는지 확인
+    public boolean isUserIdExists(String userId) {
+        return userDao.existsByUserId(userId);
+    }
+    
+    //유저 정보 수정
+    public int updateByUserId(UserDto user) {
+    	return userDao.updateByUserId(user);
+    }
+
+	public UserDto getUserById(String userId) {
+		return userDao.selectByUserId(userId);
+	}
+	//유저 정보 조회
+	public UserDto findUserById(String userId) {
+		return userDao.selectByUserId(userId);
+	}
+	//유저 정보 비활성화
+	public int deactivateUserById(String userId) {
+		return userDao.deactivateUserById(userId);
+		
+	}
 }

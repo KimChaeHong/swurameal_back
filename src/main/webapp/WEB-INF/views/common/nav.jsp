@@ -1,5 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css" />
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+   crossorigin="anonymous"></script>
+
+<script src="${pageContext.request.contextPath}/resources/js/nav.js"></script>  
+
+    
 <nav id="nav-container" class="navbar">
 <div id="nav">
     <div id="bnav" class="row justify-content-center align-items-center">
@@ -35,7 +45,13 @@
         <div id="icon" class="col-auto d-flex justify-content-end">
             <a class="nav-link" href='${pageContext.request.contextPath}/mypage/pick'><i class="bi bi-heart"></i></a>
             <a class="nav-link" href='${pageContext.request.contextPath}/cart/itemList'><i class="bi bi-cart"></i></a>
-
+           <c:if test="${empty user}">
+            	<span id="cartCnt" class="cartCount position-absolute">0</span>         		
+            </c:if>	
+           <c:if test="${not empty user}">
+            	<span id="cartCnt" class="cartCount position-absolute">Loading..</span>
+            </c:if>	
+            
         </div>
     </div>
 </div>

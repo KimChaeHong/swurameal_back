@@ -5,7 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/notice.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods.css">
 
 <main class="container d-flex admin">
 <div class="admin-category">
@@ -19,36 +20,40 @@
 	</div>
 
 	<div class="admin-box flex-grow-1">
-		<div class="title-box">
-			<div class="addButton">
-				<p>FAQ 관리</p>
-			</div>
-			<div class="horizontal-line"></div>
-		</div>
-		<div class="page-upload">
-			<div class="notice-box d-flex flex-column">
-				<div class="notice-header d-flex">
-					<div>제목</div>
-					<div>작성자</div>
-					<div>등록일</div>
-				</div>
-			<c:forEach items="${list}" var="faq">
-				<div class="notice-list">
-					<div class="notice-info d-flex align-items-center">
-						<div>[${faq.faqTitle}]</div>
-						<div>${faq.userId}</div>
-						<div>${faq.faqRegisterDate}</div>
-					</div>
-				</div>
-			</c:forEach>	
-			
-			<div class="pagination">
-				<button class="page-num active">1</button>
-			</div>
-			
-			</div>
-		</div>
-	</div>
+	<div class="title-box">
+        <div class="addButton">
+            <p>FAQ 관리</p>
+            	<button data-flag="faq" onclick="location.href='${pageContext.request.contextPath}/admin/faqWrite'">
+						작성하기
+					</button>
+        </div>
+        <div class="horizontal-line"></div>
+        </div>
+        <div class="page-upload"><div class="board-top d-flex align-items-center">
+          <p class="flex-grow-1">번호</p>
+			<p id="just-title">제목</p>
+			<p class="flex-grow-1">작성자</p>
+      </div>
+      
+      <c:forEach var="faq" items="${list}">
+      	<div class="accordion-item">
+              <h2 class="accordion-header">
+                  <button class="board d-flex align-item-center accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse0" aria-expanded="true" aria-controls="collapse0">
+                      <p class="post-title">${faq.faqId}</p>
+                      <p class="flex-grow-1 text-center">${faq.faqTitle}</p>
+                      <p id="post-status0" class="flex-grow-1 text-center">${faq.userId}</p>
+                  </button>
+              </h2>
+              <div id="collapse0" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="">
+                  <div id="content0" class="accordion-body">
+                      ${faq.faqContent}
+                      <div class="form-button-container"><span class="btn btn-md form-button" data-num="0">${faq.userId}</span></div>
+                  </div>
+              </div>
+          </div>
+        </c:forEach>  
+          
+             <div class="pagination"><button class="page-num active">1</button><button class="page-num">2</button></div></div></div>
 </main>
 
 
