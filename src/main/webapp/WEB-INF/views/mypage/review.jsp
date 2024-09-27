@@ -72,7 +72,11 @@
 								
 							</div>					
 						<button class="insert-button" data-bs-toggle="modal"
-							data-bs-target="#staticBackdrop">작성하기</button>
+							data-bs-target="#staticBackdrop"
+							data-goods-id="${order.goodsId}"
+							data-goods-name="${order.goodsName}"
+							data-goods-img="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${order.goodsId}&imgRole=G_MAIN" alt="${order.goodsName}"
+							>작성하기</button>
 					</div>
 				</c:forEach>
 			</div>
@@ -127,7 +131,68 @@
 	</div>
 
 </div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title text-center w-100" >상품후기 수정</p>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex">
+                    <div class="modal-product-img d-flex" >
+                        <p>구매<br/>상품</p>
+                        <img id="modal-goods-img" src=""/>
+                    </div>
+                    <div class="modal-product-detail d-flex flex-column flex-grow-1">
+                        <p><strong>상품명</strong> <span id="modal-goods-name"></span></p>
+                        <p><strong>작성일</strong> <span>${currentDate}</span></p>
+                    </div>
+                </div>
+                <div class="modal-review d-flex" >
+                    <p>내용</p>
+                    <textarea id="modal-review-content"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="review-close" data-bs-dismiss="modal">취소</button>
+                <button class="review-update">수정하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </main>
 
-<script src="${pageContext.request.contextPath}/resources/js/review.js"></script>
+<script>
+$(document).on('click', '.insert-button', function() {
+	const goodsId = $(this).data('goods-id');
+	const goodsName = $(this).data('goods-name');
+	const imgSrc = $(this).data('goods-img');
+	
+	$('#modal-goods-name').text(goodsName);
+	$('#modal-goods-img').attr('src', imgSrc);	
+});
+
+$(document).on('click', '.review-update', function() {
+	const goodsId = $('.insert-button').data('goods-id');
+	const reviewContent = $('#modal-review-content').val();
+	
+	$.ajax({
+		type: 'POST',
+		url: 'editReview',
+		data: {
+			goodsId: goodsId,
+			reviewContent: reviewContent
+		},
+		success: function(data) {
+			console.log("성공")
+		},
+		error: function(xhr, status, error) {
+			alert('오류' + xhr.responseText);
+		}
+	})
+})
+</script>
+<%-- <script src="${pageContext.request.contextPath}/resources/js/review.js"></script> --%>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

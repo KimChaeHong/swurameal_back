@@ -2,6 +2,7 @@ package com.company.swurameal.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -108,9 +110,17 @@ public class MypageCotroller {
 			session.setAttribute("pager", pager);
 			model.addAttribute("month", month);
 			
+			LocalDate currentDate = LocalDate.now();
+			model.addAttribute("currentDate", currentDate);
+			
 			List<OrderWithItemsDto> order = orderService.getOrder(orderParams);
 			model.addAttribute("order", order);
 			return "mypage/review";
+	}
+	
+	@PostMapping("/editReview")
+	public String mypageEditReview() {
+		return "";
 	}
 
 	@RequestMapping("/modify")
