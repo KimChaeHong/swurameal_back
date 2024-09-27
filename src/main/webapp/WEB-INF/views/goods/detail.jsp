@@ -8,9 +8,7 @@
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp" %>
-<script>
-    var contextPath = '<%= request.getContextPath() %>';
-</script>
+
 <script src="${pageContext.request.contextPath}/resources/js/detail.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/detail.css">
@@ -65,7 +63,7 @@
 	            <div id="button-box" class="d-flex justify-content-between">
 	                <button type="button" id="pick" class="btn" >
 					    <!--찜 버튼 아이콘 -->
-					    <i id="pick-icon" class="bi bi-heart" ></i> 
+					    <i id="pick-icon" class="bi bi-heart"></i>
 					</button>
 	                <button type="button" id="cart" class="btn" >
 	                 	<!--장바구니 아이콘-->
@@ -174,5 +172,4 @@
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
- 
-<script src="${pageContext.request.contextPath}/resources/js/detail.js"></script>
+

@@ -100,22 +100,6 @@
     gap: 5px;
 }
 
-.addButton {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.addButton button {
-    background-color: black;
-    border: none;
-    border-radius: 3px;
-    color: white;
-    width: 100px;
-    height: 36px;
-    font-size: 16px;
-}
-
 .select-delete {
     margin-top: 20px;
     font-size: 12px;

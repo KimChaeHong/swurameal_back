@@ -5,7 +5,8 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/signup.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
-<script src="${pageContext.request.contextPath}/resources/js/signup.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/signup2.js"></script>
+
 
 <main class="container signup">
 	<h2>회원가입</h2>
@@ -18,17 +19,17 @@
 		<div>
 		    <label for="user-id">아이디 <span class="rq">*</span></label>
 		    <input type="text" 
-		        id="user-id" 	
+		        id="userId" 	
 		        name="userId" 
 		        value="${userDto.userId}" 
 		        placeholder="아이디를 입력해 주세요."
 		        required>
-		    <button type="button" id="check-duplicate">중복확인</button>
+
 		    <div class="text-danger" style="font-size: 0.7rem" id="errorMessage">${errorMessage}</div>
 		</div>
 
 
-		<div>
+ <div>
 			<label for="user-pw">
 			비밀번호
 				<span class="rq">*</span>
@@ -76,7 +77,7 @@
 				value="${userDto.userEmail}"
 				placeholder="예: swura@meal.com"
 				required>
-			<button>중복확인</button>	
+		
 		</div>
 
 		<div>
@@ -122,31 +123,10 @@
         	</div>
 		</div>
 		
-		<input type="hidden" id="userBirth" name="userBirth"> <!-- 최종 값 저장 --> 
+		<input type="hidden" id="userBirth" name="userBirth"> <!-- 최종 값 저장 -->
 		
-		<button id="signup-btn">가입하기</button>	
+		<button type="submit" id="signup-btn">가입하기</button>	
 	</form>
 
 </main>
-
-<script>
-    // 생년월일 입력 필드가 변경될 때마다 hidden 필드 업데이트
-    document.addEventListener('input', function() {
-        var year = document.getElementById('year').value.trim();
-        var month = document.getElementById('month').value.trim();
-        var day = document.getElementById('day').value.trim();
-        var userBirth = document.getElementById('userBirth');
-        
-        // 유효한 값인지 체크 (year는 4자리, month와 day는 2자리)
-        if (year.length === 4 && month.length === 2 && day.length === 2) {
-            // 날짜를 YYYY-MM-DD 형식으로 합쳐서 hidden 필드에 설정
-            userBirth.value = year + '-' + month + '-' + day;
-        } else {
-            // 값이 올바르지 않으면 빈 값으로 설정
-            userBirth.value = '';
-        }
-    });
-</script>
-
-
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

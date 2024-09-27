@@ -1,3 +1,19 @@
+.addButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addButton button {
+    background-color: black;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    width: 100px;
+    height: 36px;
+    font-size: 16px;
+}
+
 .form-container {
     margin-top: 25px;
     display: flex;
@@ -49,7 +65,7 @@
 }
 
 #goods-stockStatus {
-    width: 165px;
+    width: 340px;
     height: 50px;
 }
 .sale,
@@ -62,9 +78,7 @@
     border-radius: 4px;
     margin-right: 3px;
 }
-.sold-out:hover {
-    cursor: default;
-}
+
 .form-group button {
     border: 1px ridge var(--darkgray);
     background-color: white;
@@ -93,7 +107,7 @@
     color: white;
 }
 
-#goods-category {
+#goods-category, #goods-subcategory {
     text-align: center;
     border: 1px ridge var(--mediumgray);
     border-radius: 4px;
