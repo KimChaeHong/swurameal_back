@@ -12,8 +12,8 @@
 	<div class="admin-category">
 		<div class="category-box d-flex flex-column">
 			<h3>관리자 메뉴</h3>
-			<p onclick="location.href='${pageContext.request.contextPath}/admin/goodsManagement'" style="color: rgb(117, 117, 117); font-weight: normal;">상품 관리</p>
-			<p onclick="location.href='${pageContext.request.contextPath}/admin/answer'" style="color: rgb(117, 117, 117); font-weight: normal;">1:1 문의 관리</p>
+			<p onclick="location.href='${pageContext.request.contextPath}/mgmt/registedList" style="color: rgb(117, 117, 117); font-weight: normal;">상품 관리</p>
+			<p onclick="location.href='${pageContext.request.contextPath}/qna/qnaList'" style="color: rgb(117, 117, 117); font-weight: normal;">1:1 문의 관리</p>
 			<p onclick="location.href='${pageContext.request.contextPath}/notice/noticeList'" style="color: rgb(117, 117, 117); font-weight: normal;">공지사항 관리</p>
 			<p onclick="location.href='${pageContext.request.contextPath}/faq/faqList'" style="color: rgb(107, 6, 9); font-weight: bold;">FAQ 관리</p>
 		</div>

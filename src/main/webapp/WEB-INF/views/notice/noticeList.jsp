@@ -19,7 +19,6 @@
 			<p onclick="location.href='${pageContext.request.contextPath}/faq/faqList'" >FAQ 관리</p>
 		</div>
 	</div>
-	
 	<div class="admin-box flex-grow-1">
 		<div class="title-box">
 			<div class="addButton">
@@ -82,12 +81,7 @@
 				<a href="noticeList?pageNo=${pager.totalPageNo}"
 					class="btn btn-outline-dark btn-sm">마지막</a>
 			</div>
-		
-			
 	</div>
- 
-	
-	
 </main>
 
 <button onclick="backToTop()" id="btn-back-to-top">Top</button>
