@@ -9,34 +9,33 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/order.css">
 
-<div class="col-3 three-month" style="color: rgb(107, 6, 9); font-weight: bold; border-color: black;">3개월</div>
 <main class="container d-flex mypage">
-<div class="mypage-category">
-	<div class="profile d-flex">
-		<i class="bi bi-person-fill"></i>
-		<div class="profile-detail">
-			<p>환영합니다.</p>
-			<p class="member-name">${user.userName}님</p>
+	<div class="mypage-category">
+		<div class="profile d-flex">
+			<i class="bi bi-person-fill"></i>
+			<div class="profile-detail">
+				<p>환영합니다.</p>
+				<p class="member-name">${user.userName}님</p>
+			</div>
+		</div>
+		<div class="category-box d-flex flex-column">
+			<h3>나의 수라밀</h3>
+			<p
+				onclick="location.href='${pageContext.request.contextPath}/mypage/pick'">찜한
+				상품</p>
+			<p  style="color: rgb(107, 6, 9); font-weight: bold;"
+				onclick="location.href='${pageContext.request.contextPath}/mypage/order'">주문
+				내역</p>
+			<p
+				onclick="location.href='${pageContext.request.contextPath}/mypage/review'">상품
+				후기</p>
+			<p
+				onclick="location.href='${pageContext.request.contextPath}/mypage/modifyForm'">개인정보
+				수정</p>
 		</div>
 	</div>
-	<div class="category-box d-flex flex-column">
-		<h3>나의 수라밀</h3>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/mypage/pick'">찜한
-			상품</p>
-		<p  style="color: rgb(107, 6, 9); font-weight: bold;"
-			onclick="location.href='${pageContext.request.contextPath}/mypage/order'">주문
-			내역</p>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/mypage/review'">상품
-			후기</p>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/mypage/modifyForm'">개인정보
-			수정</p>
-	</div>
-</div>
-<div class="mypage-box flex-grow-1">
-<div class="title-box">
+	<div class="mypage-box flex-grow-1">
+	<div class="title-box">
         <p>주문 내역</p>
         <div class="horizontal-line"></div>
         </div>
@@ -107,6 +106,5 @@
 	</div>
 </main>
 
-<script src="${pageContext.request.contextPath}/resources/js/order.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/order.js"></script>
+
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
