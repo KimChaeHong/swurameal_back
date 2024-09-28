@@ -176,8 +176,8 @@ $(document).on('click', '.insert-button', function() {
 	const goodsName = $(this).data('goods-name');
 	const imgSrc = $(this).data('goods-img');
 	
-	$('#modal-goods-img').attr('src', imgSrc);	
 	$('#modal-goods-name').text(goodsName);
+	$('#modal-goods-img').attr('src', imgSrc);	
 	
 	$('#review-update').data('order-id', orderId);
 	$('#review-update').data('goods-id', goodsId);
@@ -200,7 +200,8 @@ $(document).on('click', '.review-update', function() {
 			reviewContent: reviewContent
 		},
 		success: function(data) {
-			alert("성공" + data);
+			 $('#staticBackdrop').modal('hide');
+			 location.reload();
 		},
 		error: function(xhr, status, error) {
 			console.log('오류' + xhr.responseText);
@@ -208,5 +209,5 @@ $(document).on('click', '.review-update', function() {
 	})
 });
 </script>
-<%-- <script src="${pageContext.request.contextPath}/resources/js/review.js"></script> --%>
+
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

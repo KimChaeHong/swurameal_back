@@ -20,12 +20,16 @@ public class ReviewService {
 		reviewDao.insert(reviewDto);
 	}
 	
+	public void updateReview(ReviewDto reviewDto) {
+		reviewDao.updateReview(reviewDto);
+	}
+	
 	public List<OrderWithItemsDto> getReviewList(Map<String, Object> reviewParams) {
 		return reviewDao.selectReviewList(reviewParams);
 	}
 	
-	public List<ReviewDto> getReviewCompleteList(String userId) {
-		return reviewDao.selectReviewCompleteList(userId);
+	public List<ReviewDto> getReviewCompleteList(Map<String, Object> reviewParams) {
+		return reviewDao.selectReviewCompleteList(reviewParams);
 	}
 	
 	public List<ReviewDto> getReviewByGoods(int goodsId) {

@@ -12,6 +12,14 @@
 			(#{reviewId}, #{userId}, #{orderId}, #{goodsId}, #{reviewContent}, sysdate)
 	</insert>
 	
+	<update id="updateReview" parameterType="Review">
+		UPDATE review
+		SET
+			REVIEW_CONTENT = #{reviewContent},
+			REVIEW_DATE = sysdate
+		WHERE REVIEW_ID = #{reviewId}
+	</update>
+	
 	<select id="selectReviewList" parameterType="map" resultType="OrderWithItems">
 		
 		SELECT 
@@ -78,20 +86,42 @@
 	
 	</select>
 	
-	<select id="selectReviewCompleteList" parameterType="String" resultType="Review">
-		SELECT
-			GOODS_NAME,
-			REVIEW_CONTENT,
-			REVIEW_DATE
-		FROM
-			review r
-		JOIN goods g ON r.GOODS_ID = g.GOODS_ID
-		WHERE r.USER_ID = #{userId}
-		ORDER BY REVIEW_DATE DESC
+	<select id="selectReviewCompleteList" parameterType="map" resultType="Review">
+		<![CDATA[
+			SELECT
+				REVIEW_ID,
+				REVIEW_CONTENT,
+				REVIEW_DATE,
+				GOODS_ID,
+				GOODS_NAME
+			FROM (
+				SELECT
+					ROWNUM as rnum,
+					REVIEW_ID,
+					REVIEW_CONTENT,
+					REVIEW_DATE,
+					GOODS_ID,
+					GOODS_NAME
+				FROM (
+					SELECT
+						r.REVIEW_ID,
+						r.REVIEW_CONTENT,
+						r.REVIEW_DATE,
+						g.GOODS_ID,
+						g.GOODS_NAME
+					FROM
+						review r
+					JOIN goods g ON r.GOODS_ID = g.GOODS_ID
+					WHERE r.USER_ID = #{userId}
+					ORDER BY REVIEW_DATE DESC
+				) WHERE ROWNUM <= #{endRowNo}
+			) WHERE RNUM >= #{startRowNo}
+		]]>
 	</select>
 	
 	<select id="selectReviewByGoods" parameterType="int" resultType="Review">
 		SELECT
+			REVIEW_ID,
 			USER_NAME,
 			GOODS_NAME,
 			REVIEW_CONTENT,

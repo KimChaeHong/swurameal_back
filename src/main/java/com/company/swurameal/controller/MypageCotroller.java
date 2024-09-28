@@ -198,12 +198,12 @@ public class MypageCotroller {
 			reviewParams.put("userId", userId);
 			reviewParams.put("month", month);
 			reviewParams.put("reviewStatus", reviewStatus);
+			
 			int totalRows = reviewService.getTotalRows(reviewParams);
-
 			Pager pager = new Pager(5, 5, totalRows, pageNo);
 			reviewParams.put("endRowNo", pager.getEndRowNo());
 			reviewParams.put("startRowNo", pager.getStartRowNo());
-			session.setAttribute("pager", pager);
+			model.addAttribute("pager", pager);
 			model.addAttribute("month", month);
 			
 			LocalDate currentDate = LocalDate.now();
@@ -226,18 +226,49 @@ public class MypageCotroller {
 			reviewService.writeReview(reviewDto);
 			orderService.updateReviewStatus(reviewDto);
 		
-			return "redirect:/mypage/review";
+			return "mypage/review";
 	}
 	
 	@GetMapping("/reviewCompleteList")
 	public String reviewCompleteList(
+		@RequestParam(defaultValue="1") int pageNo,
+		@RequestParam(defaultValue="0") int month,
+		@RequestParam(defaultValue="1") int reviewStatus,
+		HttpSession session,
 		Model model,
 		Authentication authentication) {
 			CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 			UserDto user = userDetails.getUserDto();
 			String userId = user.getUserId();
-			List<ReviewDto> review = reviewService.getReviewCompleteList(userId);
+			
+			Map<String, Object> reviewParams = new HashMap<>();
+			reviewParams.put("userId", userId);
+			reviewParams.put("month", month);
+			reviewParams.put("reviewStatus", reviewStatus);
+			
+			int totalRows = reviewService.getTotalRows(reviewParams);
+			Pager pager = new Pager(5, 5, totalRows, pageNo);
+			reviewParams.put("endRowNo", pager.getEndRowNo());
+			reviewParams.put("startRowNo", pager.getStartRowNo());
+			model.addAttribute("pager", pager);
+			model.addAttribute("month", month);
+			
+			List<ReviewDto> review = reviewService.getReviewCompleteList(reviewParams);
 			model.addAttribute("review", review);
+			return "mypage/reviewCompleteList";
+	}
+	
+	@PostMapping("/editReview")
+	public String editReview(
+		@ModelAttribute ReviewDto reviewDto,
+		Authentication authentication) {
+			CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+			UserDto user = userDetails.getUserDto();
+			String userId = user.getUserId();
+			reviewDto.setUserId(userId);
+			log.info("잘되냐" + reviewDto.toString());
+			reviewService.updateReview(reviewDto);
+		
 			return "mypage/reviewCompleteList";
 	}
 			
