@@ -40,17 +40,17 @@
       <c:forEach var="faq" items="${list}">
       	<div class="accordion-item">
               <h2 class="accordion-header">
-                  <button class="board d-flex align-item-center accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse0" aria-expanded="true" aria-controls="collapse0">
+                  <button class="board d-flex align-item-center accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${faq.faqId}" aria-expanded="true" aria-controls="collapse${faq.faqId}">
                       <p class="post-title">${faq.faqId}</p>
-                      <p class="flex-grow-1">${faq.faqTitle}</p>
-                      <p id="post-status0" class="flex-grow-1 text-center">${faq.userId}</p>
+                      <p class="content flex-grow-1">${faq.faqTitle}</p>
+                      <p id="post-status${faq.faqId}" class="rigister flex-grow-1 text-center">${faq.userId}</p>
                   </button>
               </h2>
-              <div id="collapse0" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="">
-                  <div id="content0" class="accordion-body">
+              <div id="collapse${faq.faqId}" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="">
+                  <div id="content${faq.faqId}" class="accordion-body">
                       ${faq.faqContent}
                       
-                     <div class="form-button-container"><span class="btn btn-md form-button" data-num="0"></span></div>
+                     <div class="form-button-container"><span class="btn btn-md form-button" data-num="${faq.faqId}"></span></div>
                    
 	                   <div class="update-button d-flex flex-grow-1 justify-content-end">
 				            <a href="${pageContext.request.contextPath}/faq/faqUpdateForm?faqId=${faq.faqId}">
@@ -67,7 +67,7 @@
           </div>
         </c:forEach>  
        </div> 
-          <div class="d-flex justify-content-center">
+         <!--  <div class="d-flex justify-content-center"> -->
 			
                      	
 			<div class="pagination">
@@ -101,7 +101,7 @@
 					class="btn btn-outline-dark btn-sm">마지막</a>
 			</div>
 		</div>
-	</div>	
+	<!-- </div> -->	
 </main>
 
 <button onclick="backToTop()" id="btn-back-to-top">Top</button>

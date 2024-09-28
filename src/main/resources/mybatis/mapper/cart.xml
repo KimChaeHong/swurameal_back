@@ -35,5 +35,9 @@
     <delete id="deleteAllGoodsFromCart" parameterType="String">
     	DELETE FROM cart WHERE USER_ID = #{userId}
     </delete>
-
+    
+    <!-- 카트 수량 카운트 -->
+	<select id="countGoodsFromCart" resultType="int">
+		SELECT SUM(quantity) FROM cart WHERE user_id = #{userId}
+	</select>
 </mapper>

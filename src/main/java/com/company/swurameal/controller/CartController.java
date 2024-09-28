@@ -3,6 +3,7 @@ package com.company.swurameal.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -49,10 +50,9 @@ public class CartController {
 	//카트 데이터 추가
 	@Secured("ROLE_USER")
 	@GetMapping("/itemAdd")
-	public String addCartItem(int goodsId,
+	public ResponseEntity<Void> addCartItem(@RequestParam Integer goodsId,
 			@RequestParam(defaultValue = "1") int quantity, 
-			Authentication authentication,
-			Model model) {
+			Authentication authentication) {
 
 		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 		String userInfo = userDetails.getUsername(); // 사용자 ID 가져오기
@@ -64,7 +64,7 @@ public class CartController {
 		cartItem.setUserId(userInfo);
 		cartService.addGoodsToCart(cartItem);
 
-		return "redirect:/cart/itemList";
+		return ResponseEntity.ok().build();
 
 	}
 
@@ -105,7 +105,7 @@ public class CartController {
 	@Secured("ROLE_USER")
 	@PostMapping("/update")
 	@ResponseBody
-	public String updateCartItem(@RequestParam int goodsId, @RequestParam int quantity, Authentication authentication) {
+	public String updateCartItemCount(@RequestParam int goodsId, @RequestParam int quantity, Authentication authentication) {
 		
 		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 		String userInfo = userDetails.getUsername(); // 사용자 ID 가져오기
@@ -124,9 +124,19 @@ public class CartController {
 	@Secured("ROLE_USER")
 	@GetMapping("/itemCount")
 	@ResponseBody //응답 본문으로 직접 데이터를 반환
-	public int itemCount(Authentication authentication) {	
+	public String itemCount(Authentication authentication, Model model) {	
 		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-		String userId = userDetails.getUsername(); //사용자 ID 가져오기
-		return cartService.countItemsInCart(userId); //현재 카트 아이템 수량 반환
+		String userInfo = userDetails.getUsername(); //사용자 ID 가져오기
+		
+		int cartCount = cartService.countItemsInCart(userInfo); //카트 수량 가져오기
+		model.addAttribute("cartCount", cartCount);
+
+		List<CartDto> cartList = cartService.getGoods(userInfo); // 항목조회
+		model.addAttribute("goodsList", cartList);
+		
+		if (cartList.isEmpty()) {
+			model.addAttribute("message", "장바구니가 비었습니다.");
+		}
+		return "cart/itemList";
 	}
 }

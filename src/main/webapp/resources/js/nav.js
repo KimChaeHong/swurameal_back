@@ -1,11 +1,11 @@
 $(document).ready(function() {
     const userId = '${user != null ? user.userName : ""}'; // 사용자 ID를 JSP에서 가져옴
 
-    if (!userId) {
+    /*if (!userId) {
         $('#cartCnt').text(0); // 비로그인 시 0으로 설정
     } else {
         updateCartItemCount(); // 로그인된 경우 수량 업데이트
-    }
+    }*/
 
     $(document).on('submit', '#loginForm', function(event) {
         event.preventDefault();
@@ -25,13 +25,13 @@ $(document).ready(function() {
         });
     });
 });
-
+/*
 function updateCartItemCount() {
     $.ajax({
         url: '${pageContext.request.contextPath}/cart/itemCount',
         type: 'GET',
-        success: function(count) {
-            $('#cartCnt').text(count); // 장바구니 아이콘 수량 업데이트
+        success: function(data) {
+            $('#cartCnt').text(data); // 장바구니 아이콘 수량 업데이트
         },
         error: function(xhr, status, error) {
             console.error('Error fetching cart item count:', error);
@@ -41,4 +41,4 @@ function updateCartItemCount() {
             }
         }
     });
-}
+}*/

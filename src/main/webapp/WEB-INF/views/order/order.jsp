@@ -5,6 +5,12 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+   crossorigin="anonymous"></script>
+
+<script src="${pageContext.request.contextPath}/resources/js/pay.js"></script>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pay.css">
 
 <!-- 주문결제 페이지 메인 -->
@@ -21,13 +27,13 @@
           <div id="user-info">
             <div class="title">주문자 정보</div>
             <span class="label">주문자명</span>
-            <span>정원석</span><br />
+            <span>${user.userName}</span><br />
             <span class="label">휴대폰 번호</span>
-            <span>010-1234-5678</span><br />
+            <span>${user.userPhone}</span><br />
             <span class="label">이메일</span>
-            <span>swura@meal.com</span><br />
+            <span>${user.userEmail}</span><br />
             <span class="label">배송지</span>
-            <input id="user-address" value="서울 구로구 디지털로26길 123, 1605호"></input>
+            <input id="user-address" value="${user.userAddress}"></input>
             <button onclick="searchAddress()">배송지 변경</button>
           </div>
 
@@ -58,7 +64,7 @@
             <p>주문/결제 내역</p>
             <div class="d-flex justify-content-between">
               <span>상품금액</span>
-              <span>23,700원</span>
+              <span>${goods.price}원</span>
             </div>
             <div class="d-flex justify-content-between">
               <span>배송비</span>
@@ -66,7 +72,7 @@
             </div>
             <div class="d-flex justify-content-between total">
               <span>최종결제금액</span>
-              <span>26,700원</span>
+              <span>${goods.price}원</span>
             </div>
           </div>
           <button id="payBtn">결제하기</button>

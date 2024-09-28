@@ -11,6 +11,7 @@
 			o.ORDER_DATE,
 			oi.GOODS_ID,
 			oi.GOODS_PRICE,
+			oi.REVIEW_STATUS,
 			gi.GOODS_NAME,
 			gi.G_ATTACH_ONAME,
 			gi.G_ATTACH_TYPE,
@@ -37,6 +38,7 @@
 			    ORDER_DATE,
 			    GOODS_ID,
 			    GOODS_PRICE,
+			    REVIEW_STATUS,
 			    GOODS_NAME,
 			    G_ATTACH_ONAME,
 			    G_ATTACH_TYPE,
@@ -52,6 +54,7 @@
 			        ORDER_DATE,
 			        GOODS_ID,
 			        GOODS_PRICE,
+			        REVIEW_STATUS,
 			        GOODS_NAME,
 			        G_ATTACH_ONAME,
 			        G_ATTACH_TYPE,
@@ -66,6 +69,7 @@
 			            o.ORDER_DATE,
 			            oi.GOODS_ID,
 			            oi.GOODS_PRICE,
+			            oi.REVIEW_STATUS,
 			            gi.GOODS_NAME,
 			            gi.G_ATTACH_ONAME,
 			            gi.G_ATTACH_TYPE,
@@ -100,5 +104,12 @@
         	AND o.ORDER_DATE BETWEEN add_months(SYSDATE, -#{month}) AND SYSDATE
         </if>
 	</select>
+	
+	<update id="updateReviewStatus" parameterType="int">
+		UPDATE order_item
+		SET
+			REVIEW_STATUS = #{reviewStatus}
+		WHERE ORDER_ID = #{orderId} AND GOODS_ID = #{goodsId}
+	</update>
 
 </mapper>

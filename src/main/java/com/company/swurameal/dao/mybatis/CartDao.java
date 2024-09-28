@@ -22,5 +22,7 @@ public interface CartDao {
 	public int deleteGoodsFromCart(CartDto cart);
 	//카트 전체 아이템 삭제하기
 	public int deleteAllGoodsFromCart(String userId);
+	//카트 수량 카운트
+	public List<CartDto> countGoodsFromCart(String userId);
 	
 }
