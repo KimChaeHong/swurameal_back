@@ -16,7 +16,7 @@
 	        <p onclick="location.href='${pageContext.request.contextPath}/mgmt/registedList'" style="color: rgb(117, 117, 117); font-weight: normal;">상품 관리</p>
 			<p onclick="location.href='${pageContext.request.contextPath}/qna/qnaList'" style="color: rgb(117, 117, 117); font-weight: normal;">1:1 문의 관리</p>
 			<p onclick="location.href='${pageContext.request.contextPath}/notice/noticeList'" style="color: rgb(107, 6, 9); font-weight: bold;">공지사항 관리</p>
-			<p onclick="location.href='${pageContext.request.contextPath}/admin/faq'" style="color: rgb(117, 117, 117); font-weight: normal;">FAQ 관리</p>
+			<p onclick="location.href='${pageContext.request.contextPath}/faq/faqList'" style="color: rgb(117, 117, 117); font-weight: normal;">FAQ 관리</p>
 	    </div>
 	</div>
 	<div class="admin-box flex-grow-1"><div class="title-box">

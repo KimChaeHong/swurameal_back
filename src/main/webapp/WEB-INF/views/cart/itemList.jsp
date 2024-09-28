@@ -29,9 +29,13 @@
       <div id="cart-items">
          <c:forEach var="goods" items="${goodsList}">
             <div class="item d-flex justify-content-between" data-goods-id="${goods.goodsId}">
-               <i class="bi bi-check-circle hover" id="oneBtn"></i> <img
-                  src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}"
-                  class="goods-img" alt="${goods.goodsName}">
+              
+               <i class="bi bi-check-circle hover"
+               	data-goods-id="${goods.goodsId}" 
+         		data-quantity="1" ></i>
+         		 
+	          <img src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}"
+                   class="goods-img" alt="${goods.goodsName}">
 
                <div id="item-detail">
                   <p>[${goods.category}] ${goods.goodsName}</p>
@@ -70,8 +74,10 @@
                </span>
             </div>
          </div>
-         <button
-            onclick="location.href='${pageContext.request.contextPath}/order'">주문하기</button>
+         <button class="order-button" 
+         		data-goods-id="${goods.goodsId}" 
+         		data-quantity="1"
+         onclick="location.href='${pageContext.request.contextPath}/order/order'">주문하기</button>
       </div>
    </div>
 </c:if> 

@@ -71,6 +71,14 @@
     margin-left: 70px;
 }
 
+.rigister {
+	display: flex;
+}
+
+.content {
+	margin-left: 60px;
+}
+
 /* 페이지네이션 */
 
 .pagination {
@@ -153,7 +161,9 @@ h5.active {
 
 .post-title {
     width: 80px;
-    margin-left: 40px;
+    margin-left: 8px;
+    display: flex;
+    justify-content: center;
 
 }
 
@@ -234,10 +244,6 @@ h5.active {
     height: 300px;
 }
 
-.page-upload {
-    margin-bottom: 50px;
-}
-
 
 .update-button {
     margin-top: 5px;
@@ -246,6 +252,9 @@ h5.active {
     height: 30px;
 }
 
+.update-button span {
+	color: #999999;
+}
 
 .update-button button {
     background-color:transparent;

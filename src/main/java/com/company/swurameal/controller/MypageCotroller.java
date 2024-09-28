@@ -66,22 +66,6 @@ public class MypageCotroller {
 		return "mypage/pick";
 	}
 
-	/*@PostMapping("/modifyAjax")
-	public void requestModify(UserDto userdto, HttpServletResponse response) throws IOException {
-		log.info(userdto.toString());
-
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", "OK");
-		String json = jsonObject.toString();
-
-		response.setContentType("application/json; charset=UTF-8");
-		PrintWriter pw = response.getWriter();
-
-		pw.println(json);
-		pw.flush();
-		pw.close();
-
-	}*/
 	
 	//회원 비활성화
 	@GetMapping("/deactivate")

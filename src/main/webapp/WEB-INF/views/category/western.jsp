@@ -7,6 +7,12 @@
 <%@ include file="/WEB-INF/views/common/carousel.jsp" %>
 <%@ include file="/WEB-INF/views/category/category.jsp" %>
 
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+   crossorigin="anonymous"></script>
+
+<script src="${pageContext.request.contextPath}/resources/js/itemList.js"></script>
+
 <ul class="category-container">
 		<li class="category-item">
 			<a class="item-title active" onclick="location.href='${pageContext.request.contextPath}/category/western'">전체보기</a>
@@ -25,13 +31,12 @@
  			<a href="${pageContext.request.contextPath}/goods/detail?goodsId=${goods.goodsId}">
 		 		<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">
 		   	</a>
-		   <div class="button-wrapper">
-		       <a href="${pageContext.request.contextPath}/cart/itemAdd?goodsId=${goods.goodsId}">
-                  <button class="to-cart">
-                      <i class="bi bi-cart icon-margin"></i>담기
-                  </button>
-   				</a>
-		   </div>
+		  		 <div class="button-wrapper">
+	                    <button class="to-cart" onclick="itemAdd(${goods.goodsId})">
+	                        <i class="bi bi-cart icon-margin">
+	                        </i>담기
+	                    </button>
+                </div>
 		   <div class="goods-info">
 		       <span class="goods-category">[${goods.category}]</span>
 		       <span class="goods-name">${goods.goodsName}</span>
@@ -47,3 +52,7 @@
     </c:forEach>
 </div>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+<script>
+    const contextPath = '${pageContext.request.contextPath}';
+</script>

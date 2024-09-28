@@ -7,8 +7,8 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"
    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
    crossorigin="anonymous"></script>
+   
 
-<script src="${pageContext.request.contextPath}/resources/js/nav.js"></script>  
 
     
 <nav id="nav-container" class="navbar">
@@ -43,18 +43,15 @@
         </div>
 
         <!-- 오른쪽 아이콘들 -->
-        
-	        <div id="icon" class="col-auto d-flex justify-content-end">
-	            <a class="nav-link" href='${pageContext.request.contextPath}/mypage/pick'><i class="bi bi-heart"></i></a>
-	            <a class="nav-link" href='${pageContext.request.contextPath}/cart/itemList'><i class="bi bi-cart"></i></a>            
-	           <c:if test="${empty user}">
-	            	<span id="cartCnt" class="cartCount position-absolute">0</span>         		
-	            </c:if>	
-	           <c:if test="${not empty user}">
-	            	<span id="cartCnt" class="cartCount position-absolute">Loading..</span>
-	            </c:if>	
-	        </div>
-       
+        <div id="icon" class="col-auto d-flex justify-content-end">
+            <a class="nav-link" href='${pageContext.request.contextPath}/mypage/pick'><i class="bi bi-heart"></i></a>
+            <a class="nav-link" href='${pageContext.request.contextPath}/cart/itemList'><i class="bi bi-cart"></i></a>            
+       	    	<span id="cartCount" class="cartCount position-absolute">      		
+		           <c:if test="${empty user}">0</c:if>	
+          			 <c:if test="${not empty user}">${cartCount}</c:if>	
+         	  	</span> 
+        </div>
     </div>
 </div>
 </nav>
+<script src="${pageContext.request.contextPath}/resources/js/nav.js"></script>  
