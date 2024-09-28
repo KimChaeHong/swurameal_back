@@ -24,6 +24,14 @@ public class ReviewService {
 		return reviewDao.selectReviewList(reviewParams);
 	}
 	
+	public List<ReviewDto> getReviewCompleteList(String userId) {
+		return reviewDao.selectReviewCompleteList(userId);
+	}
+	
+	public List<ReviewDto> getReviewByGoods(int goodsId) {
+		return reviewDao.selectReviewByGoods(goodsId);
+	}
+	
 	public int getTotalRows(Map<String, Object> reviewParams) {
 		return reviewDao.countRows(reviewParams);
 	}

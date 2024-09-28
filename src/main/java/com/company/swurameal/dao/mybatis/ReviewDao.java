@@ -12,7 +12,9 @@ import com.company.swurameal.dto.ReviewDto;
 public interface ReviewDao {
 	
 	public int insert(ReviewDto reviewDto);
-	public List<OrderWithItemsDto>selectReviewList(Map<String, Object> reviewParams);
+	public List<OrderWithItemsDto> selectReviewList(Map<String, Object> reviewParams);
+	public List<ReviewDto> selectReviewCompleteList(String userId);
+	public List<ReviewDto> selectReviewByGoods(int goodsId);
 	public int countRows(Map<String, Object> reviewParams);
 	
 }

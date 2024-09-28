@@ -229,4 +229,16 @@ public class MypageCotroller {
 			return "redirect:/mypage/review";
 	}
 	
+	@GetMapping("/reviewCompleteList")
+	public String reviewCompleteList(
+		Model model,
+		Authentication authentication) {
+			CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+			UserDto user = userDetails.getUserDto();
+			String userId = user.getUserId();
+			List<ReviewDto> review = reviewService.getReviewCompleteList(userId);
+			model.addAttribute("review", review);
+			return "mypage/reviewCompleteList";
+	}
+			
 }

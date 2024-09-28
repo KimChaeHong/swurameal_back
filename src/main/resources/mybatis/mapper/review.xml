@@ -78,6 +78,32 @@
 	
 	</select>
 	
+	<select id="selectReviewCompleteList" parameterType="String" resultType="Review">
+		SELECT
+			GOODS_NAME,
+			REVIEW_CONTENT,
+			REVIEW_DATE
+		FROM
+			review r
+		JOIN goods g ON r.GOODS_ID = g.GOODS_ID
+		WHERE r.USER_ID = #{userId}
+		ORDER BY REVIEW_DATE DESC
+	</select>
+	
+	<select id="selectReviewByGoods" parameterType="int" resultType="Review">
+		SELECT
+			USER_NAME,
+			GOODS_NAME,
+			REVIEW_CONTENT,
+			REVIEW_DATE
+		FROM
+			review r
+		JOIN goods g ON r.GOODS_ID = g.GOODS_ID
+		JOIN member m ON r.USER_ID = m.USER_ID
+		WHERE r.GOODS_ID = #{goodsID}
+		ORDER BY REVIEW_DATE DESC
+	</select>
+	
 	<select id="countRows" parameterType="map">
 		SELECT COUNT(*)
 		FROM "ORDER" o
