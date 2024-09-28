@@ -13,11 +13,14 @@ public interface QuestionDao {
 	//질문 갯수
 	public int countRows();
 
-	//전체 고객이 쓴 질문 목록
+	//고객이 쓴 질문 목록
 	public List<QuestionDto> selectQuestionList(Pager pager);
 
 	//질문 작성
-	public void insert(QuestionDto question);
+	public int insert(QuestionDto question);
+
+	//질문 하나 
+	public QuestionDto selectByQuestionId(int questionId);
 
 	
 	

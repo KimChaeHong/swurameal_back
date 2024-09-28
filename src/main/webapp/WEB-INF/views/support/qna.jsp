@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/support.css">
-
+<script src="${pageContext.request.contextPath}/resources/js/qna.js"></script>
 <main class="d-flex container support-container">
 <section id="leftSide">
 	<div id="side-category">
@@ -29,31 +29,44 @@
 			<p class="flex-grow-1">작성일</p>
 			<p class="flex-grow-1">답변상태</p>
 		</div>
-	</div>
-
-	<div class="accordion-item">
-		<h2 class="accordion-header">
-			<button
-				class="board d-flex align-item-center accordion-button collapsed"
-				type="button" data-bs-toggle="collapse"
-				data-bs-target="#collapse${i}" aria-expanded="false"
-				aria-controls="collapse${i}">
-				<p class="post-title">${qnaData[i].title}</p>
-				<p class="flex-grow-1 text-center">${qnaData[i].date}</p>
-				<p id="post-status${i}" class="flex-grow-1 text-center">${qnaData[i].status}</p>
-			</button>
-		</h2>
-		<div id="collapse${i}" class="accordion-collapse collapse"
-			data-bs-parent="#accordionExample">
-			<div id="content${i}" class="accordion-body">
-				${qnaData[i].content}
-				<div class="form-button-container">
-					<span class="btn btn-md form-button" data-num="${i}">답변하기</span>
+		<c:forEach items="${list}" var="question">
+	 	<div class="board-list">
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button
+						class="board d-flex align-item-center accordion-button collapsed"
+						type="button" data-bs-toggle="collapse"
+						data-bs-target="#collapse${question.questionId}" aria-expanded="false"
+						aria-controls="collapse${question.questionId}">
+						<p class="post-title">${question.questionTitle}</p>
+						<p class="flex-grow-1 text-center">
+						    <fmt:formatDate value="${question.questionDate}" pattern="yyyy.MM.dd" />
+						</p>
+						<p id="post-status${question.userId}" class="flex-grow-1 text-center" data-status="${question.questionStatus}">
+        					${question.questionStatus}
+    					</p>
+					</button>
+				</h2>
+				<div id="collapse${question.questionId}" class="accordion-collapse collapse"
+					data-bs-parent="#accordionExample">
+					<div id="content${question.questionId}" class="accordion-body">
+						${question.questionContent}
+						
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	
+	 	</div>
+	 	</c:forEach>
+		<div class="d-flex justify-content-center">
+		    <div class="pagination">
+				<button class="page-num"></button>
+		    </div>
+	    </div>
+	 	<div id="inq-btn-container" class="d-flex justify-content-end mb-3">
+	        <p class="btn inquiry-button ajax-btn" onclick="location.href='${pageContext.request.contextPath}/qna/questionWriteForm'">문의하기</p>
+	    </div>
+    </div>
 </section>
 </main>
+
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
