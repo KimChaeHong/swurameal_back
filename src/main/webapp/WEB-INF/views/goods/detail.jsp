@@ -149,17 +149,19 @@
 	    <section style="height: 610px">
 	        <p>
 	            <span id="review-title">상품리뷰</span>
-	            <span id="count-review">nn건</span>
+	            <span id="count-review">${reviewSize}건</span>
 	        </p>
-	        <div id="review-container">
-	            <div class="review-box">
-	                <p>
-	                    <span class="cus-name">고객이름</span>
-	                    <span class="date">날짜</span>
-	                </p>
-	                <p class="review-content">리뷰들어갈 자리</p>
-	            </div>
-	        </div>
+	        <c:forEach items="${review}" var="review">
+		        <div id="review-container">
+		            <div class="review-box">
+		                <p>
+		                    <span class="cus-name">${review.userName}</span>
+		                    <span class="date">${review.reviewDate}</span>
+		                </p>
+		                <p class="review-content">${review.reviewContent}</p>
+		            </div>
+		        </div>
+	        </c:forEach>
 	        <div class="pagination"></div>
 	    </section>
 	</main>
