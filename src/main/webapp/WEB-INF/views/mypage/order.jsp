@@ -9,51 +9,50 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/order.css">
 
-
 <main class="container d-flex mypage">
-<div class="mypage-category">
-	<div class="profile d-flex">
-		<i class="bi bi-person-fill"></i>
-		<div class="profile-detail">
-			<p>환영합니다.</p>
-			<p class="member-name">${user.userName}님</p>
+	<div class="mypage-category">
+		<div class="profile d-flex">
+			<i class="bi bi-person-fill"></i>
+			<div class="profile-detail">
+				<p>환영합니다.</p>
+				<p class="member-name">${user.userName}님</p>
+			</div>
+		</div>
+		<div class="category-box d-flex flex-column">
+			<h3>나의 수라밀</h3>
+			<p
+				onclick="location.href='${pageContext.request.contextPath}/mypage/pick'">찜한
+				상품</p>
+			<p  style="color: rgb(107, 6, 9); font-weight: bold;"
+				onclick="location.href='${pageContext.request.contextPath}/mypage/order'">주문
+				내역</p>
+			<p
+				onclick="location.href='${pageContext.request.contextPath}/mypage/review'">상품
+				후기</p>
+			<p
+				onclick="location.href='${pageContext.request.contextPath}/mypage/modifyForm'">개인정보
+				수정</p>
 		</div>
 	</div>
-	<div class="category-box d-flex flex-column">
-		<h3>나의 수라밀</h3>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/mypage/pick'">찜한
-			상품</p>
-		<p  style="color: rgb(107, 6, 9); font-weight: bold;"
-			onclick="location.href='${pageContext.request.contextPath}/mypage/order'">주문
-			내역</p>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/mypage/review'">상품
-			후기</p>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/mypage/modifyForm'">개인정보
-			수정</p>
-	</div>
-</div>
-<div class="mypage-box flex-grow-1">
-<div class="title-box">
+	<div class="mypage-box flex-grow-1">
+	<div class="title-box">
         <p>주문 내역</p>
         <div class="horizontal-line"></div>
         </div>
         <div class="page-upload">
 	        <div class="order-container d-flex flex-column">
 	            <div class="row text-center period-choice" >
-	            	<div class="col-3 three-month">
-	                	<a href="${pageContext.request.contextPath}/mypage/order?month=3" style="text-decoration: none; color: black;">3개월</a>
+	            	<div class="col-3 three-month" >
+	            		<button style="all: unset;" onclick="location.href='${pageContext.request.contextPath}/mypage/order?month=3'">3개월</button>
 	            	</div>
 	                <div class="col-3 six-month">
-	                	<a href="${pageContext.request.contextPath}/mypage/order?month=6" style="text-decoration: none; color: black;">6개월</a>
+	                	<button style="all: unset;" onclick="location.href='${pageContext.request.contextPath}/mypage/order?month=6'">6개월</button>
 	                </div>
 	                <div class="col-3 one-year">
-	                	<a href="${pageContext.request.contextPath}/mypage/order?month=12" style="text-decoration: none; color: black;">1년</a>
+	                	<button style="all: unset;" onclick="location.href='${pageContext.request.contextPath}/mypage/order?month=12'">1년</button>
 	                </div>
 	                <div class="col-3 three-year">
-		                <a href="${pageContext.request.contextPath}/mypage/order?month=36" style="text-decoration: none; color: black;">3년</a>                
+	                	<button style="all: unset;" onclick="location.href='${pageContext.request.contextPath}/mypage/order?month=36'">3년</button>                
 	                </div>
 	            </div>
 	            
@@ -95,7 +94,8 @@
 		
 					<c:if test="${pager.groupNo<pager.totalGroupNo}">
 						<a href="order?pageNo=${pager.endPageNo+1}&month=${month}"
-							class="btn btn-outline-dark btn-sm">다음</a>
+							class="btn btn-outline-dark btn-sm">다음
+						</a>
 					</c:if>
 		
 					<a href="order?pageNo=${pager.totalPageNo}&month=${month}"
@@ -105,5 +105,6 @@
         </div>
 	</div>
 </main>
+
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

@@ -56,79 +56,56 @@
 			</div>
 			<div class="review-writeable-page">
 				<c:forEach items="${review}" var="review">
-					<div class="product-box">
-							<div class="product-details d-flex">
-								<img src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${review.goodsId}&imgRole=G_MAIN" alt="${review.goodsName}" class="product-image" />
-								<div class="d-flex flex-column product-info">
-									<p>
-										<strong>주문 번호</strong> ${review.orderId}
-									</p>
-									<p>
-										<strong>주문 날짜</strong> <fmt:formatDate value="${review.orderDate}" pattern="yyyy-MM-dd"/>
-									</p>
-									<p>
-										<strong>상품명</strong> <span>${review.goodsName}</span>
-									</p>
-									<p>
-										<strong>가격</strong> <fmt:formatNumber value="${review.goodsPrice}" type="number" groupingUsed="true"/>
-									</p>
-								</div>
-								
-							</div>					
-						<button class="insert-button" data-bs-toggle="modal"
-							data-bs-target="#staticBackdrop"
-							data-order-id="${review.orderId}"
-							data-goods-id="${review.goodsId}"
-							data-goods-name="${review.goodsName}"
-							data-goods-img="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${review.goodsId}&imgRole=G_MAIN"
-							>작성하기</button>
+					<div class="review-box d-flex flex-column">
+						<div class="review-top">
+							<div>
+								<p class="title">${review.goodsName}</p>
+								<p class="sub-title">수라밀 |${review.reviewDate}</p>
+							</div>
+							<button class="update-button" data-bs-toggle="modal"
+								data-bs-target="#staticBackdrop"
+								data-review-id="${review.reviewId}"
+								data-review-content="${review.reviewContent}"
+								data-goods-name="${review.goodsName}"
+								data-goods-img="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${review.goodsId}&imgRole=G_MAIN"
+								>수정하기</button>
+						</div>
+						<div class="review-description">
+							<p class="description">
+								${review.reviewContent}
+							</p>
+						</div>
 					</div>
 				</c:forEach>
 			</div>
-			<div class="review-written-page">
-				<div class="review-box d-flex flex-column">
-					<div class="review-top">
-						<div>
-							<p class="title">${r.title}</p>
-							<p class="sub-title">${r.auther}| ${r.wirttenDay}</p>
-						</div>
-						<button class="update-button" data-bs-toggle="modal"
-							data-bs-target="#staticBackdrop">수정하기</button>
-					</div>
-					<div class="review-description">
-						<p class="description">${r.description}</p>
-					</div>
-				</div>
 
-
-			</div>
 			<div class="pagination">
-					<a href="review?pageNo=1&month=${month}" class="btn btn-outline-dark btn-sm">처음</a>
+					<a href="reviewCompleteList?pageNo=1&month=${month}" class="btn btn-outline-dark btn-sm">처음</a>
 		
-					<c:if test="${pager.groupNo>1}">
-						<a href="review?pageNo=${pager.startPageNo-1}&month=${month}"
+					<c:if test="${pager.groupNo > 1}">
+						<a href="reviewCompleteList?pageNo=${pager.startPageNo-1}&month=${month}"
 							class="btn btn-outline-dark btn-sm">이전</a>
 					</c:if>
 		
 					<c:forEach begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1" var="i">
 						<c:if test="${pager.pageNo==i}">
-								<button class="page-num active" onclick="location.href='${pageContext.request.contextPath}/mypage/review?pageNo=${i}&month=${month}'">
+								<button class="page-num active" onclick="location.href='${pageContext.request.contextPath}/mypage/reviewCompleteList?pageNo=${i}&month=${month}'">
 									${i}
 								</button>						
 						</c:if>
 						<c:if test="${pager.pageNo!=i}">
-								<button class="page-num" onclick="location.href='${pageContext.request.contextPath}/mypage/review?pageNo=${i}&month=${month}'">
+								<button class="page-num" onclick="location.href='${pageContext.request.contextPath}/mypage/reviewCompleteList?pageNo=${i}&month=${month}'">
 									${i}
 								</button>
 						</c:if>
 					</c:forEach>
 		
-					<c:if test="${pager.groupNo<pager.totalGroupNo}">
-						<a href="review?pageNo=${pager.endPageNo+1}&month=${month}"
+					<c:if test="${pager.groupNo < pager.totalGroupNo}">
+						<a href="reviewCompleteList?pageNo=${pager.endPageNo + 1}&month=${month}"
 							class="btn btn-outline-dark btn-sm">다음</a>
 					</c:if>
 		
-					<a href="review?pageNo=${pager.totalPageNo}&month=${month}"
+					<a href="reviewCompleteList?pageNo=${pager.totalPageNo}&month=${month}"
 						class="btn btn-outline-dark btn-sm">마지막</a>
 				</div>
 		</div>
@@ -170,33 +147,28 @@
 </main>
 
 <script>
-$(document).on('click', '.insert-button', function() {
-	const orderId = $(this).data('order-id');
-	const goodsId = $(this).data('goods-id');
+$(document).on('click', '.update-button', function() {
 	const goodsName = $(this).data('goods-name');
 	const imgSrc = $(this).data('goods-img');
+	const reviewId = $(this).data('review-id');
+	const reviewContent = $(this).data('review-content');
 	
 	$('#modal-goods-name').text(goodsName);
 	$('#modal-goods-img').attr('src', imgSrc);	
+	$('#modal-review-content').text(reviewContent);
 	
-	$('#review-update').data('order-id', orderId);
-	$('#review-update').data('goods-id', goodsId);
-	$('#review-update').data('goods-name', goodsName);
+	$('#review-update').data('review-id', reviewId);	
 });
 
 $(document).on('click', '.review-update', function() {
-	const orderId = $(this).data('order-id');
-	const goodsId = $(this).data('goods-id');
-	const goodsName = $(this).data('goods-name');
+	const reviewId = $(this).data('review-id');
 	const reviewContent = $('#modal-review-content').val();
 	
 	$.ajax({
 		type: 'POST',
-		url: 'writeReview',
+		url: 'editReview',
 		data: {
-			orderId: orderId,
-			goodsId: goodsId,
-			goodsName: goodsName,
+			reviewId: reviewId,
 			reviewContent: reviewContent
 		},
 		success: function(data) {

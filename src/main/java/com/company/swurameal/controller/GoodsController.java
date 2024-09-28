@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.company.swurameal.dto.GoodsDto;
 import com.company.swurameal.dto.GoodsImgDto;
 import com.company.swurameal.dto.GoodsSuggestDto;
+import com.company.swurameal.dto.ReviewDto;
 import com.company.swurameal.service.GoodsService;
+import com.company.swurameal.service.ReviewService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,14 +29,21 @@ public class GoodsController {
 	@Autowired
 	private GoodsService goodsService; // GoodsService를 사용하여 상품 목록을 가져옴
 	
+	@Autowired
+	private ReviewService reviewService;
+	
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int goodsId, Model model) {
 		GoodsDto goodsDto = goodsService.getGoodsById(goodsId);
 		List<GoodsSuggestDto> goodsSuggestDto = goodsService.getGoodsBySuggest(goodsDto);
 		List<GoodsSuggestDto> goodsSuggestAlcohol = goodsService.getAlcoholBySuggest(goodsDto);
+		List<ReviewDto> review = reviewService.getReviewByGoods(goodsId);
+		int reviewSize = review.size();
 		model.addAttribute("goods", goodsDto);
 		model.addAttribute("goodsSameCategory", goodsSuggestDto);
 		model.addAttribute("goodsAlcohol", goodsSuggestAlcohol);
+		model.addAttribute("review", review);
+		model.addAttribute("reviewSize", reviewSize);
 		return "goods/detail";
 	}
 	

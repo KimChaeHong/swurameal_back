@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.company.swurameal.dao.mybatis.OrderDao;
 import com.company.swurameal.dto.OrderWithItemsDto;
+import com.company.swurameal.dto.ReviewDto;
 
 @Service
 public class OrderService {
@@ -28,4 +29,9 @@ public class OrderService {
 	public int getTotalRows(Map<String, Object> orderParams) {
 		return orderdao.countRows(orderParams);
 	}
+	
+	public int updateReviewStatus(ReviewDto reviewDto) {
+		return orderdao.updateReviewStatus(reviewDto);
+	}
+	
 }
