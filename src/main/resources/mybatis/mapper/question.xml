@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.swurameal.dao.mybatis.QuestionDao">
+	<insert id="insert" parameterType="Question">
+		<selectKey keyProperty="QUESTION_ID" resultType="int"
+			order="BEFORE">
+			select SEQ_QUESTIONID.nextval from dual
+		</selectKey>
+		INSERT INTO question (
+		QUESTION_ID,
+		USER_ID,
+		QUESTION_TITLE,
+		QUESTION_CONTENT,
+		QUESTION_DATE,
+		QUESTION_STATUS
+		) VALUES (
+		#{questionId},
+		#{userId},
+		#{questionTitle},
+		#{questionContent},
+		#{questionDate},
+		#{questionStatus}
+		)
+	</insert>
+
+	<select id="selectQuestionList" parameterType="Pager"
+		resultType="Question">	
+		<![CDATA[
+		    select rnum, question_id, user_id, question_title, question_content, question_date, question_status
+		    from (
+		        select rownum as rnum, question_id, user_id, question_title, question_content, question_date, question_status
+		        from (
+		            select question_id, user_id, question_title, question_content, question_date, question_status
+		            from question
+		            order by question_id desc
+		        )
+		        where rownum <= #{endRowNo}
+		    )
+		    where rnum >= #{startRowNo}
+		]]>
+	</select>
+	
+
+	<select id="countRows" resultType="int">
+		select count(*) from question
+	</select>
+</mapper>
