@@ -44,38 +44,43 @@
 		<div class="review-container">
 			<div class="review-choice-box">
 				<div class="review-writeable-box">
-					<p class="review-writeable">작성 가능한 리뷰</p>
+					<p class="review-writeable">
+						<button style="all: unset;" onclick="location.href='${pageContext.request.contextPath}/mypage/review'">작성 가능한 리뷰</button>
+					</p>
 				</div>
 				<div class="review-written-box">
-					<p class="review-written">작성한 리뷰</p>
+					<p class="review-written">
+						<button style="all: unset;" onclick="location.href='${pageContext.request.contextPath}/mypage/review?reviewStatus=1'">작성한 리뷰</button>
+					</p>
 				</div>
 			</div>
 			<div class="review-writeable-page">
-				<c:forEach items="${order}" var="order">
+				<c:forEach items="${review}" var="review">
 					<div class="product-box">
 							<div class="product-details d-flex">
-								<img src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${order.goodsId}&imgRole=G_MAIN" alt="${order.goodsName}" class="product-image" />
+								<img src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${review.goodsId}&imgRole=G_MAIN" alt="${review.goodsName}" class="product-image" />
 								<div class="d-flex flex-column product-info">
 									<p>
-										<strong>주문 번호</strong> ${order.orderId}
+										<strong>주문 번호</strong> ${review.orderId}
 									</p>
 									<p>
-										<strong>주문 날짜</strong> <fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd"/>
+										<strong>주문 날짜</strong> <fmt:formatDate value="${review.orderDate}" pattern="yyyy-MM-dd"/>
 									</p>
 									<p>
-										<strong>상품명</strong> <span>${order.goodsName}</span>
+										<strong>상품명</strong> <span>${review.goodsName}</span>
 									</p>
 									<p>
-										<strong>가격</strong> <fmt:formatNumber value="${order.goodsPrice}" type="number" groupingUsed="true"/>
+										<strong>가격</strong> <fmt:formatNumber value="${review.goodsPrice}" type="number" groupingUsed="true"/>
 									</p>
 								</div>
 								
 							</div>					
 						<button class="insert-button" data-bs-toggle="modal"
 							data-bs-target="#staticBackdrop"
-							data-goods-id="${order.goodsId}"
-							data-goods-name="${order.goodsName}"
-							data-goods-img="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${order.goodsId}&imgRole=G_MAIN" alt="${order.goodsName}"
+							data-order-id="${review.orderId}"
+							data-goods-id="${review.goodsId}"
+							data-goods-name="${review.goodsName}"
+							data-goods-img="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${review.goodsId}&imgRole=G_MAIN"
 							>작성하기</button>
 					</div>
 				</c:forEach>
@@ -156,7 +161,7 @@
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button class="review-close" data-bs-dismiss="modal">취소</button>
-                <button class="review-update">수정하기</button>
+                <button id="review-update" class="review-update">수정하기</button>
             </div>
         </div>
     </div>
@@ -166,33 +171,42 @@
 
 <script>
 $(document).on('click', '.insert-button', function() {
+	const orderId = $(this).data('order-id');
 	const goodsId = $(this).data('goods-id');
 	const goodsName = $(this).data('goods-name');
 	const imgSrc = $(this).data('goods-img');
 	
-	$('#modal-goods-name').text(goodsName);
 	$('#modal-goods-img').attr('src', imgSrc);	
+	$('#modal-goods-name').text(goodsName);
+	
+	$('#review-update').data('order-id', orderId);
+	$('#review-update').data('goods-id', goodsId);
+	$('#review-update').data('goods-name', goodsName);
 });
 
 $(document).on('click', '.review-update', function() {
-	const goodsId = $('.insert-button').data('goods-id');
+	const orderId = $(this).data('order-id');
+	const goodsId = $(this).data('goods-id');
+	const goodsName = $(this).data('goods-name');
 	const reviewContent = $('#modal-review-content').val();
 	
 	$.ajax({
 		type: 'POST',
-		url: 'editReview',
+		url: 'writeReview',
 		data: {
+			orderId: orderId,
 			goodsId: goodsId,
+			goodsName: goodsName,
 			reviewContent: reviewContent
 		},
 		success: function(data) {
-			console.log("성공")
+			alert("성공" + data);
 		},
 		error: function(xhr, status, error) {
-			alert('오류' + xhr.responseText);
+			console.log('오류' + xhr.responseText);
 		}
 	})
-})
+});
 </script>
 <%-- <script src="${pageContext.request.contextPath}/resources/js/review.js"></script> --%>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

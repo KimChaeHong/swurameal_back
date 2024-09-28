@@ -8,12 +8,12 @@ import lombok.Data;
 
 @Data
 public class ReviewDto {
-	int reviewId;
-	String userId;
-	int orderId;
-	int goodsId;
-	String reviewContent;
-	
+	private int reviewId;
+	private String userId;
+	private int orderId;
+	private int goodsId;
+	private String reviewContent;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	Date reviewDate;
+	private Date reviewDate;
+	private int reviewStatus;
 }

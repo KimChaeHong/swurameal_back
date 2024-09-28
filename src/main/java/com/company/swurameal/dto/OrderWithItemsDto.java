@@ -14,6 +14,7 @@ public class OrderWithItemsDto {
 	private Date orderDate;
 	private int goodsId;
 	private int goodsPrice;
+	private int reviewStatus;
 	private String goodsName;
 	private String gAttachOname;
 	private String gAttachType;
