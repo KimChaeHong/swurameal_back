@@ -105,8 +105,6 @@ public class GoodsService {
 		for (GoodsImgDto goodsImg : imgList) {
 			goodsImgDao.update(goodsImg);
 		}
-
 	}
-
 
 }

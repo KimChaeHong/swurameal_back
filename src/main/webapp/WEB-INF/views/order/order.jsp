@@ -20,6 +20,7 @@
         <div class="left-section">
           <!-- 주문상품 -->
           <div id="pay-items">
+<<<<<<< HEAD
             <div class="title">주문상품</div>
           <c:forEach var="item" items="${selectedItems}">
             <div class="item d-flex justify-content-between">
@@ -39,8 +40,29 @@
             </div>
           </c:forEach>  
           </div>
+=======
+			<div class="title">주문상품</div>
+			<c:forEach items="${goods}" var="goods">
+				<div class="item d-flex justify-content-between">
+					<img src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" alt="상품이미지">
+					<div id="item-detail">
+						<p>[${goods.category}] ${goods.goodsName}</p>
+						<p>${goods.goodsComment}</p>
+					</div>
+					<div class="item-cnt"
+						data-goods-id="${goods.goodsId}" 
+						data-quantity="${goods.quantity}"
+						data-price="${goods.price}"
+					>${goods.quantity}개</div>
+					<div class="item-price">
+						<span>${goods.price}</span>원
+					</div>
+				</div>			
+			</c:forEach>
+		</div>
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
 
-          <!-- 주문자 정보 -->
+		<!-- 주문자 정보 -->
           <div id="user-info">
             <div class="title">주문자 정보</div>
             <span class="label">주문자명</span>
@@ -81,7 +103,11 @@
             <p>주문/결제 내역</p>
             <div class="d-flex justify-content-between">
               <span>상품금액</span>
+<<<<<<< HEAD
               <span><fmt:formatNumber value="${totalAmount}" pattern="#,###"/>원</span>
+=======
+              <span id="total-goods-price">원</span>
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
             </div>
             <div class="d-flex justify-content-between">
               <span>배송비</span>
@@ -89,7 +115,11 @@
             </div>
             <div class="d-flex justify-content-between total">
               <span>최종결제금액</span>
+<<<<<<< HEAD
               <span><fmt:formatNumber value="${totalAmount + 3000}" pattern="#,###"/>원</span>
+=======
+              <span id="total-sum-price">원</span>
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
             </div>
           </div>
           <button id="payBtn">결제하기</button>
@@ -99,6 +129,7 @@
     <button onclick="backToTop()" id="btn-back-to-top">Top</button>
     
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
+<<<<<<< HEAD
 
 
 <script>
@@ -127,3 +158,50 @@
         }
     });
 </script>
+=======
+<script>
+let totalSum = 0;
+$(document).ready(function() {
+	$('.item-cnt').each(function() {
+		const quantity = $(this).data('quantity');
+        const price = $(this).data('price');
+        
+        const itemTotal = quantity * price;
+        totalSum += itemTotal;
+    });
+	$('#total-goods-price').text(totalSum);
+    $('#total-sum-price').text(totalSum + 3000);	
+})
+
+$(document).on('click', '#payBtn', function() {
+    const goodsData = [];
+    
+    $('.item-cnt').each(function() {
+        const goodsId = $(this).data('goods-id');
+        const quantity = $(this).data('quantity');
+        const price = $(this).data('price');
+        const itemTotal = quantity * price;
+        totalSum += itemTotal;
+        
+        goodsData.push({ 
+        	goodsId: goodsId, 
+        	quantity: quantity, 
+        	price: price 
+        	});
+    });
+    
+    $.ajax({
+        type: 'POST',
+        url: 'orderComplete',
+        contentType: 'application/json',
+        data: JSON.stringify({ goodsData: goodsData }),
+        success: function(response) {
+        	window.location.href = '${pageContext.request.contextPath}'
+        },
+        error: function(xhr, status, error) {
+            alert("Error: " + error);
+        }
+    });
+});
+</script>
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git

@@ -66,7 +66,7 @@ function validateCurrentPassword() {
     let isValid = false; // 초기값
 
     $.ajax({
-        url: contextPath + '/mypage/validatePassword', // 서버의 비밀번호 검증 엔드포인트
+        url: contextPath + '/user/validatePassword', // 서버의 비밀번호 검증 엔드포인트
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ password: currentPassword }),

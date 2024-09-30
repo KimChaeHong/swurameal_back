@@ -9,7 +9,10 @@ import com.company.swurameal.dao.mybatis.QuestionDao;
 import com.company.swurameal.dto.Pager;
 import com.company.swurameal.dto.QuestionDto;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class QnaService {
 	@Autowired
 	private QuestionDao questionDao;
@@ -31,5 +34,11 @@ public class QnaService {
 	public void writeQuestion(QuestionDto question) {
 		questionDao.insert(question);
 		int questionId = question.getQuestionId();
+	}
+
+	//질문 하나 가져오기
+	public QuestionDto getQuestion(int questionId) {
+		QuestionDto question = questionDao.selectByQuestionId(questionId);
+		return question;
 	}
 }

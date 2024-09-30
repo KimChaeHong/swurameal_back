@@ -1,5 +1,6 @@
 package com.company.swurameal.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.company.swurameal.dao.mybatis.CartDao;
 import com.company.swurameal.dao.mybatis.GoodsDao;
 import com.company.swurameal.dto.CartDto;
+import com.company.swurameal.dto.CartGoodsDto;
 import com.company.swurameal.dto.GoodsDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -50,12 +52,8 @@ public class CartService {
 	}
 
 	//카트 아이템 삭제하기
-	public void deleteGoodsFromCart(CartDto cartItem, String userId) {
-		if (userId == null) {
-			throw new IllegalArgumentException("User ID cannot be null");
-		}
+	public void deleteGoodsFromCart(CartDto cartItem) {
 		cartDao.deleteGoodsFromCart(cartItem);
-
 	}
 	
 	//카트 전체 아이템 삭제하기
@@ -84,5 +82,13 @@ public class CartService {
 	public List<CartDto> getCountItemsInCart(String userId) {
 		return cartDao.countGoodsFromCart(userId);
 	}
+<<<<<<< HEAD
+=======
+	
+	//카트에 해당하는 상품정보 가져오기
+	public List<CartGoodsDto> getCartGoodsInfo(HashMap<String, Object> cartGoods) {
+		return cartDao.selectCartGoods(cartGoods);
+	}
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
 
 }

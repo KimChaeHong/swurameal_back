@@ -121,7 +121,6 @@
 		STATUS
 		FROM goods
 		WHERE CATEGORY = #{Category}
-
 	</select>
 
 	<!-- 상품 서브 카테고리 가져오기 -->
@@ -143,7 +142,6 @@
 		STATUS
 		FROM goods
 		WHERE SUBCATEGORY = #{subcategory}
-
 	</select>
 
 	<!-- 상품 이미지 가져오기 -->
@@ -245,6 +243,6 @@
 	    WHERE ROWNUM <= 2
 	    ]]>
 	</select>
-
+	
 </mapper>
 

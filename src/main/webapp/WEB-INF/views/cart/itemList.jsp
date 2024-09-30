@@ -74,16 +74,43 @@
                </span>
             </div>
          </div>
-         <button class="order-button" 
-         		data-goods-id="${goods.goodsId}" 
-         		data-quantity="1"
-         onclick="location.href='${pageContext.request.contextPath}/order/order'">주문하기</button>
+         <button class="order-button" >주문하기</button>
       </div>
    </div>
 </c:if> 
 </main>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
+<<<<<<< HEAD
 <!-- <script>
     const contextPath = '${pageContext.request.contextPath}';
 </script> -->
+=======
+<script>
+$(document).on('click', '.order-button', function() {
+    const goodsData = [];
+
+    $('.bi-check-circle-fill').each(function() {
+        const goodsId = $(this).data('goods-id');
+        const quantity = $(this).data('quantity');
+
+        goodsData.push({ 
+        	goodsId: goodsId
+        	});
+    });
+
+    const form = $('<form>', {
+        method: 'post',
+        action: `${pageContext.request.contextPath}/order/order`,
+    });
+
+    $('<input>').attr({
+        type: 'hidden',
+        name: 'goodsData',
+        value: JSON.stringify(goodsData),
+    }).appendTo(form);
+
+    form.appendTo('body').submit();
+});
+</script>
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git

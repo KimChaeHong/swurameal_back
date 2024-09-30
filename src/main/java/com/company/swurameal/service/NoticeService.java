@@ -26,7 +26,7 @@ public class NoticeService {
 	}
 	
 	// 공지사항 하나의 내용을 가져오는 메서드
-	public NoticeDto getNoticeById(int noticeId) {
+	public NoticeDto getNotice(int noticeId) {
 		return noticeDao.selectByNoticeId(noticeId);
 	}
 	
@@ -36,7 +36,7 @@ public class NoticeService {
 	}
 	
 	// 공지사항을 수정하는 메서드
-	public void updateNotice(NoticeDto noticeDto) {
+	public void editNotice(NoticeDto noticeDto) {
 		noticeDao.update(noticeDto);
 	}
 	
@@ -45,7 +45,7 @@ public class NoticeService {
 		noticeDao.delete(noticeId);
 	}
 	
-	// 공지사항의 데이터 갯수를 행으로 세는 메서드
+	// 공지사항의 데이터 행을 세는 메서드
 	public int getTotalRows() {
 		return noticeDao.countRows();
 	}

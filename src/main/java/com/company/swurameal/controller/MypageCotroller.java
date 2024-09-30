@@ -72,75 +72,8 @@ public class MypageCotroller {
 		return "mypage/pick";
 	}
 
-	
-	//회원 비활성화
-	@GetMapping("/deactivate")
-	public String deactivate(Authentication authentication) {
-		String userId = authentication.getName();
-		userService.deactivateUserById(userId);
-		return "redirect:/logout";
-	}
-	
-	//회원 정보 출력
-	@Secured("ROLE_USER")
-	@GetMapping("/modifyForm")
-	public String modifyPage(Model model, Authentication authentication) {
-		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-		String userId = userDetails.getUsername(); // 사용자 ID 가져오기
-		
-		UserDto userInfo = userService.getUserById(userId);
-		model.addAttribute("user", userInfo);
-		return "mypage/modify";
-	}
-	
-	//회원 정보 수정
-	@Secured("ROLE_USER")
-	@PostMapping("/update")
-    public String updateUser(UserDto userDto, Authentication authentication) {
-		String userId = authentication.getName();
-		
-		if (userDto.getUserRole() == null || userDto.getUserRole().isEmpty()) {
-			userDto.setUserRole("ROLE_USER");
-		}
-		
-		//비밀번호 업데이트 처리
-		if (userDto.getUserPw() != null && !userDto.getUserPw().isEmpty()) {
-			PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-			String hashedPassword = passwordEncoder.encode(userDto.getUserPw());
-			userDto.setUserPw(hashedPassword);
-		} else {
-			//비밀번호가 입력되지 않으면 기존 비밀번호 유지
-			UserDto existingUser = userService.findUserById(userId);
-			userDto.setUserPw(existingUser.getUserPw());
-		}
-		
-		userService.updateByUserId(userDto);
-		return "mypage/modify";
-	
-	}
-		
-	//Db에서 사용자 정보 가져오기
-	@Secured("ROLE_USER")
-	@PostMapping("/validatePassword")
-	public ResponseEntity<Map<String, Boolean>> validatePassword(@RequestBody Map<String, String> payload, Authentication authentication) {
-		 	CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-			String userId = userDetails.getUsername(); // 사용자 ID 가져오기
-	        
-	        UserDto user = userService.findUserById(userId);
-	        
-	        Map<String, Boolean> response = new HashMap<>();
-	        boolean isValid = false;
-	        
-	        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder(); //매치하는지 검사
-	        if (passwordEncoder.matches(payload.get("password"), user.getUserPw())) {
-	        	isValid = true;
-	        }
-	        response.put("isValid", isValid);
-	        return ResponseEntity.ok(response);
-	}
-
 	@RequestMapping("/order")
-	public String mypageOrder(
+	public String navToMyPageOrder(
 		@RequestParam(defaultValue="1") int pageNo,
 		@RequestParam(defaultValue="3") int month,
 		HttpSession session,
@@ -149,6 +82,7 @@ public class MypageCotroller {
 			CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 			UserDto user = userDetails.getUserDto();
 			String userId = user.getUserId();
+			model.addAttribute("user", userDetails.getUserDto());
 			
 			Map<String, Object> orderParams = new HashMap<>();
 			orderParams.put("userId", userId);
@@ -166,7 +100,7 @@ public class MypageCotroller {
 	}
 
 	@RequestMapping("/review")
-	public String mypageReview(
+	public String navToMyPageReview(
 		@RequestParam(defaultValue="1") int pageNo,
 		@RequestParam(defaultValue="0") int month,
 		@RequestParam(defaultValue="0") int reviewStatus,
@@ -177,6 +111,7 @@ public class MypageCotroller {
 			CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 			UserDto user = userDetails.getUserDto();
 			String userId = user.getUserId();
+			model.addAttribute("user", userDetails.getUserDto());
 			
 			Map<String, Object> reviewParams = new HashMap<>();
 			reviewParams.put("userId", userId);
@@ -214,7 +149,7 @@ public class MypageCotroller {
 	}
 	
 	@GetMapping("/reviewCompleteList")
-	public String reviewCompleteList(
+	public String navToReviewCompleteList(
 		@RequestParam(defaultValue="1") int pageNo,
 		@RequestParam(defaultValue="0") int month,
 		@RequestParam(defaultValue="1") int reviewStatus,
@@ -224,6 +159,7 @@ public class MypageCotroller {
 			CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 			UserDto user = userDetails.getUserDto();
 			String userId = user.getUserId();
+			model.addAttribute("user", userDetails.getUserDto());
 			
 			Map<String, Object> reviewParams = new HashMap<>();
 			reviewParams.put("userId", userId);
@@ -251,7 +187,7 @@ public class MypageCotroller {
 			String userId = user.getUserId();
 			reviewDto.setUserId(userId);
 			log.info("잘되냐" + reviewDto.toString());
-			reviewService.updateReview(reviewDto);
+			reviewService.editReview(reviewDto);
 		
 			return "mypage/reviewCompleteList";
 	}

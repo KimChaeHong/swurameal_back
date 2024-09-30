@@ -112,6 +112,7 @@
 		WHERE ORDER_ID = #{orderId} AND GOODS_ID = #{goodsId}
 	</update>
 	
+<<<<<<< HEAD
 	<!-- 주문에 아이템 추가하기 -->
     <insert id="insertGoodsToOrderItem" parameterType="OrderItem">
         INSERT INTO order_item (USER_ID, GOODS_ID, QUANTITY)
@@ -123,5 +124,35 @@
         INSERT INTO order_item (USER_ID, GOODS_ID, QUANTITY)
         VALUES (#{userId}, #{goodsId}, #{quantity})
     </insert>
+=======
+	<insert id="insertOrder" parameterType="Order">
+		<selectKey keyProperty="orderId" resultType="int" order="BEFORE">
+			SELECT SEQ_ORDERID.NEXTVAL FROM DUAL
+		</selectKey>
+		    INSERT INTO "ORDER" (
+		    	ORDER_ID, 
+		    	USER_ID, 
+		    	DELIVERY_ID, 
+		    	TOTAL_PRICE, 
+		    	DELIVERY_STATUS, 
+		    	ORDER_STATUS, 
+		    	ORDER_DATE
+		    	)
+		    VALUES (
+		    	#{orderId}, 
+		    	#{userId}, 
+		    	#{deliveryId},
+		    	#{totalPrice},
+		    	#{deliveryStatus},
+		    	#{orderStatus},
+		    	sysdate
+		    	)
+	</insert>
+	
+	<insert id="insertOrderItem" parameterType="OrderItem">
+	    INSERT INTO order_item (ORDER_ID, GOODS_ID, QUANTITY, GOODS_PRICE, REVIEW_STATUS)
+	    VALUES (#{orderId}, #{goodsId}, #{quantity}, #{goodsPrice}, 0)
+	</insert>
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git
 
 </mapper>
