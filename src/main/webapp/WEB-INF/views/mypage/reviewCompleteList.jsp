@@ -128,7 +128,7 @@
                     </div>
                     <div class="modal-product-detail d-flex flex-column flex-grow-1">
                         <p><strong>상품명</strong> <span id="modal-goods-name"></span></p>
-                        <p><strong>작성일</strong> <span>${currentDate}</span></p>
+                        <p><strong>작성일</strong> <span><fmt:formatDate value="${currentDate}" pattern="yyyy-MM-dd" /></span></p>
                     </div>
                 </div>
                 <div class="modal-review d-flex" >

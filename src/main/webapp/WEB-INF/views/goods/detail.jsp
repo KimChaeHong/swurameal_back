@@ -156,7 +156,7 @@
 		            <div class="review-box">
 		                <p>
 		                    <span class="cus-name">${review.userName}</span>
-		                    <span class="date">${review.reviewDate}</span>
+		                    <span class="date"><fmt:formatDate value="${review.reviewDate}" pattern="yyyy-MM-dd" /></span>
 		                </p>
 		                <p class="review-content">${review.reviewContent}</p>
 		            </div>
