@@ -74,7 +74,7 @@ public class OrderCotroller {
 	//체크된 상품 리스트로 주문
 	@Secured("ROLE_USER")
 	@RequestMapping("/orderComplete")
-	public ResponseEntity<String> submitOrder(
+	public ResponseEntity<String> completeOrder(
 		@RequestBody Map<String, List<CartGoodsDto>> request,
 		Authentication authentication
 		) {
