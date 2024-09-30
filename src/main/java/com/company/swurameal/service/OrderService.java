@@ -21,23 +21,23 @@ public class OrderService {
 	
 	@Autowired
 	private OrderDao orderDao;
-	
+	// 주문과 주문에 해당하는 아이템 가져오는 메서드
 	public List<OrderWithItemsDto> getOrder(String userId) {
 		return orderDao.selectOrderByUserId(userId);
 	}
-	
+	// 주문과 주문에 해당하는 아이템 가져오는 메서드(오버로딩)
 	public List<OrderWithItemsDto> getOrder(Map<String, Object> orderParams) {
 		return orderDao.selectOrderList(orderParams);
 	}
-	
+	// 주문과 주문에 해당하는 아이템을 userId와 기간에 따라 가져오는 메서드
 	public int getTotalRows(Map<String, Object> orderParams) {
 		return orderDao.countRows(orderParams);
 	}
-	
+	// 주문한 상품에 대한 리뷰 작성 여부를 업데이트 하는 메서드
 	public int updateReviewStatus(ReviewDto reviewDto) {
 		return orderDao.updateReviewStatus(reviewDto);
 	}
-
+	// 주문서에서 주문을 생성하는 메서드(주문과 주문아이템 생성)
     public void createOrder(String userId, List<CartGoodsDto> cartGoodsList) {
         
         OrderDto order = new OrderDto();

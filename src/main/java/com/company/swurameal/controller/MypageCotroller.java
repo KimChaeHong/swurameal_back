@@ -140,7 +140,7 @@ public class MypageCotroller {
 	}
 
 	@RequestMapping("/order")
-	public String mypageOrder(
+	public String navToMyPageOrder(
 		@RequestParam(defaultValue="1") int pageNo,
 		@RequestParam(defaultValue="3") int month,
 		HttpSession session,
@@ -167,7 +167,7 @@ public class MypageCotroller {
 	}
 
 	@RequestMapping("/review")
-	public String mypageReview(
+	public String navToMyPageReview(
 		@RequestParam(defaultValue="1") int pageNo,
 		@RequestParam(defaultValue="0") int month,
 		@RequestParam(defaultValue="0") int reviewStatus,
@@ -216,7 +216,7 @@ public class MypageCotroller {
 	}
 	
 	@GetMapping("/reviewCompleteList")
-	public String reviewCompleteList(
+	public String navToReviewCompleteList(
 		@RequestParam(defaultValue="1") int pageNo,
 		@RequestParam(defaultValue="0") int month,
 		@RequestParam(defaultValue="1") int reviewStatus,
@@ -254,7 +254,7 @@ public class MypageCotroller {
 			String userId = user.getUserId();
 			reviewDto.setUserId(userId);
 			log.info("잘되냐" + reviewDto.toString());
-			reviewService.updateReview(reviewDto);
+			reviewService.editReview(reviewDto);
 		
 			return "mypage/reviewCompleteList";
 	}

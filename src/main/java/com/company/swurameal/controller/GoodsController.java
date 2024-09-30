@@ -37,7 +37,7 @@ public class GoodsController {
 		GoodsDto goodsDto = goodsService.getGoodsById(goodsId);
 		List<GoodsSuggestDto> goodsSuggestDto = goodsService.getGoodsBySuggest(goodsDto);
 		List<GoodsSuggestDto> goodsSuggestAlcohol = goodsService.getAlcoholBySuggest(goodsDto);
-		List<ReviewDto> review = reviewService.getReviewByGoods(goodsId);
+		List<ReviewDto> review = reviewService.getReviewByGoodsId(goodsId);
 		int reviewSize = review.size();
 		model.addAttribute("goods", goodsDto);
 		model.addAttribute("goodsSameCategory", goodsSuggestDto);

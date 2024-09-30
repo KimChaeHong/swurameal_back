@@ -41,7 +41,7 @@ public class OrderCotroller {
 	//체크된 상품 리스트로 주문서
 	@Secured("ROLE_USER")
 	@RequestMapping("/order")
-	public String order(
+	public String navToOrder(
 		@RequestParam("goodsData") String goodsDataJson,
 		HttpServletRequest request,
 		Authentication authentication, 
