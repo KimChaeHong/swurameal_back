@@ -111,5 +111,34 @@
 			REVIEW_STATUS = #{reviewStatus}
 		WHERE ORDER_ID = #{orderId} AND GOODS_ID = #{goodsId}
 	</update>
+	
+	<insert id="insertOrder" parameterType="Order">
+		<selectKey keyProperty="orderId" resultType="int" order="BEFORE">
+			SELECT SEQ_ORDERID.NEXTVAL FROM DUAL
+		</selectKey>
+		    INSERT INTO "ORDER" (
+		    	ORDER_ID, 
+		    	USER_ID, 
+		    	DELIVERY_ID, 
+		    	TOTAL_PRICE, 
+		    	DELIVERY_STATUS, 
+		    	ORDER_STATUS, 
+		    	ORDER_DATE
+		    	)
+		    VALUES (
+		    	#{orderId}, 
+		    	#{userId}, 
+		    	#{deliveryId},
+		    	#{totalPrice},
+		    	#{deliveryStatus},
+		    	#{orderStatus},
+		    	sysdate
+		    	)
+	</insert>
+	
+	<insert id="insertOrderItem" parameterType="OrderItem">
+	    INSERT INTO order_item (ORDER_ID, GOODS_ID, QUANTITY, GOODS_PRICE, REVIEW_STATUS)
+	    VALUES (#{orderId}, #{goodsId}, #{quantity}, #{goodsPrice}, 0)
+	</insert>
 
 </mapper>

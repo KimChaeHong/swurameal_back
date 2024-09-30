@@ -76,18 +76,12 @@ public class CartController {
 		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 		String userInfo = userDetails.getUsername(); // 사용자 ID 가져오기
 
-		//goodsId가 null인 경우
-		if (userInfo == null) {
-			throw new IllegalArgumentException("User ID cannot be null");
-		}
-
 		//삭제할 아이템 생성
 		CartDto cartItem = new CartDto();
 		cartItem.setUserId(userInfo);
 		cartItem.setGoodsId(goodsId);
-		cartItem.setQuantity(1);
 
-		cartService.deleteGoodsFromCart(cartItem, userInfo);
+		cartService.deleteGoodsFromCart(cartItem);
 		return "redirect:/cart/itemList";
 	}
 	

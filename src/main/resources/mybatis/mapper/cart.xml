@@ -40,4 +40,22 @@
 	<select id="countGoodsFromCart" resultType="int">
 		SELECT SUM(quantity) FROM cart WHERE user_id = #{userId}
 	</select>
+	
+	<select id="selectCartGoods" parameterType="map" resultType="CartGoods">
+		SELECT 
+			c.GOODS_ID,
+			c.QUANTITY,
+			g.GOODS_NAME,
+			g.PRICE,
+			g.CATEGORY,
+			g.GOODS_COMMENT
+		FROM goods g
+		JOIN cart c ON g.GOODS_ID = c.GOODS_ID
+		WHERE c.USER_ID = #{userId}
+		AND c.GOODS_ID IN
+		<foreach item="id" collection="goodsIds" open="(" separator="," close=")">
+			#{id}
+    	</foreach>
+	</select>
+	
 </mapper>

@@ -39,5 +39,8 @@
 				   alias="OrderWithItems"/>
 	   	<typeAlias type="com.company.swurameal.dto.GoodsSuggestDto"
 				   alias="GoodsSuggest"/>
+	   	<typeAlias type="com.company.swurameal.dto.CartGoodsDto"
+				   alias="CartGoods"/>
+				   
 	</typeAliases>
 </configuration>
