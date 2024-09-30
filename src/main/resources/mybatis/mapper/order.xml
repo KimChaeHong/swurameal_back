@@ -111,5 +111,17 @@
 			REVIEW_STATUS = #{reviewStatus}
 		WHERE ORDER_ID = #{orderId} AND GOODS_ID = #{goodsId}
 	</update>
+	
+	<!-- 주문에 아이템 추가하기 -->
+    <insert id="insertGoodsToOrderItem" parameterType="OrderItem">
+        INSERT INTO order_item (USER_ID, GOODS_ID, QUANTITY)
+        VALUES (#{userId}, #{goodsId}, #{quantity})
+    </insert>
+
+	<!-- 주문에 아이템 추가하기 -->
+    <insert id="insertGoodsToOrder" parameterType="Order">
+        INSERT INTO order_item (USER_ID, GOODS_ID, QUANTITY)
+        VALUES (#{userId}, #{goodsId}, #{quantity})
+    </insert>
 
 </mapper>

@@ -151,10 +151,10 @@ h5.active {
     width: 500px;
 }
 
-.btn-sm {
+/* .btn-sm {
     width: 50px;
     height: 25px;
-}
+} */
 
 .btn-sm:hover {
     border: none;

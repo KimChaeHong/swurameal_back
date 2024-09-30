@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.company.swurameal.dto.CartDto;
 import com.company.swurameal.sercurity.CustomUserDetails;
 import com.company.swurameal.service.CartService;
+import com.company.swurameal.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +27,9 @@ import lombok.extern.slf4j.Slf4j;
 public class CartController {
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private UserService userService;
 
 	//카트 리스트 조회
 	@Secured("ROLE_USER")
@@ -120,23 +124,41 @@ public class CartController {
 		return "ok";
 	}	
 	
+	
 	//수량 업데이트
-	@Secured("ROLE_USER")
 	@GetMapping("/itemCount")
-	@ResponseBody //응답 본문으로 직접 데이터를 반환
-	public String itemCount(Authentication authentication, Model model) {	
+	public ResponseEntity<List<CartDto>> getItemCount(Authentication authentication) {
+		
 		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-		String userInfo = userDetails.getUsername(); //사용자 ID 가져오기
+		String userInfo = userDetails.getUsername(); // 사용자 ID 가져오기
 		
-		int cartCount = cartService.countItemsInCart(userInfo); //카트 수량 가져오기
-		model.addAttribute("cartCount", cartCount);
-
-		List<CartDto> cartList = cartService.getGoods(userInfo); // 항목조회
-		model.addAttribute("goodsList", cartList);
+		/*Map<Long, Integer> itemCountMap = new HashMap<>();*/
 		
-		if (cartList.isEmpty()) {
-			model.addAttribute("message", "장바구니가 비었습니다.");
-		}
-		return "cart/itemList";
+		//사용자 카트에서 아이템 수를 조회
+		/*List<CartDto> itemCountMap = cartService.getCountItemsInCart(userInfo);*/
+		/*for (CartDto item : cartItem) {
+			itemCountMap.put((long)item.getGoodsId(), item.getQuantity());
+		}*/
+		List<CartDto> itemCountMap = cartService.getCountItemsInCart(userInfo);
+		return ResponseEntity.ok(itemCountMap);
 	}
+	
+	/*//수량 업데이트
+	@GetMapping("/itemCount")
+	public ResponseEntity<Map<Long, Integer>> getItemCount(HttpSession session) {
+		//세션에서 userId 가져오기
+		String userId = (String) session.getAttribute("userId");
+		Map<Long, Integer> itemCountMap = new HashMap<>();
+		
+		if (userId != null) {
+			//사용자 카트에서 아이템 수를 조회
+			List<CartDto> cartItem = cartService.getCountItemsInCart(userId);
+			for (CartDto item : cartItem) {
+				itemCountMap.put((long)item.getGoodsId(), item.getQuantity());
+			}
+		}
+		
+		return ResponseEntity.ok(itemCountMap);
+	}*/
+	
 }

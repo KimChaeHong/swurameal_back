@@ -21,6 +21,23 @@
           <!-- 주문상품 -->
           <div id="pay-items">
             <div class="title">주문상품</div>
+          <c:forEach var="item" items="${selectedItems}">
+            <div class="item d-flex justify-content-between">
+            	<img src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${item.goodsId}"
+                   class="goods-img" alt="${item.goodsName}">
+                <div id="item-detail">
+                	<p>[${item.category}] ${item.goodsName}</p>
+                  <p>${item.goodsComment}</p>
+                </div>
+                <div class="item-cnt">
+                	<span class="cnt" data-price="${item.quantity}">${item.quantity}</span>
+                </div>
+                <div id="item-price">
+                  <span class="price" data-price="${item.price}"><fmt:formatNumber
+                        value="${item.price}" pattern="#,###"/></span> <span class="won">원</span>
+               </div>                                     
+            </div>
+          </c:forEach>  
           </div>
 
           <!-- 주문자 정보 -->
@@ -64,7 +81,7 @@
             <p>주문/결제 내역</p>
             <div class="d-flex justify-content-between">
               <span>상품금액</span>
-              <span>${goods.price}원</span>
+              <span><fmt:formatNumber value="${totalAmount}" pattern="#,###"/>원</span>
             </div>
             <div class="d-flex justify-content-between">
               <span>배송비</span>
@@ -72,7 +89,7 @@
             </div>
             <div class="d-flex justify-content-between total">
               <span>최종결제금액</span>
-              <span>${goods.price}원</span>
+              <span><fmt:formatNumber value="${totalAmount + 3000}" pattern="#,###"/>원</span>
             </div>
           </div>
           <button id="payBtn">결제하기</button>
@@ -82,3 +99,31 @@
     <button onclick="backToTop()" id="btn-back-to-top">Top</button>
     
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+
+<script>
+    $(document).ready(function() {
+        const goodsData = JSON.parse(sessionStorage.getItem('goodsData'));
+        if (goodsData) {
+            // 비어있지 않을 경우 아이템 추가
+            goodsData.forEach(item => {
+                $('#pay-items').append(`
+                    <div class="item d-flex justify-content-between">
+                        <img src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${item.goodsId}" class="goods-img" alt="${item.goodsName}">
+                        <div id="item-detail">
+                            <p>[카테고리] ${item.category || '정보 없음'}</p>
+                            <p>${item.goodsName}</p>
+                            <p>수량: ${item.quantity}</p>
+                        </div>
+                        <div id="item-price">
+                            <span class="price">${item.price}</span> <span class="won">원</span>
+                        </div>
+                    </div>
+                `);
+            });
+        } else {
+            // 데이터가 없을 때 처리
+            $('#pay-items').append('<div>주문 상품이 없습니다.</div>');
+        }
+    });
+</script>

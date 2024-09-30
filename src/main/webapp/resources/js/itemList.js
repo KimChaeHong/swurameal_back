@@ -136,21 +136,29 @@ $(document).ready(function() {
             const goodsId = $(this).data('goods-id');
             const quantity = $(this).closest('.item').find('.item-cnt').text();
             
-            console.log('goodsId:', goodsId, 'quantity:', quantity);
             
             if (goodsId && quantity) {
             	items.push({goodsId: goodsId, quantity: quantity}); //배열에 객체 추가
-            }
+            }                                    
         });
 
-        console.log('결과:', items);
+        sessionStorage.setItem('goodsData', JSON.stringify(items)); //세션에 저장
         
         if (items.length > 0) {
-        	const params = items.map(item => `goodsId=${item.goodsId}&quantity=${item.quantity}`).join('&');
-            const orderUrl = `${contextPath}/order/order?${params}`;
-            window.location.href = orderUrl; // 페이지 이동
+        	$.ajax({
+        		url: `${contextPath}/order`,
+        		type: 'POST',
+        		contentType: 'application/json',
+        		data: JSON.stringify(items),
+        		success: function(response) {
+        			window.location.href = response.redirectUrl;
+        		},
+        		error: function(err) {
+        			console.error('Error:', err);
+        		}
+        	});
         } else {
-            alert('체크된 아이템이 없습니다.');
+        	alert('체크된 상품이 없습니다.');
         }
     });
 });

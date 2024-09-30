@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.company.swurameal.dao.mybatis.OrderDao;
+import com.company.swurameal.dto.OrderItemDto;
 import com.company.swurameal.dto.OrderWithItemsDto;
 import com.company.swurameal.dto.ReviewDto;
 
@@ -32,6 +33,16 @@ public class OrderService {
 	
 	public int updateReviewStatus(ReviewDto reviewDto) {
 		return orderdao.updateReviewStatus(reviewDto);
+	}
+	
+	//DB에 주문 데이터 저장
+	public void saveOrderItem(List<OrderItemDto> orderItems, String userId) {
+		orderdao.insertGoodsToOrderItem(orderItems);
+	}
+
+	//DB에 주문 데이터 저장
+	public void saveOrder(List<OrderItemDto> orderItems, String userId) {
+		orderdao.insertGoodsToOrder(orderItems);
 	}
 	
 }

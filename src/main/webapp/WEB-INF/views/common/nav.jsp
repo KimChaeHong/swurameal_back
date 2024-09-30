@@ -8,7 +8,7 @@
    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
    crossorigin="anonymous"></script>
    
-
+<script src="${pageContext.request.contextPath}/resources/js/nav.js"></script>  
 
     
 <nav id="nav-container" class="navbar">
@@ -46,12 +46,23 @@
         <div id="icon" class="col-auto d-flex justify-content-end">
             <a class="nav-link" href='${pageContext.request.contextPath}/mypage/pick'><i class="bi bi-heart"></i></a>
             <a class="nav-link" href='${pageContext.request.contextPath}/cart/itemList'><i class="bi bi-cart"></i></a>            
-       	    	<span id="cartCount" class="cartCount position-absolute">      		
-		           <c:if test="${empty user}">0</c:if>	
-          			 <c:if test="${not empty user}">${cartCount}</c:if>	
+       	    	<span id="cartCnt" class="cartCnt position-absolute">   
+				<c:set var="userId" value="${sessionScope.userId}" /> 		
+		           <c:if test="${not empty userId}">
+          			 <script>
+          			 	$(document).ready(function() {
+          			 		updateCartItemCount('${userId}');
+          			 	});
+          			 </script>
+          			</c:if>
+          			<c:if test="${empty userId}">0</c:if> 	
          	  	</span> 
         </div>
     </div>
 </div>
 </nav>
-<script src="${pageContext.request.contextPath}/resources/js/nav.js"></script>  
+<% String userId = (String) session.getAttribute("userId"); %>
+<script>
+    const contextPath = '${pageContext.request.contextPath}';
+    const userId = '${user != null ? user.userId : ""}'; 
+</script>

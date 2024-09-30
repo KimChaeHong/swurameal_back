@@ -70,8 +70,8 @@ public class CartService {
 	}
 	
 	//카트 아이템 수량 가져오기
-	public int countItemsInCart(String userId) {
-		/*List<CartDto> cartItems = cartDao.selectCartByUserId(userId);*/
+	/*public int countItemsInCart(String userId) {
+		List<CartDto> cartItems = cartDao.selectCartByUserId(userId);
 		List<CartDto> cartItems = cartDao.countGoodsFromCart(userId);
 		int totalQuantity = 0;
 		for (CartDto item : cartItems) {
@@ -79,6 +79,10 @@ public class CartService {
 		}
 		
 		return totalQuantity;
+	}*/
+
+	public List<CartDto> getCountItemsInCart(String userId) {
+		return cartDao.countGoodsFromCart(userId);
 	}
-	
+
 }

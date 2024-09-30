@@ -37,7 +37,10 @@
     </delete>
     
     <!-- 카트 수량 카운트 -->
-	<select id="countGoodsFromCart" resultType="int">
-		SELECT SUM(quantity) FROM cart WHERE user_id = #{userId}
+	<select id="countGoodsFromCart" parameterType="String" resultType="Cart">
+		SELECT GOODS_ID AS goodsId, SUM(QUANTITY) AS quantity
+		FROM cart
+		WHERE USER_ID = #{userId}
+		GROUP BY GOODS_ID		
 	</select>
 </mapper>

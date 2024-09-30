@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.company.swurameal.dto.OrderItemDto;
 import com.company.swurameal.dto.OrderWithItemsDto;
 import com.company.swurameal.dto.ReviewDto;
 
@@ -14,4 +15,8 @@ public interface OrderDao {
 	public List<OrderWithItemsDto> selectOrderList(Map<String, Object> orderParams);
 	public int countRows(Map<String, Object> orderParams);
 	public int updateReviewStatus(ReviewDto reviewDto);
+	//DB에 주문 데이터 저장
+	public void insertGoodsToOrderItem(List<OrderItemDto> orderItems);
+	//DB에 주문 데이터 저장
+	public void insertGoodsToOrder(List<OrderItemDto> orderItems);
 }

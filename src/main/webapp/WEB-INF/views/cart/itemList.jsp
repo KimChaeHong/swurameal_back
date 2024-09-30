@@ -42,7 +42,7 @@
                   <p>${goods.goodsComment}</p>
                   <div class="cnt-btn">
                      <button class="updown-btn">-</button>
-                     <span class="item-cnt">1</span>
+                     <span class="item-cnt">${goods.quantity}</span>
                      <button class="updown-btn">+</button>
                   </div>
                </div>
@@ -84,6 +84,6 @@
 </main>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
-<script>
+<!-- <script>
     const contextPath = '${pageContext.request.contextPath}';
-</script>
+</script> -->

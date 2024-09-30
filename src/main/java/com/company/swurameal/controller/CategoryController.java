@@ -3,13 +3,14 @@ package com.company.swurameal.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.company.swurameal.dto.GoodsDto;
+import com.company.swurameal.sercurity.CustomUserDetails;
 import com.company.swurameal.service.GoodsService;
 
 
@@ -44,9 +45,14 @@ public class CategoryController {
 	
 	
 	@GetMapping("/snacks")
-	public String snacks(Model model) {
+	public String snacks(Model model, Authentication authentication) {
 		log.info("분식");
 		List<GoodsDto> goodsList = goodsService.getGoodsCategory("분식");
+		
+		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+		String userInfo = userDetails.getUsername(); // 사용자 ID 가져오기
+		model.addAttribute("user", userDetails.getUserDto());
+		
 		model.addAttribute("goodsList", goodsList);
 		return "category/snacks";
 	}
