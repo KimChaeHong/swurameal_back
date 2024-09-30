@@ -149,6 +149,7 @@ public class MypageCotroller {
 			CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 			UserDto user = userDetails.getUserDto();
 			String userId = user.getUserId();
+			model.addAttribute("user", userDetails.getUserDto());
 			
 			Map<String, Object> orderParams = new HashMap<>();
 			orderParams.put("userId", userId);
@@ -177,6 +178,7 @@ public class MypageCotroller {
 			CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 			UserDto user = userDetails.getUserDto();
 			String userId = user.getUserId();
+			model.addAttribute("user", userDetails.getUserDto());
 			
 			Map<String, Object> reviewParams = new HashMap<>();
 			reviewParams.put("userId", userId);
@@ -224,6 +226,7 @@ public class MypageCotroller {
 			CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 			UserDto user = userDetails.getUserDto();
 			String userId = user.getUserId();
+			model.addAttribute("user", userDetails.getUserDto());
 			
 			Map<String, Object> reviewParams = new HashMap<>();
 			reviewParams.put("userId", userId);

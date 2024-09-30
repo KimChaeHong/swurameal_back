@@ -22,7 +22,4 @@ public interface QuestionDao {
 	//질문 하나 
 	public QuestionDto selectByQuestionId(int questionId);
 
-	
-	
-
 }

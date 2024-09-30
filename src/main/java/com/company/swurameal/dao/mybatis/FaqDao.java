@@ -9,6 +9,7 @@ import com.company.swurameal.dto.Pager;
 
 @Mapper
 public interface FaqDao {
+	
 	//FAQ 목록
 	public List<FaqDto> getFaq(String faq);
 	//FAQ 전체 목록을 가져오며 페이징 처리
