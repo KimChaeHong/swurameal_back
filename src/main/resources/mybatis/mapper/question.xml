@@ -2,26 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.company.swurameal.dao.mybatis.QuestionDao">
 	<insert id="insert" parameterType="Question">
-		<selectKey keyProperty="QUESTION_ID" resultType="int"
+		<selectKey keyProperty="questionId" resultType="int"
 			order="BEFORE">
 			select SEQ_QUESTIONID.nextval from dual
 		</selectKey>
 		INSERT INTO question (
-		QUESTION_ID,
-		USER_ID,
-		QUESTION_TITLE,
-		QUESTION_CONTENT,
-		QUESTION_DATE,
-		QUESTION_STATUS
+			QUESTION_ID,
+			USER_ID,
+			QUESTION_TITLE,
+			QUESTION_CONTENT,
+			QUESTION_DATE,
+			QUESTION_STATUS
 		) VALUES (
-		#{questionId},
-		#{userId},
-		#{questionTitle},
-		#{questionContent},
-		#{questionDate},
-		#{questionStatus}
+			#{questionId},
+			#{userId},
+			#{questionTitle},
+			#{questionContent},
+			sysdate,
+			0
 		)
 	</insert>
+	
+	<select id="selectByQuestionId" parameterType="int" resultType="Question">
+		select 
+			QUESTION_ID,
+			USER_ID,
+			QUESTION_TITLE,
+			QUESTION_CONTENT,
+			QUESTION_DATE,
+			QUESTION_STATUS
+		from question
+		where questionId=#{questionId}
+	
+	</select>
+	
+	
 
 	<select id="selectQuestionList" parameterType="Pager"
 		resultType="Question">	
