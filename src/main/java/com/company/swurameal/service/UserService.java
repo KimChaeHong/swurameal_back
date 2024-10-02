@@ -75,6 +75,7 @@ public class UserService {
 		return userDao.updateByUserId(user);
 	}
 
+	//유저 정보 출력
 	public UserDto getUserById(String userId) {
 		return userDao.selectByUserId(userId);
 	}
