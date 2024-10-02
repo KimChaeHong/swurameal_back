@@ -4,22 +4,7 @@
 	namespace="com.company.swurameal.dao.mybatis.FaqDao">
 	
 	<select id="getFaq" resultType="Faq">
-		<!-- <![CDATA[
-	
-			SELECT FAQ_ID, USER_ID, FAQ_TITLE, FAQ_CONTENT, FAQ_REGISTER_DATE
-	        FROM (
-	        	SELECT rownum as rnum, FAQ_ID, USER_ID, FAQ_TITLE, FAQ_CONTENT, FAQ_REGISTER_DATE	        
-		        FROM (
-		       		SELECT FAQ_ID, USER_ID, FAQ_TITLE, FAQ_CONTENT, FAQ_REGISTER_DATE	        			        
-			        FORM faq
-			        ORDER BY FAQ_ID DESC
-			        )
-			        WHERE rownum <= #{endRowNo}	
-		        )
-		        WHERE rnum >= #{startRowNo}
-        ]]> -->
-        
-        
+               
 		SELECT FAQ_ID,
                USER_ID,
                FAQ_TITLE,
