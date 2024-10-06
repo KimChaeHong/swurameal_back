@@ -119,9 +119,10 @@ public class MgmtController {
 	// 상품 수정하기
 	@PostMapping("/updateGoods")
 	public String updateGoods(GoodsUpdateForm form) throws Exception {
-		log.info(form.toString());
+		log.info("수정하기"+form.toString());
 
 		GoodsDto goods = new GoodsDto();
+	
 		goods.setGoodsId(form.getGoodsId());
 		goods.setGoodsName(form.getGoodsName());
 		goods.setCategory(form.getCategory());
@@ -142,8 +143,7 @@ public class MgmtController {
 		MultipartFile mainAttach = form.getMainAttach();
 		if (!mainAttach.isEmpty()) {
 			GoodsImgDto goodsImg = new GoodsImgDto();
-			// goodsImg.setGoodsId(goods.getGoodsId());
-			goodsImg.setGoodsName(form.getGoodsName());
+			goodsImg.setGoodsId(form.getGoodsId());
 			goodsImg.setImgRole("G_MAIN");
 			goodsImg.setGAttachData(mainAttach.getBytes());
 			goodsImg.setGAttachOname(mainAttach.getOriginalFilename());
@@ -154,8 +154,7 @@ public class MgmtController {
 		MultipartFile descAttach = form.getDescAttach();
 		if (!descAttach.isEmpty()) {
 			GoodsImgDto goodsImg = new GoodsImgDto();
-			// goodsImg.setGoodsId(goods.getGoodsId());
-			goodsImg.setGoodsName(form.getGoodsName());
+			goodsImg.setGoodsId(form.getGoodsId());
 			goodsImg.setImgRole("G_DESCRIPTION");
 			goodsImg.setGAttachData(descAttach.getBytes());
 			goodsImg.setGAttachOname(descAttach.getOriginalFilename());
@@ -166,8 +165,7 @@ public class MgmtController {
 		MultipartFile detailAttach = form.getDetailAttach();
 		if (!detailAttach.isEmpty()) {
 			GoodsImgDto goodsImg = new GoodsImgDto();
-			// goodsImg.setGoodsId(goods.getGoodsId());
-			goodsImg.setGoodsName(form.getGoodsName());
+			goodsImg.setGoodsId(form.getGoodsId());
 			goodsImg.setImgRole("G_DETAIL");
 			goodsImg.setGAttachData(detailAttach.getBytes());
 			goodsImg.setGAttachOname(detailAttach.getOriginalFilename());

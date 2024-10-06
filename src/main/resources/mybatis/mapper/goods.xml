@@ -121,7 +121,6 @@
 		STATUS
 		FROM goods
 		WHERE CATEGORY = #{Category}
-
 	</select>
 
 	<!-- 상품 서브 카테고리 가져오기 -->
@@ -143,7 +142,6 @@
 		STATUS
 		FROM goods
 		WHERE SUBCATEGORY = #{subcategory}
-
 	</select>
 
 	<!-- 상품 이미지 가져오기 -->
@@ -197,8 +195,7 @@
 			JOIN
 			    "ORDER" o ON o.ORDER_ID = oi.ORDER_ID
 			WHERE
-			    g.CATEGORY = #{category} 
-			    AND o.ORDER_DATE BETWEEN (SYSDATE - 90) AND SYSDATE
+			    g.CATEGORY = #{category}
 			GROUP BY 
 			    g.GOODS_ID,
 			    g.GOODS_NAME,
@@ -232,8 +229,7 @@
 			JOIN
 			    "ORDER" o ON o.ORDER_ID = oi.ORDER_ID
 			WHERE
-			    g.SUBCATEGORY = #{subcategory} 
-			    AND o.ORDER_DATE BETWEEN (SYSDATE - 90) AND SYSDATE
+			    g.SUBCATEGORY = #{subcategory}
 			GROUP BY 
 			    g.GOODS_ID,
 			    g.GOODS_NAME,
@@ -247,6 +243,6 @@
 	    WHERE ROWNUM <= 2
 	    ]]>
 	</select>
-
+	
 </mapper>
 

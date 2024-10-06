@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class CartDto {
+	
 	private int goodsId;
 	private String userId;
 	private int quantity;
-	
 	private String goodsName;
 	private String category;
 	private String goodsComment;

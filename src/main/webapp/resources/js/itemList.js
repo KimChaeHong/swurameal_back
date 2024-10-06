@@ -3,6 +3,7 @@ $(document).ready(function() {
    countItem();
    checkItem();
    totalPriceOper();
+   itemAdd();
 });
 
 function countItem() {
@@ -108,3 +109,56 @@ function updateQuantityInDB(goodsId, quantity) {
         }
     });
 }
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    window.itemAdd = function(goodsId) {
+        $.ajax({
+            url: contextPath + '/cart/itemAdd',
+            type: 'GET',
+            data: { goodsId: goodsId, quantity: 1 },
+            success: function(response) {
+                alert('아이템이 장바구니에 추가되었습니다.');
+            },
+            error: function(xhr, status, error) {
+                console.error('장바구니에 아이템 추가 중 오류 발생:', error);
+            }
+        });
+    };
+});
+
+//주문버튼 클릭시 체크된 아이템 수량 가져오기
+$(document).ready(function() {
+    $(document).on('click', '.order-button', function() {
+        const items = []; // 아이템 정보를 담을 배열 생성
+
+        $('.bi-check-circle-fill').each(function() { //체크된 아이템 선택
+            const goodsId = $(this).data('goods-id');
+            const quantity = $(this).closest('.item').find('.item-cnt').text();
+            
+            
+            if (goodsId && quantity) {
+            	items.push({goodsId: goodsId, quantity: quantity}); //배열에 객체 추가
+            }                                    
+        });
+
+        sessionStorage.setItem('goodsData', JSON.stringify(items)); //세션에 저장
+        
+        if (items.length > 0) {
+        	$.ajax({
+        		url: `${contextPath}/order`,
+        		type: 'POST',
+        		contentType: 'application/json',
+        		data: JSON.stringify(items),
+        		success: function(response) {
+        			window.location.href = response.redirectUrl;
+        		},
+        		error: function(err) {
+        			console.error('Error:', err);
+        		}
+        	});
+        } else {
+        	alert('체크된 상품이 없습니다.');
+        }
+    });
+});

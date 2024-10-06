@@ -2,6 +2,22 @@
 	display: inline-block;
 }
 
+.cartCnt {
+	top: 22px;
+	right: 362px;
+	position: absolute;
+	background-color: #6B0609;
+	color: white;
+	border-radius: 50%;
+	width: 18px;
+	height: 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 12px;
+	font-weight: bold;
+}
+
 #nav-container{
     width: 100%;
     min-width: 1040px;

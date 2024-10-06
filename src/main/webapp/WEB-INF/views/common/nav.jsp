@@ -1,5 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nav.css" />
+    
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+   crossorigin="anonymous"></script>
+   
+<script src="${pageContext.request.contextPath}/resources/js/nav.js"></script>  
+
+    
 <nav id="nav-container" class="navbar">
 <div id="nav">
     <div id="bnav" class="row justify-content-center align-items-center">
@@ -34,9 +45,24 @@
         <!-- 오른쪽 아이콘들 -->
         <div id="icon" class="col-auto d-flex justify-content-end">
             <a class="nav-link" href='${pageContext.request.contextPath}/mypage/pick'><i class="bi bi-heart"></i></a>
-            <a class="nav-link" href='${pageContext.request.contextPath}/cart/itemList'><i class="bi bi-cart"></i></a>
-
+            <a class="nav-link" href='${pageContext.request.contextPath}/cart/itemList'><i class="bi bi-cart"></i></a>            
+       	    	<span id="cartCnt" class="cartCnt position-absolute">   
+				<c:set var="userId" value="${sessionScope.userId}" /> 		
+		           <c:if test="${not empty userId}">
+          			 <script>
+          			 	$(document).ready(function() {
+          			 		updateCartItemCount('${userId}');
+          			 	});
+          			 </script>
+          			</c:if>
+          			<c:if test="${empty userId}">0</c:if> 	
+         	  	</span> 
         </div>
     </div>
 </div>
 </nav>
+<% String userId = (String) session.getAttribute("userId"); %>
+<script>
+    const contextPath = '${pageContext.request.contextPath}';
+    const userId = '${user != null ? user.userId : ""}'; 
+</script>

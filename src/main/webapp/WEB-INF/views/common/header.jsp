@@ -36,7 +36,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" defer></script>
     <script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js" defer></script>
     <script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap.min.js" defer></script>
-
+	<script
+		  src="https://code.jquery.com/jquery-3.7.1.js"
+		  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+		  crossorigin="anonymous"></script>
+	
 </head>
 
 <body>
@@ -68,7 +72,7 @@
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <div>${pageContext.request.userPrincipal.name}</div>
                 &nbsp;|&nbsp;
-                <a class="nav-link" href="${pageContext.request.contextPath}/notice/noticeList">관리자페이지</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/mgmt/registedList">관리자페이지</a>
                 &nbsp;|&nbsp;
                 <a class="nav-link" href="${pageContext.request.contextPath}/support/notice" >고객센터</a>
                 &nbsp;|&nbsp;

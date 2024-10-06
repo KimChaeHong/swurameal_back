@@ -1,10 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script
-  src="https://code.jquery.com/jquery-3.7.1.js"
-  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-  crossorigin="anonymous"></script>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp" %>
@@ -134,12 +130,12 @@
 	            <span id="move-review" class="btn flex-grow-1 detail-button">리뷰</span>
 	        </div>
 	        <div id="detail-img-container" class="">
-	            <img
-	                id="detail-img1"
-	                src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_DESCRIPTION" 
-	                alt="${goods.goodsName}"
-	                class="detail-img"
-	            />
+		            <img
+		                id="detail-img1"
+		                src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_DESCRIPTION" 
+		                alt="${goods.goodsName}"
+		                class="detail-img"
+		            />	        	
 	            <br />
 	            <img
 	                id="detail-img2"
@@ -153,17 +149,19 @@
 	    <section style="height: 610px">
 	        <p>
 	            <span id="review-title">상품리뷰</span>
-	            <span id="count-review">nn건</span>
+	            <span id="count-review">${reviewSize}건</span>
 	        </p>
-	        <div id="review-container">
-	            <div class="review-box">
-	                <p>
-	                    <span class="cus-name">고객이름</span>
-	                    <span class="date">날짜</span>
-	                </p>
-	                <p class="review-content">리뷰들어갈 자리</p>
-	            </div>
-	        </div>
+	        <c:forEach items="${review}" var="review">
+		        <div id="review-container">
+		            <div class="review-box">
+		                <p>
+		                    <span class="cus-name">${review.userName}</span>
+		                    <span class="date"><fmt:formatDate value="${review.reviewDate}" pattern="yyyy-MM-dd" /></span>
+		                </p>
+		                <p class="review-content">${review.reviewContent}</p>
+		            </div>
+		        </div>
+	        </c:forEach>
 	        <div class="pagination"></div>
 	    </section>
 	</main>

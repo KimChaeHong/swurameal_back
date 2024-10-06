@@ -16,18 +16,11 @@
 <div class="admin-category">
 	<div class="category-box d-flex flex-column">
 		<h3>관리자 메뉴</h3>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/mgmt/registedList'"
-			style="color: rgb(117, 117, 117); font-weight: bold;">상품 관리</p>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/admin/answer'">1:1
-			문의 관리</p>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/notice/noticeList'">공지사항
-			관리</p>
-		<p
-			onclick="location.href='${pageContext.request.contextPath}/admin/faq'">FAQ
-			관리</p>
+		<p onclick="location.href='${pageContext.request.contextPath}/mgmt/registedList'"
+			 style="color: rgb(107, 6, 9); font-weight: bold;">상품 관리</p>
+		<p onclick="location.href='${pageContext.request.contextPath}/qna/qnaList'">QnA 관리</p>
+		<p onclick="location.href='${pageContext.request.contextPath}/notice/noticeList'">공지사항 관리</p>
+		<p onclick="location.href='${pageContext.request.contextPath}/faq/faqList'">FAQ 관리</p>
 	</div>
 </div>
 <div class="admin-box flex-grow-1">
@@ -56,7 +49,7 @@
 				<div class="goods-info d-flex align-items-center">
 					<i class="bi bi-check-square" data-select="1"></i>
 					<p>${goods.goodsId}</p>
-			   		<img id="goods-info" src="${pageContext.request.contextPath}/mgmt/downloadImage?goodsImgId=${goods.goodsId}" class="goods-img" alt="${goods.goodsName}">		   
+			   		<img id="goods-info" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">		   
 					<p>${goods.goodsName}</p>
 					<p>${goods.category}</p>
 					<p><fmt:formatNumber value="${goods.price}" type="number" groupingUsed="true"/></p>

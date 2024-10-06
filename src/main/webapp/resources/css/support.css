@@ -1,3 +1,22 @@
+.q-form-title{
+	height: 40px;
+}
+
+.q-form-content {
+    height: 600px;
+    padding-top: 10px;
+}
+
+.q-form-title, .q-form-content{	
+    border: 1px ridge var(--darkgray);
+    width: 600px;
+    border-radius: 4px;
+    padding-left: 20px;
+}
+.q-title-box p span, .q-content-box p span {
+    color: red;
+}
+
 .support-container {
     width: 1040px;
     margin: 0px auto;
@@ -151,10 +170,10 @@ h5.active {
     width: 500px;
 }
 
-.btn-sm {
+/* .btn-sm {
     width: 50px;
     height: 25px;
-}
+} */
 
 .btn-sm:hover {
     border: none;

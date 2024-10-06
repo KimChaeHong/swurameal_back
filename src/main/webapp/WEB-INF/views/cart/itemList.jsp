@@ -29,16 +29,20 @@
       <div id="cart-items">
          <c:forEach var="goods" items="${goodsList}">
             <div class="item d-flex justify-content-between" data-goods-id="${goods.goodsId}">
-               <i class="bi bi-check-circle hover" id="oneBtn"></i> <img
-                  src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}"
-                  class="goods-img" alt="${goods.goodsName}">
+              
+               <i class="bi bi-check-circle hover"
+               	data-goods-id="${goods.goodsId}" 
+         		data-quantity="1" ></i>
+         		 
+	          <img src="${pageContext.request.contextPath}/goods/downloadImage?goodsId=${goods.goodsId}"
+                   class="goods-img" alt="${goods.goodsName}">
 
                <div id="item-detail">
                   <p>[${goods.category}] ${goods.goodsName}</p>
                   <p>${goods.goodsComment}</p>
                   <div class="cnt-btn">
                      <button class="updown-btn">-</button>
-                     <span class="item-cnt">1</span>
+                     <span class="item-cnt">${goods.quantity}</span>
                      <button class="updown-btn">+</button>
                   </div>
                </div>
@@ -70,14 +74,43 @@
                </span>
             </div>
          </div>
-         <button
-            onclick="location.href='${pageContext.request.contextPath}/order'">주문하기</button>
+         <button class="order-button" >주문하기</button>
       </div>
    </div>
 </c:if> 
 </main>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
-<script>
+<<<<<<< HEAD
+<!-- <script>
     const contextPath = '${pageContext.request.contextPath}';
+</script> -->
+=======
+<script>
+$(document).on('click', '.order-button', function() {
+    const goodsData = [];
+
+    $('.bi-check-circle-fill').each(function() {
+        const goodsId = $(this).data('goods-id');
+        const quantity = $(this).data('quantity');
+
+        goodsData.push({ 
+        	goodsId: goodsId
+        	});
+    });
+
+    const form = $('<form>', {
+        method: 'post',
+        action: `${pageContext.request.contextPath}/order/order`,
+    });
+
+    $('<input>').attr({
+        type: 'hidden',
+        name: 'goodsData',
+        value: JSON.stringify(goodsData),
+    }).appendTo(form);
+
+    form.appendTo('body').submit();
+});
 </script>
+>>>>>>> branch 'master' of https://github.com/KimChaeHong/swurameal_back.git

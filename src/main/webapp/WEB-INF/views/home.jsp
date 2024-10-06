@@ -6,6 +6,12 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp" %>
 <%@ include file="/WEB-INF/views/common/carousel.jsp" %>
 
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+   crossorigin="anonymous"></script>
+
+<script src="${pageContext.request.contextPath}/resources/js/itemList.js"></script>
+
 <div class="goods-list">
 	<div class="category-branding">
 		<span class="category-comment">🍜 학교 앞에서 먹던 추억의 분식</span> 
@@ -21,12 +27,10 @@
 		                <img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">	            	
 	            	</a>
 	                <div class="button-wrapper">
-	                	<a href="${pageContext.request.contextPath}/cart/itemAdd?goodsId=${goods.goodsId}">
-	                    <button class="to-cart">
+	                    <button class="to-cart" onclick="itemAdd(${goods.goodsId})">
 	                        <i class="bi bi-cart icon-margin">
 	                        </i>담기
 	                    </button>
-	                    </a>
 	                </div>
 	                <div class="goods-info">
 	                    <span class="goods-category">[${goods.category}]</span>
@@ -57,13 +61,12 @@
 	            	<a href="goods/detail?goodsId=${goods.goodsId}&goodsCategory=${goods.category}">
 	                	<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">
 	                </a>
-	                <div class="button-wrapper">
-	                	<a href="${pageContext.request.contextPath}/cart/itemAdd?goodsId=${goods.goodsId}">
-	                    <button class="to-cart">
-	                        <i class="bi bi-cart icon-margin"></i>담기
-	                    </button>
-	                    </a>
-	                </div>
+		                <div class="button-wrapper">
+		                    <button class="to-cart" onclick="itemAdd(${goods.goodsId})">
+		                        <i class="bi bi-cart icon-margin">
+		                        </i>담기
+		                    </button>
+		                </div>
 	                <div class="goods-info">
 	                    <span class="goods-category">[${goods.category}]</span>
 	                    <span class="goods-name">${goods.goodsName}</span>
@@ -95,11 +98,10 @@
 	                	<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">
 	                </a>
 	                <div class="button-wrapper">
-	                <a href="${pageContext.request.contextPath}/cart/itemAdd?goodsId=${goods.goodsId}">
-	                    <button class="to-cart">
-	                        <i class="bi bi-cart icon-margin"></i>담기
+	                    <button class="to-cart" onclick="itemAdd(${goods.goodsId})">
+	                        <i class="bi bi-cart icon-margin">
+	                        </i>담기
 	                    </button>
-	                    </a>
 	                </div>
 	                <div class="goods-info">
 	                    <span class="goods-category">[${goods.category}]</span>
@@ -131,11 +133,10 @@
 	                	<img id="goods-img" src="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${goods.goodsId}&imgRole=G_MAIN" class="goods-img" alt="${goods.goodsName}">
 	                </a>
 	                <div class="button-wrapper">
-	                <a href="${pageContext.request.contextPath}/cart/itemAdd?goodsId=${goods.goodsId}">
-	                    <button class="to-cart">
-	                        <i class="bi bi-cart icon-margin"></i>담기
+	                    <button class="to-cart" onclick="itemAdd(${goods.goodsId})">
+	                        <i class="bi bi-cart icon-margin">
+	                        </i>담기
 	                    </button>
-	                    </a>
 	                </div>
 	                <div class="goods-info">
 	                    <span class="goods-category">[${goods.category}]</span>
@@ -153,3 +154,7 @@
 </div>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+<!-- <script>
+    const contextPath = '${pageContext.request.contextPath}';
+</script> -->

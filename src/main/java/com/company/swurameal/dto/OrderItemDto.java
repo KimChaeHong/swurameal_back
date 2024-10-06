@@ -8,4 +8,9 @@ public class OrderItemDto {
 	private int goodsId;
 	private int quantity;
 	private int goodsPrice;
+	
+	private String goodsName;
+	private String category;
+	private String goodsComment;
+	private int price;
 }

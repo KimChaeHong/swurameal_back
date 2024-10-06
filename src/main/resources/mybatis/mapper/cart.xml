@@ -35,5 +35,30 @@
     <delete id="deleteAllGoodsFromCart" parameterType="String">
     	DELETE FROM cart WHERE USER_ID = #{userId}
     </delete>
-
+    
+    <!-- 카트 수량 카운트 -->
+	<select id="countGoodsFromCart" parameterType="String" resultType="Cart">
+		SELECT GOODS_ID AS goodsId, SUM(QUANTITY) AS quantity
+		FROM cart
+		WHERE USER_ID = #{userId}
+		GROUP BY GOODS_ID		
+	</select>
+	
+	<select id="selectCartGoods" parameterType="map" resultType="CartGoods">
+		SELECT 
+			c.GOODS_ID,
+			c.QUANTITY,
+			g.GOODS_NAME,
+			g.PRICE,
+			g.CATEGORY,
+			g.GOODS_COMMENT
+		FROM goods g
+		JOIN cart c ON g.GOODS_ID = c.GOODS_ID
+		WHERE c.USER_ID = #{userId}
+		AND c.GOODS_ID IN
+		<foreach item="id" collection="goodsIds" open="(" separator="," close=")">
+			#{id}
+    	</foreach>
+	</select>
+	
 </mapper>

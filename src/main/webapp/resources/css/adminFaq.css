@@ -1,0 +1,267 @@
+#nav-container {
+    padding-bottom: 20px;
+    /* border-bottom: 2px ridge var(--darkgray); */
+    box-shadow: 0px 4px 2px var(--mediumgray);
+}
+
+.admin {
+    margin-top: 110px;
+    margin-bottom: 110px;
+    width: 1040px;
+}
+
+.category-box {
+    /* width: 300px; */
+    width: 260px;
+    border-radius: 23px;
+    background-color: var(--lightgray);
+    display: flex;
+    padding-top: 40px;
+    padding-left: 40px;
+    /* padding-bottom: 40px; */
+    padding-bottom: 20px;
+}
+.category-box h3 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.category-box p {
+    padding: 0px;
+    font-size: 24px;
+    margin-top: 15px;
+    color: var(--darkgray);
+    text-decoration: none;
+}
+
+.addButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addButton button {
+   background-color: black;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    width: 100px;
+    height: 36px;
+    font-size: 16px;
+}
+
+/* 상세 페이지 */
+.title-box p {
+    margin-top: 10px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.category-box p:hover {
+    cursor: pointer;
+}
+
+.horizontal-line {
+    background-color: black;
+    margin-top: 10px;
+    width: 700px;
+    height: 1px;
+}
+.admin-box {
+    margin-left: 70px;
+}
+
+.rigister {
+	display: flex;
+}
+
+.content {
+	margin-left: 60px;
+}
+
+/* 페이지네이션 */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    border-style: none;
+    background-color: rgb(0, 0, 0, 0);
+    margin: 0 5px;
+    color: #d9d9d9;
+    font-weight: lighter;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    color: black;
+    font-weight: bold;
+}
+
+
+
+#mainContent {
+width: 700px;
+padding: 0px;
+}
+
+#title {
+margin-top: 110px;
+margin-bottom: 15px;
+}
+
+#boardContainer {
+width: 700px;
+}
+
+h5.active {
+    color: var(--theme);
+    font-weight: bold;
+}
+
+#board-container {
+    width: 700px;
+    border-top: 2px solid;
+}
+
+.board-top {
+    width: 700px;
+    height: 60px;
+    border-bottom: 1px solid;
+    text-align: center;
+}
+
+.board-top > p, .board > p {
+    margin-bottom: 0px;
+}
+
+.post-num {
+    width: 100px;
+}
+
+#just-title {
+    width: 460px;
+}
+
+.board {
+    width: 700px;
+    height: 50px;
+    border-bottom: 1px solid;
+    border-color: var(--mediumgray);
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 10px;
+}
+
+.post-title {
+    width: 80px;
+    margin-left: 8px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.pagination{
+    margin-top: 20px;
+}
+
+.inquiry-button {
+    width: 120px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme);
+    color: white;
+}
+
+.inquiry-button:hover {
+    border: 1px solid;
+    border-color: black;
+    background-color: var(--theme);
+    color: white;
+}
+
+.cmp-button {
+    width: 120px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme);
+    color: white;
+}
+
+.cmp-button:hover {
+    border: 1px solid;
+    border-color: black;
+    background-color: var(--theme);
+    color: white;
+}
+
+.board-list {
+    border-radius: 0px;
+}
+
+.accordion-item {
+    border: none;
+    border-radius: 0px;
+}
+
+.accordion-body {
+    border: 1px solid var(--mediumgray);
+    word-break: break-all;
+    background-color: var(--lightgray);
+    padding: 10px;
+}
+.accordion-button::after {
+    display: none;
+}
+
+.accordion-button {
+    border-radius: 0px;
+}
+
+.qna-text {
+    width: 500px;
+}
+
+.btn-sm:hover {
+    border: none;
+    font-weight: bold;
+}
+
+.form-button-container {
+    text-align: right;
+}
+
+.text-form {
+    width: 600px;
+    height: 300px;
+}
+
+
+.update-button {
+    margin-top: 5px;
+    margin-left: auto;
+    width: 100px;
+    height: 30px;
+}
+
+.update-button span {
+	color: #999999;
+}
+
+.update-button button {
+    background-color:transparent;
+    color: #999999;
+    border: none;
+    border-radius: 4px;
+    margin: 0px;
+    padding-left: 5px;
+    font-size: 14px;
+}
