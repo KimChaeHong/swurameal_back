@@ -141,7 +141,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="modal-title text-center w-100" >상품후기 수정</p>
+                <p class="modal-title text-center w-100" >상품후기 작성</p>
             </div>
             <div class="modal-body">
                 <div class="d-flex">
@@ -161,7 +161,7 @@
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button class="review-close" data-bs-dismiss="modal">취소</button>
-                <button id="review-update" class="review-update">수정하기</button>
+                <button id="review-update" class="review-update">작성하기</button>
             </div>
         </div>
     </div>

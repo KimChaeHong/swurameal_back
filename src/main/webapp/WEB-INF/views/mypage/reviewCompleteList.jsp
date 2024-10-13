@@ -60,13 +60,14 @@
 						<div class="review-top">
 							<div>
 								<p class="title">${review.goodsName}</p>
-								<p class="sub-title">수라밀 |${review.reviewDate}</p>
+								<p class="sub-title">수라밀 |<fmt:formatDate value="${review.reviewDate}" pattern="yyyy-MM-dd" /></p>
 							</div>
 							<button class="update-button" data-bs-toggle="modal"
 								data-bs-target="#staticBackdrop"
 								data-review-id="${review.reviewId}"
 								data-review-content="${review.reviewContent}"
 								data-goods-name="${review.goodsName}"
+								data-review-date="${review.reviewDate}"
 								data-goods-img="${pageContext.request.contextPath}/goods/downloadImageByRole?goodsId=${review.goodsId}&imgRole=G_MAIN"
 								>수정하기</button>
 						</div>
@@ -128,7 +129,7 @@
                     </div>
                     <div class="modal-product-detail d-flex flex-column flex-grow-1">
                         <p><strong>상품명</strong> <span id="modal-goods-name"></span></p>
-                        <p><strong>작성일</strong> <span><fmt:formatDate value="${currentDate}" pattern="yyyy-MM-dd" /></span></p>
+                        <!-- <p><strong>작성일</strong> <span id="modal-review-date"></span></p> -->
                     </div>
                 </div>
                 <div class="modal-review d-flex" >
@@ -152,12 +153,16 @@ $(document).on('click', '.update-button', function() {
 	const imgSrc = $(this).data('goods-img');
 	const reviewId = $(this).data('review-id');
 	const reviewContent = $(this).data('review-content');
+	const reviewDate = $(this).data('review-date');
 	
 	$('#modal-goods-name').text(goodsName);
 	$('#modal-goods-img').attr('src', imgSrc);	
 	$('#modal-review-content').text(reviewContent);
+ 	$('#modal-review-date').text(reviewDate);
 	
-	$('#review-update').data('review-id', reviewId);	
+	$('#review-update').data('review-id', reviewId);
+	
+	style="color: rgb(107, 6, 9); font-weight: bold;"
 });
 
 $(document).on('click', '.review-update', function() {
@@ -181,5 +186,5 @@ $(document).on('click', '.review-update', function() {
 	})
 });
 </script>
-
+<script src="${pageContext.request.contextPath}/resources/js/mypage.js"></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
