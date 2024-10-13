@@ -155,6 +155,6 @@
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
-<script>
+<!-- <script>
     const contextPath = '${pageContext.request.contextPath}';
-</script>
+</script> -->

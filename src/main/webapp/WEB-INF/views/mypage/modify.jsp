@@ -57,7 +57,7 @@
 
 	<div class="page-upload">
 		<div class="form-container">
-			<form id="modifyForm" action="${pageContext.request.contextPath}/mypage/update" method="POST">
+			<form id="modifyForm" action="${pageContext.request.contextPath}/user/modifyForm" method="POST">
 				<div class="form-group">
 					<label for="userid">아이디</label> <input type="text" id="userid"
 						name="userId" value="${user.userId}" readonly>
@@ -118,7 +118,7 @@
 								document.location.href = "deactivate";
 							}
 						</script>
-						<button type="submit" class="save-button" name="update">회원 정보 수정</button>							
+						<button type="submit" class="save-button" >회원 정보 수정</button>							
 				</div>
 			</form>
 

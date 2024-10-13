@@ -30,7 +30,7 @@
 			onclick="location.href='${pageContext.request.contextPath}/mypage/review'">상품
 			후기</p>
 		<p
-			onclick="location.href='${pageContext.request.contextPath}/mypage/modifyForm'">개인정보
+			onclick="location.href='${pageContext.request.contextPath}/user/modify'">개인정보
 			수정</p>
 	</div>
 </div>

@@ -31,7 +31,7 @@ public class FaqController {
 
 	//FAQ 전체 목록을 페이징 처리해서 보여주는 메서드
 	@GetMapping("/faqList")
-	public String adminFaq(
+	public String getFaqList(
 		@RequestParam(defaultValue="1") int pageNo,
 		HttpSession session, 
 		Model model
@@ -46,13 +46,13 @@ public class FaqController {
 
 	// FAQ 작성페이지로 넘어가는 메서드
 	@RequestMapping("/faqRegister")
-	public String adminFaqWrite(Model model) {		
+	public String navToFaqRegister(Model model) {		
 		return "faq/faqRegister";
 	}	
 
 	//FAQ 작성하는 메서드 
 	@PostMapping("/faqWrite")
-	public String adminFaqInsert(@ModelAttribute FaqDto faqDto, Authentication authentication) {
+	public String writeFaq(@ModelAttribute FaqDto faqDto, Authentication authentication) {
 		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 		UserDto user = userDetails.getUserDto();
 		String userId = user.getUserId();
@@ -67,14 +67,14 @@ public class FaqController {
 	
 		//FAQ 삭제하는 메서드
 		@GetMapping("/faqDelete")
-		public String adminFaqDelete(int faqId) {
+		public String deleteFaq(int faqId) {
 			faqService.deleteFaq(faqId);
 			return "redirect:/faq/faqList";
 		}
 	
 		//FAQ 수정 페이지로 넘어가는 메서드
 		@GetMapping("/faqUpdateForm")
-		public String adminFaqUpdateForm(@RequestParam int faqId, Model model) {
+		public String navToFaqUpdateForm(@RequestParam int faqId, Model model) {
 			FaqDto faqDto = faqService.getFaqById(faqId);
 			model.addAttribute("faq", faqDto);
 			return "faq/faqUpdateForm";
@@ -83,7 +83,7 @@ public class FaqController {
 		
 		//FAQ 수정하는 메서드
 		@PostMapping("/faqUpdate")
-		public String adminFaqUpdate(@ModelAttribute FaqDto faqDto) {
+		public String editFaq(@ModelAttribute FaqDto faqDto) {
 			FaqDto updateFaq = new FaqDto();
 			updateFaq.setFaqId(faqDto.getFaqId());
 			updateFaq.setFaqTitle(faqDto.getFaqTitle());

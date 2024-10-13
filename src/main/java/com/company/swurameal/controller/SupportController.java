@@ -49,12 +49,19 @@ public class SupportController {
 	}
 
 	@RequestMapping("/faq")
-	public String supportFaq(String faq, Model model) {
-		List<FaqDto> list = faqService.getFaq(faq);
-		model.addAttribute("list", list);
-		log.info("자주하는 질문");
-		
-		return "support/faq";
+	public String supportFaq(
+		@RequestParam(defaultValue="1") int pageNo,
+		String faq, 
+		HttpSession session,
+		Model model) {		
+			int totalRows = faqService.getTotalRows();
+			Pager pager = new Pager(5, 5, totalRows, pageNo);
+			session.setAttribute("pager", pager);		
+			List<FaqDto> list = faqService.getFaq(pager);
+			model.addAttribute("list", list);
+			log.info("자주하는 질문");
+			
+			return "support/faq";
 	}
 	
 	//회원의 QnA목록을 볼 수 있는 메서드

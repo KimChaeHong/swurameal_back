@@ -2,143 +2,143 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.company.swurameal.dao.mybatis.OrderDao">
 
-	<select id="selectOrderByUserId" parameterType="String" resultType="OrderWithItems">
-		SELECT
-			o.ORDER_ID,
-			o.USER_ID,
-			o.DELIVERY_STATUS,
-			o.ORDER_STATUS,
-			o.ORDER_DATE,
-			oi.GOODS_ID,
-			oi.GOODS_PRICE,
-			oi.REVIEW_STATUS,
-			gi.GOODS_NAME,
-			gi.G_ATTACH_ONAME,
-			gi.G_ATTACH_TYPE,
-			gi.G_ATTACH_DATA,
-			gi.IMG_ROLE
-		FROM
-			"ORDER" o 
-		JOIN 
-			order_item oi ON o.ORDER_ID = oi.ORDER_ID
-		JOIN
-			goods_img gi on oi.GOODS_ID = gi.GOODS_ID
-		WHERE
-			o.USER_ID = #{userId}
-		AND o.ORDER_DATE BETWEEN (SYSDATE - 90) AND SYSDATE
-	</select>
-	
-	<select id="selectOrderList" parameterType="map" resultType="OrderWithItems">
-		
-			SELECT 
-			    ORDER_ID,
-			    USER_ID,
-			    DELIVERY_STATUS,
-			    ORDER_STATUS,
-			    ORDER_DATE,
-			    GOODS_ID,
-			    GOODS_PRICE,
-			    REVIEW_STATUS,
-			    GOODS_NAME,
-			    G_ATTACH_ONAME,
-			    G_ATTACH_TYPE,
-			    G_ATTACH_DATA,
-			    IMG_ROLE
-			FROM (
-			    SELECT 
-			        rownum as rnum, 
-			        ORDER_ID,
-			        USER_ID,
-			        DELIVERY_STATUS,
-			        ORDER_STATUS,
-			        ORDER_DATE,
-			        GOODS_ID,
-			        GOODS_PRICE,
-			        REVIEW_STATUS,
-			        GOODS_NAME,
-			        G_ATTACH_ONAME,
-			        G_ATTACH_TYPE,
-			        G_ATTACH_DATA,
-			        IMG_ROLE
-			    FROM (
-			        SELECT
-			            o.ORDER_ID,
-			            o.USER_ID,
-			            o.DELIVERY_STATUS,
-			            o.ORDER_STATUS,
-			            o.ORDER_DATE,
-			            oi.GOODS_ID,
-			            oi.GOODS_PRICE,
-			            oi.REVIEW_STATUS,
-			            gi.GOODS_NAME,
-			            gi.G_ATTACH_ONAME,
-			            gi.G_ATTACH_TYPE,
-			            gi.G_ATTACH_DATA,
-			            gi.IMG_ROLE
-			        FROM
-			            "ORDER" o 
-			        JOIN 
-			            order_item oi ON o.ORDER_ID = oi.ORDER_ID
-			        JOIN
-			            goods_img gi ON oi.GOODS_ID = gi.GOODS_ID
-			        WHERE
-			            o.USER_ID = #{userId}
-			            <if test="month != 0">
-			            	AND o.ORDER_DATE BETWEEN add_months(SYSDATE, -#{month}) AND SYSDATE
-			            </if>
-			        ORDER BY o.ORDER_DATE DESC
-			    )
-			    WHERE rownum &lt;= #{endRowNo}
-			) 
-			WHERE rnum &gt;= #{startRowNo}			
-		
-	</select>
-	
-	<select id="countRows" parameterType="map" resultType="int">
-		SELECT COUNT(*)
-		FROM "ORDER" o
-		JOIN order_item oi On o.ORDER_ID = oi.ORDER_ID
-		JOIN goods_img gi ON oi.GOODS_ID = gi.GOODS_ID
-		WHERE o.USER_ID = #{userId}
-		<if test="month != 0">
-        	AND o.ORDER_DATE BETWEEN add_months(SYSDATE, -#{month}) AND SYSDATE
+   <select id="selectOrderByUserId" parameterType="String" resultType="OrderWithItems">
+      SELECT
+         o.ORDER_ID,
+         o.USER_ID,
+         o.DELIVERY_STATUS,
+         o.ORDER_STATUS,
+         o.ORDER_DATE,
+         oi.GOODS_ID,
+         oi.GOODS_PRICE,
+         oi.REVIEW_STATUS,
+         gi.GOODS_NAME,
+         gi.G_ATTACH_ONAME,
+         gi.G_ATTACH_TYPE,
+         gi.G_ATTACH_DATA,
+         gi.IMG_ROLE
+      FROM
+         "ORDER" o 
+      JOIN 
+         order_item oi ON o.ORDER_ID = oi.ORDER_ID
+      JOIN
+         goods_img gi on oi.GOODS_ID = gi.GOODS_ID
+      WHERE
+         o.USER_ID = #{userId}
+      AND o.ORDER_DATE BETWEEN (SYSDATE - 90) AND SYSDATE
+   </select>
+   
+   <select id="selectOrderList" parameterType="map" resultType="OrderWithItems">
+      
+         SELECT 
+             ORDER_ID,
+             USER_ID,
+             DELIVERY_STATUS,
+             ORDER_STATUS,
+             ORDER_DATE,
+             GOODS_ID,
+             GOODS_PRICE,
+             REVIEW_STATUS,
+             GOODS_NAME,
+             G_ATTACH_ONAME,
+             G_ATTACH_TYPE,
+             G_ATTACH_DATA,
+             IMG_ROLE
+         FROM (
+             SELECT 
+                 rownum as rnum, 
+                 ORDER_ID,
+                 USER_ID,
+                 DELIVERY_STATUS,
+                 ORDER_STATUS,
+                 ORDER_DATE,
+                 GOODS_ID,
+                 GOODS_PRICE,
+                 REVIEW_STATUS,
+                 GOODS_NAME,
+                 G_ATTACH_ONAME,
+                 G_ATTACH_TYPE,
+                 G_ATTACH_DATA,
+                 IMG_ROLE
+             FROM (
+                 SELECT
+                     o.ORDER_ID,
+                     o.USER_ID,
+                     o.DELIVERY_STATUS,
+                     o.ORDER_STATUS,
+                     o.ORDER_DATE,
+                     oi.GOODS_ID,
+                     oi.GOODS_PRICE,
+                     oi.REVIEW_STATUS,
+                     gi.GOODS_NAME,
+                     gi.G_ATTACH_ONAME,
+                     gi.G_ATTACH_TYPE,
+                     gi.G_ATTACH_DATA,
+                     gi.IMG_ROLE
+                 FROM
+                     "ORDER" o 
+                 JOIN 
+                     order_item oi ON o.ORDER_ID = oi.ORDER_ID
+                 JOIN
+                     goods_img gi ON oi.GOODS_ID = gi.GOODS_ID
+                 WHERE
+                     o.USER_ID = #{userId}
+                     <if test="month != 0">
+                        AND o.ORDER_DATE BETWEEN add_months(SYSDATE, -#{month}) AND SYSDATE
+                     </if>
+                 ORDER BY o.ORDER_DATE DESC
+             )
+             WHERE rownum &lt;= #{endRowNo}
+         ) 
+         WHERE rnum &gt;= #{startRowNo}         
+      
+   </select>
+   
+   <select id="countRows" parameterType="map" resultType="int">
+      SELECT COUNT(*)
+      FROM "ORDER" o
+      JOIN order_item oi On o.ORDER_ID = oi.ORDER_ID
+      JOIN goods_img gi ON oi.GOODS_ID = gi.GOODS_ID
+      WHERE o.USER_ID = #{userId}
+      <if test="month != 0">
+           AND o.ORDER_DATE BETWEEN add_months(SYSDATE, -#{month}) AND SYSDATE
         </if>
-	</select>
-	
-	<update id="updateReviewStatus" parameterType="int">
-		UPDATE order_item
-		SET
-			REVIEW_STATUS = #{reviewStatus}
-		WHERE ORDER_ID = #{orderId} AND GOODS_ID = #{goodsId}
-	</update>
-	
-	<insert id="insertOrder" parameterType="Order">
-		<selectKey keyProperty="orderId" resultType="int" order="BEFORE">
-			SELECT SEQ_ORDERID.NEXTVAL FROM DUAL
-		</selectKey>
-		    INSERT INTO "ORDER" (
-		    	ORDER_ID, 
-		    	USER_ID, 
-		    	DELIVERY_ID, 
-		    	TOTAL_PRICE, 
-		    	DELIVERY_STATUS, 
-		    	ORDER_STATUS, 
-		    	ORDER_DATE
-		    	)
-		    VALUES (
-		    	#{orderId}, 
-		    	#{userId}, 
-		    	#{deliveryId},
-		    	#{totalPrice},
-		    	#{deliveryStatus},
-		    	#{orderStatus},
-		    	sysdate
-		    	)
-	</insert>
-	
-	<insert id="insertOrderItem" parameterType="OrderItem">
-	    INSERT INTO order_item (ORDER_ID, GOODS_ID, QUANTITY, GOODS_PRICE, REVIEW_STATUS)
-	    VALUES (#{orderId}, #{goodsId}, #{quantity}, #{goodsPrice}, 0)
-	</insert>
+   </select>
+   
+   <update id="updateReviewStatus" parameterType="int">
+      UPDATE order_item
+      SET
+         REVIEW_STATUS = #{reviewStatus}
+      WHERE ORDER_ID = #{orderId} AND GOODS_ID = #{goodsId}
+   </update>
+   
+   <insert id="insertOrder" parameterType="Order">
+      <selectKey keyProperty="orderId" resultType="int" order="BEFORE">
+         SELECT SEQ_ORDERID.NEXTVAL FROM DUAL
+      </selectKey>
+          INSERT INTO "ORDER" (
+             ORDER_ID, 
+             USER_ID, 
+             DELIVERY_ID, 
+             TOTAL_PRICE, 
+             DELIVERY_STATUS, 
+             ORDER_STATUS, 
+             ORDER_DATE
+             )
+          VALUES (
+             #{orderId}, 
+             #{userId}, 
+             #{deliveryId},
+             #{totalPrice},
+             #{deliveryStatus},
+             #{orderStatus},
+             sysdate
+             )
+   </insert>
+   
+   <insert id="insertOrderItem" parameterType="OrderItem">
+       INSERT INTO order_item (ORDER_ID, GOODS_ID, QUANTITY, GOODS_PRICE, REVIEW_STATUS)
+       VALUES (#{orderId}, #{goodsId}, #{quantity}, #{goodsPrice}, 0)
+   </insert>
 
 </mapper>

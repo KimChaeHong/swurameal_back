@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class GoodsUpdateForm {
 	
-	public int goodsId;
+	private int goodsId;
 	private String goodsName;
 	private String category;
 	private String subcategory;

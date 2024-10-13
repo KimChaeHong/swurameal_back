@@ -31,43 +31,43 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/order")
 public class OrderCotroller {
-	
-	@Autowired
-	private CartService cartService;
-	
-	@Autowired
-	private OrderService orderService;
-	
-	//체크된 상품 리스트로 주문서
-	@Secured("ROLE_USER")
-	@RequestMapping("/order")
-	public String navToOrder(
-		@RequestParam("goodsData") String goodsDataJson,
-		HttpServletRequest request,
-		Authentication authentication, 
-		Model model
-		) throws Exception {
-			CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-			String userInfo = userDetails.getUsername(); //사용자 ID 가져오기
-			model.addAttribute("user", userDetails.getUserDto());
+   
+   @Autowired
+   private CartService cartService;
+   
+   @Autowired
+   private OrderService orderService;
+   
+   //체크된 상품 리스트로 주문서
+   @Secured("ROLE_USER")
+   @RequestMapping("/order")
+   public String navToOrder(
+      @RequestParam("goodsData") String goodsDataJson,
+      HttpServletRequest request,
+      Authentication authentication, 
+      Model model
+      ) throws Exception {
+         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+         String userInfo = userDetails.getUsername(); //사용자 ID 가져오기
+         model.addAttribute("user", userDetails.getUserDto());
 
-			// JSON 문자열을 자바 객체로 변환
-		    ObjectMapper objectMapper = new ObjectMapper();
-		    List<Map<String, Object>> goodsData = objectMapper.readValue(goodsDataJson, new TypeReference<List<Map<String, Object>>>() {});
-		    
-		    List<Integer> goodsIds = goodsData.stream()
-		            .map(data -> (Integer) data.get("goodsId"))
-		            .collect(Collectors.toList());
-		    
-		    HashMap<String, Object> cartGoods = new HashMap<String, Object>();
-		    cartGoods.put("userId", userInfo);
-		    cartGoods.put("goodsIds", goodsIds);
-		    List<CartGoodsDto> goods = cartService.getCartGoodsInfo(cartGoods);
-		    log.info("세번찾아봐" + goods.toString());
-		    
-		    model.addAttribute("goods", goods);
+         // JSON 문자열을 자바 객체로 변환
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    List<Map<String, Object>> goodsData = objectMapper.readValue(goodsDataJson, new TypeReference<List<Map<String, Object>>>() {});
+	    
+	    List<Integer> goodsIds = goodsData.stream()
+	            .map(data -> (Integer) data.get("goodsId"))
+	            .collect(Collectors.toList());
+	    
+	    HashMap<String, Object> cartGoods = new HashMap<String, Object>();
+	    cartGoods.put("userId", userInfo);
+	    cartGoods.put("goodsIds", goodsIds);
+	    List<CartGoodsDto> goods = cartService.getCartGoodsInfo(cartGoods);
+	    log.info("세번찾아봐" + goods.toString());
+	    
+	    model.addAttribute("goods", goods);
 
-		    return "order/order";
+	    return "order/order";
 	}
 	
 	//체크된 상품 리스트로 주문
@@ -98,5 +98,5 @@ public class OrderCotroller {
 	//DB에 데이터 넣기
 	
 	//비체크시 상품 리스트 조회
-	
+
 }
