@@ -42,7 +42,7 @@
         <div class="page-upload">
 	        <div class="order-container d-flex flex-column">
 	            <div class="row text-center period-choice" >
-	            	<div class="col-3 three-month" >
+	            	<div class="col-3 three-month" style="color: rgb(107, 6, 9); font-weight: bold; border-color: black;">
 	            		<button style="all: unset;" onclick="location.href='${pageContext.request.contextPath}/mypage/order?month=3'">3개월</button>
 	            	</div>
 	                <div class="col-3 six-month">
@@ -108,3 +108,4 @@
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
