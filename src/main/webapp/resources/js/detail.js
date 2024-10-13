@@ -34,15 +34,6 @@ $(document).ready(function() {
 	// 총 가격 표시
 	$(".total-price").text(totalPrice.toLocaleString() + "원");
 
-	// "구매" 버튼 클릭 시 장바구니에 담고 결제 화면으로 이동 확인
-	$("#buy").on("click", function() {
-		if (confirm("선택한 상품을 장바구니에 담고 결제화면으로 이동하시겠습니까?")) {
-			window.location.href = "../html/cart.html"; // 결제 페이지로 이동
-		}
-	});
-
-
-
 	//찜 버튼 클릭 시 아이콘 변경 및 알림
 	$(document).on('click', '#pick', function() {
 		var className = $('#pick-icon').attr('class'); // 찜 아이콘의 현재 클래스 가져오기

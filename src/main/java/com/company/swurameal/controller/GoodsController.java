@@ -33,7 +33,7 @@ public class GoodsController {
 	private ReviewService reviewService;
 	
 	@RequestMapping("/detail")
-	public String detail(@RequestParam int goodsId, Model model) {
+	public String getDetail(@RequestParam int goodsId, Model model) {
 		GoodsDto goodsDto = goodsService.getGoodsById(goodsId);
 		List<GoodsSuggestDto> goodsSuggestDto = goodsService.getGoodsBySuggest(goodsDto);
 		List<GoodsSuggestDto> goodsSuggestAlcohol = goodsService.getAlcoholBySuggest(goodsDto);

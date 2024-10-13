@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp" %>
@@ -65,7 +66,11 @@
 	                 	<!--장바구니 아이콘-->
 	                	<i class="bi bi-cart"></i>
 	                </button>
-	                <span id="buy" class="btn">구매하기</span>
+	                <a href="${pageContext.request.contextPath}/cart/itemList" style="text-decoration: none;">
+	                	<span id="buy" class="btn">
+	                		구매하기
+	                	</span>
+	                </a>
 	            </div>
 	        </div>
 	    </section>
@@ -152,10 +157,12 @@
 	            <span id="count-review">${reviewSize}건</span>
 	        </p>
 	        <c:forEach items="${review}" var="review">
+	        <c:set var="name" value="${review.userName}"/>
+	        <c:set var="result" value="${fn:substring(name, 0, 1)}**"/>
 		        <div id="review-container">
 		            <div class="review-box">
 		                <p>
-		                    <span class="cus-name">${review.userName}</span>
+		                    <span class="cus-name">${result}</span>
 		                    <span class="date"><fmt:formatDate value="${review.reviewDate}" pattern="yyyy-MM-dd" /></span>
 		                </p>
 		                <p class="review-content">${review.reviewContent}</p>
@@ -170,4 +177,3 @@
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
