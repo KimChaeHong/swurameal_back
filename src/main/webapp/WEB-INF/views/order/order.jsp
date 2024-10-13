@@ -34,7 +34,9 @@
 						data-price="${goods.price}"
 					>${goods.quantity}개</div>
 					<div class="item-price">
-						<span>${goods.price}</span>원
+						<span>
+							<fmt:formatNumber value="${goods.price}" pattern="#,###"/>
+                        </span>원
 					</div>
 				</div>			
 			</c:forEach>
@@ -81,7 +83,9 @@
             <p>주문/결제 내역</p>
             <div class="d-flex justify-content-between">
               <span>상품금액</span>
-              <span id="total-goods-price">원</span>
+              	<span id="total-goods-price">
+              		<fmt:formatNumber value="${goodsSameCategory.price}" type="number" groupingUsed="true"/>
+           		</span>
             </div>
             <div class="d-flex justify-content-between">
               <span>배송비</span>
@@ -109,8 +113,10 @@ $(document).ready(function() {
         const itemTotal = quantity * price;
         totalSum += itemTotal;
     });
-	$('#total-goods-price').text(totalSum);
-    $('#total-sum-price').text(totalSum + 3000);	
+	const formattedSum = new Intl.NumberFormat().format(totalSum);
+	const formattedTotalSum = new Intl.NumberFormat().format(totalSum+3000);
+	$('#total-goods-price').text(formattedSum);
+    $('#total-sum-price').text(formattedTotalSum);
 })
 
 $(document).on('click', '#payBtn', function() {
@@ -134,7 +140,7 @@ $(document).on('click', '#payBtn', function() {
         type: 'POST',
         url: 'orderComplete',
         contentType: 'application/json',
-        data: JSON.stringify({ goodsData: goodsData }),
+        data: JSON.stringify(goodsData),
         success: function(response) {
         	window.location.href = '${pageContext.request.contextPath}'
         },
