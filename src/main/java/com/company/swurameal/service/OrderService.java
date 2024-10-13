@@ -59,7 +59,7 @@ public class OrderService {
             orderItem.setOrderId(order.getOrderId());
             orderItem.setGoodsId(goods.getGoodsId());
             orderItem.setQuantity(goods.getQuantity());
-            orderItem.setGoodsPrice(goods.getPrice());
+            orderItem.setGoodsPrice(goods.getPrice() * goods.getQuantity());
             
             orderDao.insertOrderItem(orderItem);
         }

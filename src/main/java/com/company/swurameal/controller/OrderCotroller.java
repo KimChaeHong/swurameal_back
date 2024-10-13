@@ -55,7 +55,6 @@ public class OrderCotroller {
 		    ObjectMapper objectMapper = new ObjectMapper();
 		    List<Map<String, Object>> goodsData = objectMapper.readValue(goodsDataJson, new TypeReference<List<Map<String, Object>>>() {});
 		    
-		    // goodsId 목록 추출
 		    List<Integer> goodsIds = goodsData.stream()
 		            .map(data -> (Integer) data.get("goodsId"))
 		            .collect(Collectors.toList());
@@ -65,7 +64,7 @@ public class OrderCotroller {
 		    cartGoods.put("goodsIds", goodsIds);
 		    List<CartGoodsDto> goods = cartService.getCartGoodsInfo(cartGoods);
 		    log.info("세번찾아봐" + goods.toString());
-		    // 필요한 비즈니스 로직 처리 후 뷰로 전달
+		    
 		    model.addAttribute("goods", goods);
 
 		    return "order/order";
@@ -75,22 +74,21 @@ public class OrderCotroller {
 	@Secured("ROLE_USER")
 	@RequestMapping("/orderComplete")
 	public ResponseEntity<String> completeOrder(
-		@RequestBody Map<String, List<CartGoodsDto>> request,
+		@RequestBody List<CartGoodsDto> cartGoodsDto,
 		Authentication authentication
 		) {
 			CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-			String userInfo = userDetails.getUsername(); //사용자 ID 가져오기
+			String userInfo = userDetails.getUsername();
 			
-		    List<CartGoodsDto> cartGoodsList = request.get("goodsData");
-		    orderService.createOrder(userInfo, cartGoodsList);
+		    orderService.createOrder(userInfo, cartGoodsDto);
 	
-		    for (CartGoodsDto goods : cartGoodsList) {
+		    for (CartGoodsDto goods : cartGoodsDto) {
 		    	CartDto cartDto = new CartDto();
 		    	cartDto.setUserId(userInfo);
 		    	cartDto.setGoodsId(goods.getGoodsId());
 		    	cartService.deleteGoodsFromCart(cartDto);
 		    }
-		    return ResponseEntity.ok("Order received!");
+		    return ResponseEntity.ok("잘 되냐");
 	}
 	
 	//주문 카트 아이템 추가
