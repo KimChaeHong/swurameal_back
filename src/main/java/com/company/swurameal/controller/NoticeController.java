@@ -66,11 +66,8 @@ public class NoticeController {
 		UserDto user = userDetails.getUserDto();
 		String userId = user.getUserId();
 		
-		NoticeDto noticeInsert = new NoticeDto();
-		noticeInsert.setUserId(userId);
-		noticeInsert.setNoticeTitle(noticeDto.getNoticeTitle());
-		noticeInsert.setNoticeContent(noticeDto.getNoticeContent());
-		noticeService.insertNotice(noticeInsert);
+		noticeDto.setUserId(userId);
+		noticeService.insertNotice(noticeDto);
 		return "redirect:/notice/noticeList";
 	}
 	
@@ -92,11 +89,7 @@ public class NoticeController {
 	// 공지사항을 수정하는 메서드
 	@PostMapping("/noticeUpdate")
 	public String editNotice(@ModelAttribute NoticeDto noticeDto) {
-		NoticeDto updateNotice = new NoticeDto();
-		updateNotice.setNoticeId(noticeDto.getNoticeId());
-		updateNotice.setNoticeTitle(noticeDto.getNoticeTitle());
-		updateNotice.setNoticeContent(noticeDto.getNoticeContent());
-		noticeService.editNotice(updateNotice);
+		noticeService.editNotice(noticeDto);
 		return "redirect:/notice/noticeList";
 	}
 	
