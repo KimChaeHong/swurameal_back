@@ -211,7 +211,6 @@ public class MypageCotroller {
 			reviewDto.setReviewStatus(1);
 			reviewService.writeReview(reviewDto);
 			orderService.updateReviewStatus(reviewDto);
-		
 			return "mypage/review";
 	}
 	
@@ -253,9 +252,7 @@ public class MypageCotroller {
 			UserDto user = userDetails.getUserDto();
 			String userId = user.getUserId();
 			reviewDto.setUserId(userId);
-			log.info("잘되냐" + reviewDto.toString());
 			reviewService.editReview(reviewDto);
-		
 			return "mypage/reviewCompleteList";
 	}
 			
